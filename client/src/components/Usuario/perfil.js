@@ -41,9 +41,9 @@ class Perfil extends Component {
   listarHabilidades = (habilidades) => {
     return habilidades.map((habilidad, i) => {
       if (i < habilidades.length-1) {
-        return <span>{`${habilidad}, `}</span>
+        return <span key={i}>{`${habilidad}, `}</span>
       } else {
-        return <span>{`${habilidad}.`}</span>
+        return <span key={i}>{`${habilidad}.`}</span>
       }
     })
   }

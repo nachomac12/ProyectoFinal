@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import InputGroup from '../Utilidades/input-group';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 import { ingresarUsuario } from '../../redux/actions/usuario_actions';
@@ -86,6 +86,13 @@ class Ingresar extends Component {
             />
             <div className="text-center">
               <input type="submit" className="btn btn-info btn-lg m-4 p-3" value="Ingresar"/>
+            </div>
+            <div className="text-center">
+              <span className="text-info">
+                Aún no tienes una cuenta? Puede registrarse como
+                <Link to="/registro_profesional" className="font-weight-bold"> profesional</Link> o como 
+                <Link to="registro_empleador" className="font-weight-bold"> empleador</Link>
+              </span>
             </div>
           </form>
         </div>

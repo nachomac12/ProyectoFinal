@@ -24,7 +24,7 @@ export default function (ComposedClass, reload, profesionalRoute=null, empleador
         
         if (!usuario.isAuth) {
           if (reload) {
-            this.props.history.push('/registro');
+            this.props.history.push('/ingresar');
           }
         } else {
           if ((profesionalRoute && !usuario.esProfesional) || (empleadorRoute && !usuario.esEmpleador)) {

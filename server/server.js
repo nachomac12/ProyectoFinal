@@ -14,7 +14,6 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 
 
-
 // Middlewares
 const { auth } = require('./middleware/auth');
 

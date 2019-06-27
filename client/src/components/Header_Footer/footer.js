@@ -12,7 +12,7 @@ import ContactMail from '@material-ui/icons/ContactMail';
 const Footer = () => {
     return (
         <div className="bg-info text-white">
-            <div className="LogoFooter text-center p-2">RedProf</div>
+            <div className="LogoFooter text-center p-2">redprof</div>
             <hr className="my-auto flex-grow-1" style={{borderColor: "white"}} />
             <div className="row">
                 <div className="col m-2">

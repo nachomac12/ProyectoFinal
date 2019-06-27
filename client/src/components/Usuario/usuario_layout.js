@@ -93,7 +93,12 @@ class UsuarioLayout extends Component {
         this.state.profesionales.map((item, i) => {
           return opciones.push (
             <ListItem button key={i}>
-              <Link to={item.linkTo} style={{verticalAlign: 'middle', display: 'flex'}}>
+              <Link 
+                to={item.linkTo} 
+                style={{verticalAlign: 'middle', 
+                display: 'flex',
+                textDecoration: 'none'}}
+              >
                 <ListItemIcon>{item.icon}</ListItemIcon>
                 <ListItemText>{item.nombre}</ListItemText>
               </Link>
@@ -103,8 +108,13 @@ class UsuarioLayout extends Component {
       } else {
         this.state.empleadores.map((item, i) => {
           return opciones.push (
-            <ListItem key={i}>
-              <Link to={item.linkTo} style={{verticalAlign: 'middle', display: 'flex'}}>
+            <ListItem button key={i}>
+              <Link 
+                to={item.linkTo} 
+                style={{verticalAlign: 'middle', 
+                display: 'flex', 
+                textDecoration: 'none'}}
+              >
                 <ListItemIcon>{item.icon}</ListItemIcon>
                 <ListItemText>{item.nombre}</ListItemText>
               </Link>
@@ -131,7 +141,7 @@ class UsuarioLayout extends Component {
             <MenuIcon fontSize="large"/>
           </IconButton>
           <Drawer open={this.state.open}>
-            <IconButton onClick={this.closeDrawer} className="text-info">
+            <IconButton onClick={this.closeDrawer} className="text-info" style={{background: 'transparent'}}>
               {this.state.open ? <ChevronLeftIcon fontSize="large"/> : <ChevronRightIcon fontSize="large"/>}
               Esconder
             </IconButton>
