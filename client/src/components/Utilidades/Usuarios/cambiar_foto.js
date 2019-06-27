@@ -5,6 +5,7 @@ import axios from 'axios';
 import { cambiarFotoPerfil } from '../../../redux/actions/usuario_actions';
 import { connect } from 'react-redux';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import firebase from 'firebase';
 
 class CambiarFoto extends Component {
   state = {
@@ -14,28 +15,52 @@ class CambiarFoto extends Component {
   onChange = e => {
     if (e.target.files[0]) {
       const imagen = e.target.files[0];
-      let formData = new FormData();
-      formData.append("file", imagen);
-      var dataToSubmit = {}
-      axios.post('/api/usuarios/uploadfile', formData).then(res1 => {
-        if (res1.data.success) {
-          axios.get('/api/usuarios/files').then(res2 => {
-            dataToSubmit = {"fotoDePerfil": res2.data.url}
-            this.props.dispatch(cambiarFotoPerfil(dataToSubmit, this.props.data))
-            .then(res3 => {
-              console.log(res3)
-              this.setState({loading: true})
-              setTimeout(() => {
-                this.setState({
-                  loading: false
-                })
-              }, 3000);
+      var dataToSubmit = {};
+      const uploadTask = firebase.storage().ref(`images/${imagen.name}`).put(imagen)
+      uploadTask.on('state_changed', 
+        snap => {
+          this.setState({loading: true})
+        },
+        error => {
+          console.log(error)
+        },
+        () => {
+          firebase.storage().ref('images').child(imagen.name).getDownloadURL().then(url => {
+            dataToSubmit = {'fotoDePerfil': url};
+            this.props.dispatch(cambiarFotoPerfil(dataToSubmit, this.props.data)).then(() => {
+              this.setState({loading:false})
             })
           })
         }
-      })
+      )
     }
   }
+
+  // onChange = e => {
+  //   if (e.target.files[0]) {
+  //     const imagen = e.target.files[0];
+  //     let formData = new FormData();
+  //     formData.append("file", imagen);
+  //     var dataToSubmit = {}
+  //     axios.post('/api/usuarios/uploadfile', formData).then(res1 => {
+  //       if (res1.data.success) {
+  //         axios.get('/api/usuarios/files').then(res2 => {
+  //           dataToSubmit = {"fotoDePerfil": res2.data.url}
+  //           this.props.dispatch(cambiarFotoPerfil(dataToSubmit, this.props.data))
+  //           .then(res3 => {
+  //             console.log(res3)
+  //             this.setState({loading: true})
+  //             setTimeout(() => {
+  //               this.setState({
+  //                 loading: false
+  //               })
+  //             }, 3000);
+  //           })
+  //         })
+  //       }
+  //     })
+  //   }
+  // }
 
   render() {
     return (

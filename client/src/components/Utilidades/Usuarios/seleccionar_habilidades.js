@@ -31,7 +31,6 @@ class SeleccionarHabilidades extends Component {
         this.setState({habilidades});
       });
     }
-    console.log(this.state.habilidades)
   }
 
   dynamicSort = property => {
@@ -98,9 +97,10 @@ class SeleccionarHabilidades extends Component {
 
   renderChips = () => {
     if (this.props.habilidades) {
-      return this.props.habilidades.map(habilidad => {
+      return this.props.habilidades.map((habilidad, i) => {
         return (
           <Chip
+            key={i}
             style={{
               marginTop: 3,
               marginLeft: 3
