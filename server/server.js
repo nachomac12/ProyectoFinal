@@ -13,6 +13,8 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(cookieParser());
 
+
+
 // Middlewares
 const { auth } = require('./middleware/auth');
 
@@ -64,6 +66,7 @@ app.get('/api/usuarios/files', auth, (req, res) => {
             });
     })
 })
+
 
 //==========================================\\
 //                 USUARIOS                 \\

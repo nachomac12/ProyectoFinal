@@ -1,29 +1,52 @@
 * {
-    font-family: 'Muli', sans-serif;
+  font-family: "Muli", sans-serif;
 }
 
 .LogoHeader {
-    font-family: 'Yeseva One', cursive;
-    font-size: 50px;
-    color: rgb(95, 190, 190);
+  font-family: "Yeseva One", cursive;
+  font-size: 50px;
+  color: rgb(95, 190, 190);
 }
 
 .LogoFooter {
-    font-family: 'Yeseva One', cursive;
-    font-size: 30px
+  font-family: "Yeseva One", cursive;
+  font-size: 30px;
 }
 
 .FotoUno {
-    top: 10%;
-    right: 10%;
-    position: absolute;
-    color: #ffffff;
-    text-align: left;
-    text-justify: distribute;
+  top: 10%;
+  right: 10%;
+  position: absolute;
+  color: #ffffff;
+  text-align: left;
+  text-justify: distribute;
 }
 
-.TituloFotoUno {
-    font-family: 'Oswald', sans-serif;
-    font-weight: bold;
-    font-size: 50px
+.TextoHome {
+  font-family: "Oswald", sans-serif;
+  font-weight: bold;
+  font-size: 50px;
+}
+
+.FotoDos {
+  top: 10%;
+  left: 7%;
+  position: absolute;
+  color: #ffffff;
+  text-align: left;
+  text-justify: distribute;
+}
+
+.Degrade {
+  background: #ffeeee; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to bottom,
+    #ddefbb,
+    #ffeeee
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to bottom,
+    #ddefbb,
+    #ffeeee
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }

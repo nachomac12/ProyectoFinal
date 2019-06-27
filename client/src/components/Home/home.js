@@ -7,11 +7,14 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 class Home extends Component {
   render() {
     return (
-      <div className="fluid">
-        <div className="mt-1 mb-1">
-          <Carousel/>
+        <div className="container-fluid">
+          <div className="mt-1 mb-1">
+            <Carousel/>
+          </div>
+          {/* <div className="mt-2 mb-1">
+            <img className="img-fluid" src='/images/fotolibu1.jpg' />
+          </div> */}
         </div>
-      </div>
     )
   }
 }

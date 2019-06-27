@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Edit from '@material-ui/icons/EditOutlined';
 import './CambiarFoto.css';
-import axios from 'axios';
 import { cambiarFotoPerfil } from '../../../redux/actions/usuario_actions';
 import { connect } from 'react-redux';
 import CircularProgress from '@material-ui/core/CircularProgress';
