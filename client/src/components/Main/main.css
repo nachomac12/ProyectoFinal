@@ -1,0 +1,29 @@
+* {
+    font-family: 'Muli', sans-serif;
+}
+
+.LogoHeader {
+    font-family: 'Yeseva One', cursive;
+    font-size: 50px;
+    color: rgb(95, 190, 190);
+}
+
+.LogoFooter {
+    font-family: 'Yeseva One', cursive;
+    font-size: 30px
+}
+
+.FotoUno {
+    top: 10%;
+    right: 10%;
+    position: absolute;
+    color: #ffffff;
+    text-align: left;
+    text-justify: distribute;
+}
+
+.TituloFotoUno {
+    font-family: 'Oswald', sans-serif;
+    font-weight: bold;
+    font-size: 50px
+}
