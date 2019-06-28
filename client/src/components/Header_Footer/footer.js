@@ -12,32 +12,34 @@ import ContactMail from '@material-ui/icons/ContactMail';
 const Footer = () => {
     return (
         <div className="bg-info text-white">
-            <div className="LogoFooter text-center p-2">redprof</div>
+            <div className="LogoFooter text-center p-2">redemplear</div>
             <hr className="my-auto flex-grow-1" style={{borderColor: "white"}} />
-            <div className="row">
+            <div className="row justify-content-center">
                 <div className="col m-2">
                     <div className="row">
-                        <div className="col m-3" style={{alignItems: 'center', display: 'flex'}}>
+                        <div className="col m-2" style={{alignItems: 'center', display: 'flex'}}>
                             <LocationOn fontSize="large" style={{marginRight: '5px'}}/> La Plata, 1900
                         </div>
-                        <div className="col m-3" style={{alignItems: 'center', display: 'flex'}}>
+                        <div className="col m-2" style={{alignItems: 'center', display: 'flex'}}>
                             <ContactPhone fontSize="large" style={{marginRight: '5px'}}/> 221-3131311
                         </div>
-                        <div className="w-100"></div>
-                        <div className="col m-3" style={{alignItems: 'center', display: 'flex'}}>
+                    </div>
+                
+                    <div className="row"> 
+                        <div className="col m-2" style={{alignItems: 'center', display: 'flex'}}>
                             <WatchLater fontSize="large" style={{marginRight: '5px'}}/> Lu/Vie 08:00-18:00
                         </div>
-                        <div className="col m-3" style={{alignItems: 'center', display: 'flex'}}>
-                            <ContactMail fontSize="large" style={{marginRight: '5px'}}/> redprof@gmail.com
+                        <div className="col m-2" style={{alignItems: 'center', display: 'flex'}}>
+                            <ContactMail fontSize="large" style={{marginRight: '5px'}}/> redemplear@gmail.com
                         </div>
                     </div>
                 </div>
 
                 <div className="col m-2">
-                    <ul className="mt-3" style={{listStyle: "none"}}>
-                        <li className="mt-1"><FaInstagram size="1.5em"/> redprof</li>
-                        <li className="mt-1"><FaTwitter size="1.5em"/> redprof</li>
-                        <li className="mt-1"><FaFacebook size="1.5em"/> redprof</li>
+                    <ul className="mt-2" style={{listStyle: "none"}}>
+                        <li className="mt-1"><FaInstagram size="1.5em"/> redemplear</li>
+                        <li className="mt-1"><FaTwitter size="1.5em"/> redemplear</li>
+                        <li className="mt-1"><FaFacebook size="1.5em"/> redemplear</li>
                     </ul>
                 </div>
             </div>
