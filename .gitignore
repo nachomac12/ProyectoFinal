@@ -1,9 +1,10 @@
 /node_modules
 /build
 /client/node_modules
-/client/public/images/perfil
 
 .DS_Store
 .env
 
 npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
