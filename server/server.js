@@ -7,7 +7,9 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 
 mongoose.Promise = global.Promise;
-mongoose.connect(process.env.DATABASE);
+mongoose.connect(process.env.MONGODB_URI);
+
+app.use(express.static('client/build'))
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
@@ -291,6 +293,13 @@ app.get('/api/test', (req, res) => {
     return res.status(200).send({message: "holu"});
 })
 
+
+if (process.env.NODE_ENV === 'production') {
+    const path = require('path');
+    app.get('/*', (req, res) => {
+        res.sendfile(path.resolve(__dirname, '../client', 'build', 'index.html'))
+    })
+}
 
 
 ////////// PORT //////////
