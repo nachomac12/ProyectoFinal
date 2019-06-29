@@ -33,7 +33,11 @@ class Perfil extends Component {
   obtenerAvatar = () => {
     var iniciales = '';
     if (this.state.usuario) {
-      iniciales = this.state.usuario.nombre.charAt(0).concat(this.state.usuario.apellido.charAt(0));
+      if (this.state.usuario.apellido !== "") {
+        iniciales = this.state.usuario.nombre.charAt(0).concat(this.state.usuario.apellido.charAt(0));
+      } else {
+        iniciales = this.state.usuario.nombre.charAt(0)
+      }
     }
     return iniciales;
   }
