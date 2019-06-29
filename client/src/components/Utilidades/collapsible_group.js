@@ -1,4 +1,6 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+
+import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 
 class CollapsibleGroup extends Component {
   state = {
@@ -14,10 +16,11 @@ class CollapsibleGroup extends Component {
   render() {
     return (
       <div className="card">
-        <div className="card-header bg-white">
-          <button className="btn btn-link" onClick={() => this.collapseHandler()}>
+        <div className="card-header bg-white" onClick={() => this.collapseHandler()}>
+          <button className="btn btn-link">
             {this.props.titulo}
           </button>
+          <KeyboardArrowDownIcon style={{float:'right'}}/>
         </div>
           {
             this.state.open ? 

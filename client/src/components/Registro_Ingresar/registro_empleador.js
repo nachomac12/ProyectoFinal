@@ -95,17 +95,17 @@ class RegistroEmpleador extends Component {
     const { email, password, repetirPassword } = this.state;
     if (this.state.desactivarFormDatosPersonales) {
       if (email === "") {
-        this.setState({errors: {email: "Falta ingresar el nombre"}});
+        this.setState({errors: {email: "Falta ingresar el mail"}});
         return;
       }
 
       if (password === "") {
-        this.setState({errors: {password: "Falta ingresar el apellido"}});
+        this.setState({errors: {password: "Ingrese una contraseña"}});
         return;
       }
 
       if (repetirPassword === "") {
-        this.setState({errors: {repetirPassword: "Falta ingresar la profesión"}});
+        this.setState({errors: {repetirPassword: "Repita la contraseña"}});
         return;
       }
 
