@@ -104,6 +104,11 @@ class RegistroEmpleador extends Component {
         return;
       }
 
+      if (password.length < 6) {
+        this.setState({errors: {password: "La contraseña debe tener como mínimo 6 caracteres"}});
+        return;
+      }
+
       if (repetirPassword === "") {
         this.setState({errors: {repetirPassword: "Repita la contraseña"}});
         return;

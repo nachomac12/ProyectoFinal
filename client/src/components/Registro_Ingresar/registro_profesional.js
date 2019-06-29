@@ -105,6 +105,11 @@ class RegistroProfesional extends Component {
         return;
       }
 
+      if (password.length < 6) {
+        this.setState({errors: {password: "La contraseña debe tener como mínimo 6 caracteres"}});
+        return;
+      }
+
       if (password !== repetirPassword) {
         this.setState({errors: {repetirPassword: "Las contraseñas no coinciden"}});
         return;
