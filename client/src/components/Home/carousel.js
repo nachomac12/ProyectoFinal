@@ -10,6 +10,10 @@ export default () => (
     showThumbs={false} 
     showStatus={false} 
     useKeyboardArrows={true}
+    showIndicators={false}
+    transitionTime={700}
+    interval={10000}
+    stopOnHover={false}
   >
     <div>
       <img style={{opacity: '0.6'}} 
