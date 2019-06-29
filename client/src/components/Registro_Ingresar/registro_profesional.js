@@ -11,6 +11,7 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 
 class RegistroProfesional extends Component {
@@ -113,33 +114,22 @@ class RegistroProfesional extends Component {
       this.props.dispatch(registrarUsario(dataToSubmit)).then(res => {
         if (res.payload.success) {
           this.handleBloquearFormulario('datosCuenta');
-          console.log(res.payload.usuariodata);
+          this.setState({
+            open: true,
+            dialogText: 
+              <span>
+              ¡Felicidades, ya se ha registrado! Sera redirigido en breve<br/><LinearProgress variant="query"/>
+              </span> 
+          })
+          setTimeout(() => {
+            this.props.history.push('/ingresar')
+          }, 4000);
         }
       })
     } else {
       this.setState({
         open: true,
         dialogText: "Debe completar el formulario anterior",
-        dialogAction: true
-      })
-    }
-  }
-
-  handleFinalizar = () => {
-    const { desactivarFormDatosCuenta, desactivarFormDatosPersonales } = this.state;
-    if (desactivarFormDatosCuenta && desactivarFormDatosPersonales) {
-      this.setState({
-        open: true,
-        dialogText: "Felicidades. Serás redireccionado en un instante",
-        dialogAction: false
-      })
-      setTimeout(() => {
-        this.props.history.push('/perfil');
-      }, 3000)
-    } else {
-      this.setState({
-        open: true, 
-        dialogText: "Faltan completar datos!!",
         dialogAction: true
       })
     }
@@ -250,9 +240,6 @@ class RegistroProfesional extends Component {
                 </form>
             </CollapsibleGroup>
           </div>
-        </div>
-        <div className="text-center m-3">
-            <button className="btn btn-lg btn-info" onClick={() =>this.handleFinalizar()}>Finalizar!</button>
         </div>
 
         <Dialog open={this.state.open}>

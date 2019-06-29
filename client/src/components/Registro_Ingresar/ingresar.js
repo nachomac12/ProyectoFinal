@@ -89,7 +89,7 @@ class Ingresar extends Component {
             </div>
             <div className="text-center">
               <span className="text-info">
-                Aún no tienes una cuenta? Puede registrarse como
+                Aún no tienes una cuenta? Puedes registrarte como
                 <Link to="/registro_profesional" className="font-weight-bold"> profesional</Link> o como 
                 <Link to="registro_empleador" className="font-weight-bold"> empleador</Link>
               </span>

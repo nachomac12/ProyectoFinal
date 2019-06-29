@@ -24,7 +24,7 @@ const Footer = () => {
                             <ContactPhone fontSize="large" style={{marginRight: '5px'}}/> 221-3131311
                         </div>
                     </div>
-                
+                    
                     <div className="row"> 
                         <div className="col m-2" style={{alignItems: 'center', display: 'flex'}}>
                             <WatchLater fontSize="large" style={{marginRight: '5px'}}/> Lu/Vie 08:00-18:00
