@@ -9,7 +9,8 @@ const empleadorSchema = Schema({
     },
     apellido: {
         type: String,
-        maxlength: 100
+        maxlength: 100,
+        default:""
     },
     tipo: {
         type: String,
