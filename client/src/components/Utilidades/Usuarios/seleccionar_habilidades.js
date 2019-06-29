@@ -50,24 +50,6 @@ class SeleccionarHabilidades extends Component {
     };
   };
 
-  // handleOptions = () => {
-  //   if (this.props.habilidades && this.props.profesion) {
-  //     var habilidades = [];
-  //     this.props.dispatch(getHabilidades(this.props.profesion)).then(res => {
-  //       habilidades = res.payload;
-  //       habilidades.map(item => {
-  //         item.label = item.nombre;
-  //         item.value = item.nombre;
-  //         delete item.nombre;
-  //       });
-  //       habilidades = habilidades
-  //         .filter(habilidad => !this.props.habilidades.includes(habilidad.value))
-  //         .sort(this.dynamicSort("label"));
-  //       this.setState({habilidades});
-  //     });
-  //   }
-  // }
-
   handleChange = valores => {
     this.setState({ valores });
   };
@@ -121,12 +103,13 @@ class SeleccionarHabilidades extends Component {
         <div className="col">
           <Select
             isMulti
-            name="Habilidades"
             options={this.state.habilidades}
             className="basic-multi-select"
             classNamePrefix="select"
             value={this.state.valores}
             onChange={this.handleChange}
+            placeholder={"Seleccione sus habilidades..."}
+            styles={colourStyles}
           />
           <div style={{
             border: '1px solid #17a2b8', 
@@ -147,6 +130,28 @@ class SeleccionarHabilidades extends Component {
       </div>
     );
   }
+}
+
+const colourStyles = {
+  option: (styles) => ({
+    ...styles,
+    color: '#1F96F3',
+    fontWeight: 'bold'
+  }),
+  multiValueLabel: (styles) => ({
+    ...styles,
+    color: '#197ED9',
+    backgroundColor: '#F4F7FA'
+  }),
+  multiValueRemove: (styles) => ({
+    ...styles,
+    color: '#197ED9',
+    backgroundColor: '#F4F7FA',
+    ':hover': {
+      backgroundColor: '#197ED9',
+      color: 'white',
+    },
+  })
 }
 
 export default connect()(SeleccionarHabilidades);

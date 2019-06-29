@@ -51,7 +51,7 @@ class PaperEdit extends Component {
   render() {
     return (
       <div>
-        <Paper className="p-2 m-1 col-md-10">
+        <Paper style={{padding: '10px'}}>
           <h4 style={{color: '#3f51b5'}}>{this.props.nombre}</h4>
           {!this.state.edit ?
             <div>

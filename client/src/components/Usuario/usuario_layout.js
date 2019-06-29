@@ -131,7 +131,7 @@ class UsuarioLayout extends Component {
   render() {
     return (
       <div className="row">
-        <div className="col-md-2 m-2">
+        <div className="col-1">
           <IconButton
             color="inherit"
             aria-label="Open drawer"
@@ -151,7 +151,7 @@ class UsuarioLayout extends Component {
             </List>
           </Drawer>
         </div>
-        <div className="col-md-8 m-2">
+        <div className="col-10 m-2">
           {this.props.children}
         </div>
       </div>

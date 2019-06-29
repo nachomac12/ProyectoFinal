@@ -6,10 +6,9 @@ import { buscarEmpleadorPorID, buscarProfesionalPorID } from '../../redux/action
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
-import CardContent from '@material-ui/core/CardContent';
 import Avatar from '@material-ui/core/Avatar';
-import Divider from '@material-ui/core/Divider';
 import StarRateIcon from '@material-ui/icons/StarRate';
+import PaperPerfil from '../Utilidades/paper_perfil';
 
 class Perfil extends Component {
   state = {
@@ -42,63 +41,42 @@ class Perfil extends Component {
     return iniciales;
   }
 
-  listarHabilidades = (habilidades) => {
-    return habilidades.map((habilidad, i) => {
-      if (i < habilidades.length-1) {
-        return <span key={i}>{`${habilidad}, `}</span>
-      } else {
-        return <span key={i}>{`${habilidad}.`}</span>
-      }
-    })
-  }
-  
-  cardContent = () => {
-    var cardContent = null;
+  renderPapers = () => {
+    var papers = null;
     if (this.state.usuario) {
       if (this.props.usuario.usuarioDatos.esProfesional) {
-        cardContent = (
-          <div className="text-center">
-            <h4>Trabajos que está realizando</h4>
-            {
-              this.props.usuario.profesional.trabajosHaciendose.length > 0 ?
-                <p>Está realizando trabajos</p>
-              : <p>Aún no ha realizado ningún trabajo</p>
-            }
-            <Divider /> <br/>
-            <h4>Habilidades</h4>
-              {
-                this.props.usuario.profesional.habilidades.length > 0 ?
-                  <p>{this.listarHabilidades(this.props.usuario.profesional.habilidades)}</p>
-                : <p>Aún no ha seleccionado sus habilidades</p>
-              }
-            <Divider /> <br/>
-            <h4>Historial de trabajos realizados</h4>
-            {
-              this.props.usuario.profesional.historialTrabajos.length > 0 ?
-                <p>Ha realizado trabajos</p>
-              : <p>Aún no ha completado ningún trabajo</p>
-            }
-            <Divider /> <br />
-            <h4>Puntuación</h4>
-            {this.rateIcon()}
-          </div>
-        )
+        papers=(
+          <div>
+            <PaperPerfil 
+              titulo="Trabajos en curso"
+              lista={this.props.usuario.profesional.trabajosHaciendose}
+              texto="Aún no está realizando ningún trabajo."
+            />
+            <PaperPerfil
+              titulo="Habilidades"
+              lista={this.props.usuario.profesional.habilidades}
+              texto="Aún no ha seleccionado sus habilidades."
+            />
+            <PaperPerfil
+              titulo="Historial de trabajos"
+              lista={this.props.usuario.profesional.historialTrabajos}
+              texto="Aún no ha realizado ningún trabajo."
+            />
+          </div>)
       } 
       if (this.props.usuario.usuarioDatos.esEmpleador) {
-        cardContent = (
+        papers = (
           <div>
-            <h4>Trabajos publicados:</h4>
-            {
-              this.props.usuario.empleador.trabajos.length > 0 ?
-                <p>Tiene trabajos publicados</p>
-              : <p>Aún no ha publicado ningún empleo</p>
-            }
-            <Divider />
+            <PaperPerfil 
+              titulo="Trabajos creados"
+              lista={this.props.usuario.empleador.trabajos}
+              texto="Aún no ha creado ningún trabajo."
+            />
           </div>
         )
       }
     }
-    return cardContent;
+    return papers;
   }
 
   rateIcon = () => {
@@ -120,8 +98,8 @@ class Perfil extends Component {
   render() {
     return (
       <UsuarioLayout>
-        <div className="row justify-content-center">
-          <Card className="col-md-5 mr-2">
+        <div className="row">
+          <Card className="col-md-5" style={{maxWidth: 400}}>
             <CardHeader 
               avatar={
                 <Avatar>
@@ -141,14 +119,12 @@ class Perfil extends Component {
             />
             <CardMedia
               image={this.props.usuario.usuarioDatos.fotoDePerfil}
-              style = {{ height: 400, paddingTop: '56.25%', maxHeight:345 }}
+              style = {{ height: 400, paddingTop: '56.25%', maxHeight: 345}}
             />
           </Card>
-          <Card className="col-md-5">
-            <CardContent>
-              {this.cardContent()}
-            </CardContent>
-          </Card>
+          <div className="col-md-5">
+            {this.renderPapers()}
+          </div>
         </div>
       </UsuarioLayout>
     )

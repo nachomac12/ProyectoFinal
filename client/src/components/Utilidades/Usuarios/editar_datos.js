@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import PaperEdit from '../paper_edit';
 
-
 class EditarDatos extends Component {
   render() {
     return (
       <div className="text-center"> 
-        <div className="mt-2">
+        <div>
           <PaperEdit 
             nombre="Email"
             data={this.props.email}
