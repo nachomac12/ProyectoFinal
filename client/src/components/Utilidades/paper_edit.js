@@ -29,7 +29,8 @@ class PaperEdit extends Component {
     var dataToSubmit = {};
     switch(this.props.case) {
       case "email":
-        if (this.state.texto !== "" && !this.state.texto.includes('@')) {
+        console.log('hola')
+        if (this.state.texto !== "" && this.state.texto.includes('@')) {
           dataToSubmit = {"email": this.state.texto}
           this.props.dispatch(cambiarEmail(dataToSubmit, this.props.usuario))
             .then(res => {this.setState({edit: false})})
