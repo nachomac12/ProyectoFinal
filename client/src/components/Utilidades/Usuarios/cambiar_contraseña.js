@@ -32,14 +32,14 @@ class CambiarContraseña extends Component {
       <input
         placeholder="Ingrese su NUEVA contraseña..." 
         className="form-control mt-2"
-        type="password"
+        type={!this.state.vision ? "password" : "text"}
         name="contraseñaNueva"
         onChange={this.onChange}
       />
       <input
         placeholder="Ingrese su NUEVA contraseña..." 
         className="form-control mt-2"
-        type="password"
+        type={!this.state.vision ? "password" : "text"}
         name="repetirContraseñaNueva"
         onChange={this.onChange}
       />

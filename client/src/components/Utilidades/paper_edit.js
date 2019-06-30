@@ -5,7 +5,11 @@ import Done from '@material-ui/icons/Done';
 import Close from '@material-ui/icons/Close';
 
 import { connect } from 'react-redux';
-import { cambiarEmail, editarNombreProfesional, editarApellidoProfesional } from '../../redux/actions/usuario_actions';
+import { 
+  cambiarEmail, 
+  editarNombreProfesional, 
+  editarApellidoProfesional 
+} from '../../redux/actions/usuario_actions';
 
 class PaperEdit extends Component {
   state = {
@@ -50,41 +54,39 @@ class PaperEdit extends Component {
 
   render() {
     return (
-      <div>
-        <Paper style={{padding: '10px'}}>
-          <h4 style={{color: '#3f51b5'}}>{this.props.nombre}</h4>
-          {!this.state.edit ?
-            <div>
-              <p>{this.props.data}</p>
-              <Edit 
-                style={{top: 10, right: 25, position: 'absolute', cursor:"pointer"}} 
-                color="primary"
-                onClick={() => this.setState({edit: true})}
-              />
+      <Paper className="col-md" style={{padding: '10px'}}>
+        <h4 style={{color: '#3f51b5'}}>{this.props.nombre}</h4>
+        {!this.state.edit ?
+          <div>
+            <p>{this.props.data}</p>
+            <Edit 
+              style={{top: 10, right: 25, position:'absolute', cursor:"pointer"}} 
+              color="primary"
+              onClick={() => this.setState({edit: true})}
+            />
+          </div>
+        : <div className="input-group mb-3">
+            <input 
+              type={this.props.inputType}
+              className="form-control" 
+              placeholder={`Inserte un nuevo ${this.props.nombre.toLowerCase()}`}
+              name="texto"
+              onChange={this.onChange}
+            />  
+            <div className="input-group-append">
+              <button 
+                className="btn btn-outline-info"
+                onClick={() => {this.modificarCampo()}} 
+                type="button"
+              ><Done color="primary" fontSize="small"/></button>
+              <button 
+                className="btn btn-outline-danger"
+                onClick={() => {this.setState({edit: false})}}
+              ><Close color="secondary" fontSize="small"/></button>
             </div>
-          : <div className="input-group mb-3">
-              <input 
-                type={this.props.inputType}
-                className="form-control" 
-                placeholder={`Inserte un nuevo ${this.props.nombre.toLowerCase()}`}
-                name="texto"
-                onChange={this.onChange}
-              />  
-              <div className="input-group-append">
-                <button 
-                  className="btn btn-outline-info"
-                  onClick={() => {this.modificarCampo()}} 
-                  type="button"
-                ><Done color="primary" fontSize="small"/></button>
-                <button 
-                  className="btn btn-outline-danger"
-                  onClick={() => {this.setState({edit: false})}}
-                ><Close color="secondary" fontSize="small"/></button>
-              </div>
-            </div>
-          }
-        </Paper>
-      </div>
+          </div>
+        }
+      </Paper>
     )
   }
 }

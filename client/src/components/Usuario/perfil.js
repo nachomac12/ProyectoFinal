@@ -99,29 +99,31 @@ class Perfil extends Component {
     return (
       <UsuarioLayout>
         <div className="row">
-          <Card className="col-md-5" style={{maxWidth: 400}}>
-            <CardHeader 
-              avatar={
-                <Avatar>
-                  {this.obtenerAvatar()}
-                </Avatar>
-              }
-              title={
-                this.state.usuario ?
-                  this.state.usuario.nombre + " " + this.state.usuario.apellido
-                : null
-              }
-              subheader= {
-                this.state.usuario ? 
-                  this.state.usuario.profesion ? this.state.usuario.profesion : this.state.usuario.tipo
-                : null
-              }
-            />
-            <CardMedia
-              image={this.props.usuario.usuarioDatos.fotoDePerfil}
-              style = {{ height: 400, paddingTop: '56.25%', maxHeight: 345}}
-            />
-          </Card>
+          <div className="col-md-5" >
+            <Card style={{maxWidth: 400}}>
+              <CardHeader 
+                avatar={
+                  <Avatar>
+                    {this.obtenerAvatar()}
+                  </Avatar>
+                }
+                title={
+                  this.state.usuario ?
+                    this.state.usuario.nombre + " " + this.state.usuario.apellido
+                  : null
+                }
+                subheader= {
+                  this.state.usuario ? 
+                    this.state.usuario.profesion ? this.state.usuario.profesion : this.state.usuario.tipo
+                  : null
+                }
+              />
+              <CardMedia
+                image={this.props.usuario.usuarioDatos.fotoDePerfil}
+                style = {{ height: 400, paddingTop: '56.25%', maxHeight: 345}}
+              />
+            </Card>
+          </div>
           <div className="col-md-5">
             {this.renderPapers()}
           </div>

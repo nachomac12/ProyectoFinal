@@ -12,12 +12,12 @@ class ModificarPerfilProfesional extends Component {
     return (
       <UsuarioLayout>
         <div className="row">
-          <div className="col">
+          <div className="col-md">
             <CambiarFoto 
               data={this.props.usuario.usuarioDatos}
             />
           </div>
-          <div className="col">
+          <div className="col-md">
             <EditarDatos
               email={this.props.usuario.usuarioDatos.email}
               nombre={this.props.usuario.profesional ? this.props.usuario.profesional.nombre : null}
@@ -26,7 +26,7 @@ class ModificarPerfilProfesional extends Component {
               profesional={this.props.usuario.profesional ? this.props.usuario.profesional : null}
             />
           </div>
-          <div className="col">
+          <div className="col-md">
             <CambiarContraseña/>
           </div>
         </div>
