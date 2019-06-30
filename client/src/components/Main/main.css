@@ -53,6 +53,20 @@
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
+.LinkItem {
+  display: flex;
+  vertical-align: 'middle';
+  margin-top: 0.5px;
+}
+
+.LinkItem:hover {
+  text-decoration: none;
+}
+
+.Active {
+  font-weight: bold;
+}
+
 @media screen and (max-width:640px) {
   .TextoHome {
     font-family: "Oswald", sans-serif;

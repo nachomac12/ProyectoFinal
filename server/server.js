@@ -261,6 +261,34 @@ app.get('/api/usuarios/empleador_por_id', auth, (req, res) => {
     })
 })
 
+app.put('/api/usuarios/editar_nombre_empleador', auth, (req, res) => {
+    Empleador.update(
+        {_id: req.usuario.empleador},
+        {nombre: req.body.nombre},
+        (err, doc) => {
+            if (err) return res.json({success: false, err});
+            res.status(200).json({
+                success: true,
+                nombre: req.body.nombre,
+            })
+        }
+    )
+})
+
+app.put('/api/usuarios/editar_apellido_empleador', auth, (req, res) => {
+    Empleador.update(
+        {_id: req.usuario.empleador},
+        {apellido: req.body.apellido},
+        (err, doc) => {
+            if (err) return res.json({success: false, err});
+            res.status(200).json({
+                success: true,
+                apellido: req.body.apellido
+            })
+        }
+    )
+})
+
 
 //==========================================\\
 //                 HABILIDAD                \\

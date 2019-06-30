@@ -23,7 +23,7 @@ class ModificarPerfilProfesional extends Component {
               nombre={this.props.usuario.profesional ? this.props.usuario.profesional.nombre : null}
               apellido={this.props.usuario.profesional ? this.props.usuario.profesional.apellido : null}
               usuario={this.props.usuario.usuarioDatos}
-              profesional={this.props.usuario.profesional ? this.props.usuario.profesional : null}
+              tipoUsuario={this.props.usuario.profesional ? this.props.usuario.profesional : null}
             />
           </div>
           <div className="col-md">

@@ -13,6 +13,8 @@ export const EDITAR_NOMBRE_PROFESIONAL = 'editar_nombre_profesional';
 export const EDITAR_APELLIDO_PROFESIONAL = 'editar_apellido_profesional';
 export const AGREGAR_HABILIDADES_PROFESIONAL = 'agregar_habilidades_profesional';
 export const ELIMINAR_HABILIDAD_PROFESIONAL = 'eliminar_habilidad_profesional';
+export const EDITAR_NOMBRE_EMPLEADOR = 'editar_nombre_empleador';
+export const EDITAR_APELLIDO_EMPLEADOR = 'editar_apellido_empleador';
 
 // HABILIDADES
 export const GET_HABILIDADES = 'get_habilidades';

@@ -12,7 +12,9 @@ import {
   EDITAR_NOMBRE_PROFESIONAL,
   EDITAR_APELLIDO_PROFESIONAL,
   AGREGAR_HABILIDADES_PROFESIONAL,
-  ELIMINAR_HABILIDAD_PROFESIONAL
+  ELIMINAR_HABILIDAD_PROFESIONAL,
+  EDITAR_NOMBRE_EMPLEADOR,
+  EDITAR_APELLIDO_EMPLEADOR
 } from "../actions/types";
 
 export default function(state = {}, action) {
@@ -55,6 +57,18 @@ export default function(state = {}, action) {
           editarApellido: action.payload.success,
           profesional: action.payload.profesionalDatos
         }
+        case EDITAR_NOMBRE_EMPLEADOR:
+            return {
+              ...state,
+              editarNombre: action.payload.success,
+              empleador: action.payload.empleadorDatos
+            }
+        case EDITAR_APELLIDO_EMPLEADOR:
+          return {
+            ...state,
+            editarApellido: action.payload.success,
+            empleador: action.payload.empleadorDatos
+          }
       case AGREGAR_HABILIDADES_PROFESIONAL:
         return {
           ...state,

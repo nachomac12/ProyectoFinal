@@ -8,7 +8,9 @@ import { connect } from 'react-redux';
 import { 
   cambiarEmail, 
   editarNombreProfesional, 
-  editarApellidoProfesional 
+  editarApellidoProfesional,
+  editarNombreEmpleador,
+  editarApellidoEmpleador 
 } from '../../redux/actions/usuario_actions';
 
 class PaperEdit extends Component {
@@ -39,15 +41,25 @@ class PaperEdit extends Component {
       case "nombre":
         if (this.state.texto !== "") {
           dataToSubmit = {"nombre": this.state.texto}
-          this.props.dispatch(editarNombreProfesional(dataToSubmit, this.props.profesional))
-            .then(res => {this.setState({edit: false})})
+          if (this.props.usuario.esProfesional) {
+            this.props.dispatch(editarNombreProfesional(dataToSubmit, this.props.tipoUsuario))
+              .then(res => {this.setState({edit: false})})
+          } else {
+            this.props.dispatch(editarNombreEmpleador(dataToSubmit, this.props.tipoUsuario))
+              .then (res => {this.setState({edit: false})})
+          }
         }
       break;
       case "apellido":
         if (this.state.texto !== "") {
           dataToSubmit = {"apellido": this.state.texto}
-          this.props.dispatch(editarApellidoProfesional(dataToSubmit, this.props.profesional))
-            .then(res => {this.setState({edit: false})})
+          if (this.props.usuario.esProfesional) {
+            this.props.dispatch(editarApellidoProfesional(dataToSubmit, this.props.tipoUsuario))
+              .then(res => {this.setState({edit: false})})
+          } else {
+            this.props.dispatch(editarApellidoEmpleador(dataToSubmit, this.props.tipoUsuario))
+              .then(res => {this.setState({edit: false})})
+          }
         }
       break;
     }

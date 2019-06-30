@@ -5,7 +5,7 @@ class Map extends React.Component {
   render() {
     return (
       <LeafletMap
-        center={[-34.904452, -57.926755]}
+        center={[this.props.latitud, this.props.longitud]}
         zoom={15}
         maxZoom={15}
         attributionControl={true}
@@ -19,9 +19,9 @@ class Map extends React.Component {
         <TileLayer
           url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
         />
-        <Marker position={[-34.904452, -57.926755]}>
+        <Marker position={[this.props.latitud, this.props.longitud]}>
           <Popup>
-            UTN FRLP
+            Universidad Tecnológica Nacional <br/> Facultad Regional La Plata
           </Popup>
         </Marker>
       </LeafletMap>

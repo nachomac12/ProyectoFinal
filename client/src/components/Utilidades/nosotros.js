@@ -14,7 +14,10 @@ const Nosotros = () => {
             que el mercado demande. Para lograr este objetivo se llevará a cabo una aplicación web escalable 
             para estar en concordancia con las necesidades actuales y futuras.</p>
             <h4 className="text-info">Nuestra ubicación</h4>
-            <Map />
+            <Map 
+                latitud={-34.904452}
+                longitud={-57.926755}
+            />
         </div>
     )
 }

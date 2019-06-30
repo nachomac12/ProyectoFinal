@@ -15,7 +15,9 @@ import {
     EDITAR_NOMBRE_PROFESIONAL,
     EDITAR_APELLIDO_PROFESIONAL,
     AGREGAR_HABILIDADES_PROFESIONAL,
-    ELIMINAR_HABILIDAD_PROFESIONAL
+    ELIMINAR_HABILIDAD_PROFESIONAL,
+    EDITAR_APELLIDO_EMPLEADOR,
+    EDITAR_NOMBRE_EMPLEADOR
 } from './types';
 
 ///// USUARIOS /////
@@ -208,6 +210,44 @@ export function eliminarHabilidadProfesional(nombre, profesionalDatosExistente) 
     
     return {
         type: ELIMINAR_HABILIDAD_PROFESIONAL,
+        payload: request
+    }
+}
+
+export function editarNombreEmpleador(dataToSubmit, empleadorDatosExistente) {
+    const request = axios.put(`${USUARIO_SERVER}/editar_nombre_empleador`, dataToSubmit)
+        .then(res => {
+            let empleadorDatos = {
+                ...empleadorDatosExistente,
+                "nombre": res.data.nombre
+            };
+            return {
+                success: res.data.success,
+                empleadorDatos
+            }
+        })
+    
+    return {
+        type: EDITAR_NOMBRE_EMPLEADOR,
+        payload: request
+    }
+}
+
+export function editarApellidoEmpleador(dataToSubmit, empleadorDatosExistente) {
+    const request = axios.put(`${USUARIO_SERVER}/editar_apellido_empleador`, dataToSubmit)
+        .then(res => {
+            let empleadorDatos = {
+                ...empleadorDatosExistente,
+                "apellido": res.data.apellido
+            };
+            return {
+                success: res.data.success,
+                empleadorDatos
+            }
+        })
+    
+    return {
+        type: EDITAR_APELLIDO_EMPLEADOR,
         payload: request
     }
 }

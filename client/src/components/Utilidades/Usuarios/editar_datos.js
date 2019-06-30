@@ -12,7 +12,7 @@ class EditarDatos extends Component {
             inputType="email"
             case="email"
             usuario={this.props.usuario}
-            profesional={this.props.profesional}
+            tipoUsuario={this.props.tipoUsuario}
           />
         </div>
         <div className="mt-2">
@@ -22,7 +22,7 @@ class EditarDatos extends Component {
             inputType="text"
             case="nombre"
             usuario={this.props.usuario}
-            profesional={this.props.profesional}
+            tipoUsuario={this.props.tipoUsuario}
           />
         </div>
         <div className="mt-2">
@@ -32,7 +32,7 @@ class EditarDatos extends Component {
             inputType="text"
             case="apellido"
             usuario={this.props.usuario}
-            profesional={this.props.profesional}
+            tipoUsuario={this.props.tipoUsuario}
           />
         </div>
       </div>

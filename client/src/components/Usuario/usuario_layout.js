@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -22,6 +22,7 @@ import { connect } from 'react-redux';
 class UsuarioLayout extends Component {
   state = {
     open: false,
+    estiloLink: "LinkItem",
     profesionales: [
       {
         nombre: 'Mi Perfil',
@@ -78,6 +79,8 @@ class UsuarioLayout extends Component {
     ]
   }
 
+  isActive = (value) => (this.props.location.pathname === value ? 'Active' : '')
+
   openDrawer = () => {
     this.setState({open: true})
   }
@@ -92,33 +95,31 @@ class UsuarioLayout extends Component {
       if (this.props.usuario.usuarioDatos.esProfesional) {
         this.state.profesionales.map((item, i) => {
           return opciones.push (
-            <ListItem button key={i}>
-              <Link 
-                to={item.linkTo} 
-                style={{verticalAlign: 'middle', 
-                display: 'flex',
-                textDecoration: 'none'}}
-              >
-                <ListItemIcon>{item.icon}</ListItemIcon>
-                <ListItemText>{item.nombre}</ListItemText>
-              </Link>
-            </ListItem>
+            <Link 
+              to={item.linkTo} 
+              className='LinkItem'
+              key={i}
+            > 
+              <ListItem button>
+                  <ListItemIcon className={this.isActive(item.linkTo)}>{item.icon}</ListItemIcon>
+                  <ListItemText><span className={this.isActive(item.linkTo)}>{item.nombre}</span></ListItemText>
+              </ListItem>
+            </Link>
           )
         })
       } else {
         this.state.empleadores.map((item, i) => {
           return opciones.push (
-            <ListItem button key={i}>
-              <Link 
-                to={item.linkTo} 
-                style={{verticalAlign: 'middle', 
-                display: 'flex', 
-                textDecoration: 'none'}}
-              >
-                <ListItemIcon>{item.icon}</ListItemIcon>
-                <ListItemText>{item.nombre}</ListItemText>
-              </Link>
-            </ListItem>
+            <Link 
+              to={item.linkTo} 
+              className='LinkItem'
+              key={i}
+            > 
+              <ListItem button>
+                  <ListItemIcon className={this.isActive(item.linkTo)}>{item.icon}</ListItemIcon>
+                  <ListItemText><span className={this.isActive(item.linkTo)}>{item.nombre}</span></ListItemText>
+              </ListItem>
+            </Link>
           )
         })
       }
@@ -129,6 +130,7 @@ class UsuarioLayout extends Component {
   }
 
   render() {
+    console.log(this.props)
     return (
       <div className="row">
         <div className="col-1">
@@ -165,4 +167,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(UsuarioLayout);
+export default connect(mapStateToProps)(withRouter(UsuarioLayout));
