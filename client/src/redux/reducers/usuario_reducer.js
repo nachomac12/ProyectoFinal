@@ -11,6 +11,7 @@ import {
   CAMBIAR_EMAIL,
   EDITAR_NOMBRE_PROFESIONAL,
   EDITAR_APELLIDO_PROFESIONAL,
+  EDITAR_PASSWORD,
   AGREGAR_HABILIDADES_PROFESIONAL,
   ELIMINAR_HABILIDAD_PROFESIONAL,
   EDITAR_NOMBRE_EMPLEADOR,
@@ -69,6 +70,12 @@ export default function(state = {}, action) {
             editarApellido: action.payload.success,
             empleador: action.payload.empleadorDatos
           }
+      case EDITAR_PASSWORD:
+        return {
+          ...state,
+          editarPassword: action.payload.success,
+          profesional: action.payload.profesionalDatos
+        }
       case AGREGAR_HABILIDADES_PROFESIONAL:
         return {
           ...state,

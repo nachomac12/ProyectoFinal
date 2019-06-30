@@ -27,7 +27,9 @@ class ModificarPerfilProfesional extends Component {
             />
           </div>
           <div className="col-md">
-            <CambiarContraseña/>
+            <CambiarContraseña
+              usuario={this.props.usuario.usuarioDatos}
+            />
           </div>
         </div>
         <div className="row mt-3">

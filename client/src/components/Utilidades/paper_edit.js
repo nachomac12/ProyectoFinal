@@ -6,7 +6,7 @@ import Close from '@material-ui/icons/Close';
 
 import { connect } from 'react-redux';
 import { 
-  cambiarEmail, 
+  cambiarEmail,
   editarNombreProfesional, 
   editarApellidoProfesional,
   editarNombreEmpleador,

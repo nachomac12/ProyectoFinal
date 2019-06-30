@@ -4,6 +4,9 @@ import Edit from '@material-ui/icons/Edit';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 
+import { connect } from 'react-redux';
+import { cambiarPassword } from '../../../redux/actions/usuario_actions'
+
 class CambiarContraseña extends Component {
   state = {
     edit: false,
@@ -45,7 +48,7 @@ class CambiarContraseña extends Component {
       />
       <div className="row text-center mt-3">
         <div className="col">
-          <button className="btn btn-outline-info">Guardar</button>
+          <button className="btn btn-outline-info" onClick={() => this.props.dispatch(cambiarPassword({"contraseña": this.state.contraseñaNueva}, this.props.usuario))}>Guardar</button>
         </div>
         <div className="col">
           <button className="btn btn-outline-danger" onClick={() => this.setState({edit: false})}>Cancelar</button>
@@ -83,4 +86,4 @@ class CambiarContraseña extends Component {
   }
 }
 
-export default CambiarContraseña;
+export default connect()(CambiarContraseña);
