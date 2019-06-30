@@ -6,7 +6,7 @@ import './main.css';
 class Main extends Component {
   render() {
     return (
-      <div>
+      <div className="col-md">
         <Header />
         <div>
             {this.props.children}

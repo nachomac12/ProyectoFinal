@@ -98,7 +98,9 @@ class Header extends Component {
     return (
       <div>
         <nav className="navbar navbar-light bg-white">
-          <Link to="/" className="LogoHeader navbar-brand ml-2 text-info">redemplear</Link>
+          <Link to="/" className="navbar-brand ml-2">
+              <img src="/images/logo.jpg" style={{width: 'auto', height: 60}} />
+          </Link>
           <ul className="nav justify-content-end">{ this.renderNavs() }</ul>
         </nav>
         <hr className="my-auto flex-grow-1" style={{borderColor: "#CEECF5"}} />

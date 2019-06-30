@@ -133,14 +133,15 @@ class UsuarioLayout extends Component {
     console.log(this.props)
     return (
       <div className="row">
-        <div className="col-1">
+        <div className="col-md-1 m-2">
           <IconButton
-            color="inherit"
+            style={{color: '#17a2b8', background: 'transparent'}}
             aria-label="Open drawer"
             edge="start"
             onClick={this.openDrawer}
           >
-            <MenuIcon fontSize="large"/>
+            Menú
+            <ChevronRightIcon fontSize="large" style={{paddingTop: '1px'}}/>
           </IconButton>
           <Drawer open={this.state.open}>
             <IconButton onClick={this.closeDrawer} className="text-info" style={{background: 'transparent'}}>
@@ -153,7 +154,7 @@ class UsuarioLayout extends Component {
             </List>
           </Drawer>
         </div>
-        <div className="col-10 m-2">
+        <div className="col-md m-2">
           {this.props.children}
         </div>
       </div>
