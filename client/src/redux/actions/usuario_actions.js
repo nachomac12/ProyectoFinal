@@ -12,8 +12,10 @@ import {
     BUSCAR_EMPLEADOR_POR_ID,
     LOGOUT,
     CAMBIAR_FOTO_PERFIL,
+    CAMBIAR_EMAIL,
     EDITAR_NOMBRE_PROFESIONAL,
     EDITAR_APELLIDO_PROFESIONAL,
+    EDITAR_PASSWORD,
     AGREGAR_HABILIDADES_PROFESIONAL,
     ELIMINAR_HABILIDAD_PROFESIONAL
 } from './types';
@@ -133,7 +135,7 @@ export function cambiarEmail(dataToSubmit, usuarioDatosExistentes) {
         })
 
     return {
-        type: CAMBIAR_FOTO_PERFIL,
+        type: CAMBIAR_EMAIL,
         payload: request
     }
 }
@@ -172,6 +174,25 @@ export function editarApellidoProfesional(dataToSubmit, profesionalDatosExistent
     
     return {
         type: EDITAR_APELLIDO_PROFESIONAL,
+        payload: request
+    }
+}
+
+export function cambiarPassword(dataToSubmit, usuarioDatosExistentes) {
+    const request = axios.put(`${USUARIO_SERVER}/cambiarpassword`, dataToSubmit)
+        .then(res => {
+            let usuarioDatos = {
+                ...usuarioDatosExistentes,
+                "password": res.data.contraseña
+            };
+            return {
+                success: res.data.success,
+                usuarioDatos
+            }
+        })
+
+    return {
+        type: EDITAR_PASSWORD,
         payload: request
     }
 }

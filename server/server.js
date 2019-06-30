@@ -15,6 +15,8 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(cookieParser());
 
+const bcrypt = require('bcrypt');
+const SALT_I = 10;
 
 // Middlewares
 const { auth } = require('./middleware/auth');
@@ -162,6 +164,27 @@ app.put('/api/usuarios/cambiaremail', auth, (req, res) => {
             })
         }
     )
+})
+
+app.put('/api/usuarios/cambiarpassword', auth, (req, res) => {
+    bcrypt.genSalt(SALT_I, function(err, salt){
+        if (err) return next(err);
+
+        bcrypt.hash(req.body.contraseña, salt, function(err, hash) {
+            if (err) return next(err);
+            Usuario.update(
+                {_id: req.usuario._id},
+                {contraseña: hash},
+                (err, doc) => {
+                    if (err) return res.json({success: false, err});
+                    return res.status(200).send({
+                        success: true,
+                        contraseña: hash
+                    })
+                }
+            );
+        })
+    });
 })
 
 //==========================================\\
