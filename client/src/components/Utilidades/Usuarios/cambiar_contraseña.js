@@ -3,11 +3,13 @@ import Paper from '@material-ui/core/Paper';
 import Edit from '@material-ui/icons/Edit';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
-
-import { connect } from 'react-redux';
+import Dialog from '@material-ui/core/Dialog';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogActions from '@material-ui/core/DialogActions';
 
 import axios from 'axios';
-
 import { USUARIO_SERVER } from '../../Utilidades/misc';
 
 class CambiarContraseña extends Component {
@@ -16,7 +18,8 @@ class CambiarContraseña extends Component {
     contraseñaVieja: '',
     contraseñaNueva: '',
     repetirContraseñaNueva: '',
-    vision: false
+    vision: false,
+    abrir: false
   }
 
   onChange = e => {
@@ -24,6 +27,25 @@ class CambiarContraseña extends Component {
     this.setState({
       [name]: value
     })
+  }
+
+  cambiarPassword = () => {
+    /*
+      Acá habría que validar: 1) Que la contraseña vieja que estas ingresando este correcta,
+      2) Que la contraseña vieja sea distinta de la nueva, 3) Que todas las contraseñas sean
+      distintas de "", 4) Que las dos contraseñas nuevas coincidan
+    */
+
+    axios.put(`${USUARIO_SERVER}/cambiarpassword`, {"contraseña": this.state.contraseñaNueva})
+      .then(res => {
+        this.setState({
+          edit: false,
+          contraseñaVieja: '',
+          contraseñaNueva: '',
+          repetirContraseñaNueva: '',
+          abrir: true
+        })
+      })
   }
 
   renderInputs = () => (
@@ -51,19 +73,20 @@ class CambiarContraseña extends Component {
       />
       <div className="row text-center mt-3">
         <div className="col">
-          {/* <button className="btn btn-outline-info" onClick={() => this.props.dispatch(cambiarPassword({"contraseña": this.state.contraseñaNueva}, this.props.usuario))}>Guardar</button> */}
-          <button className="btn btn-outline-info" onClick={() => axios.put(`${USUARIO_SERVER}/cambiarpassword`, {"contraseña": this.state.contraseñaNueva})}>Guardar</button>
+          <button className="btn btn-outline-info" onClick={() => this.cambiarPassword()}>Guardar</button>
         </div>
         <div className="col">
           <button className="btn btn-outline-danger" onClick={() => this.setState({edit: false})}>Cancelar</button>
         </div>
         <div className="col">
+        {this.state.edit ?
           <button className="btn btn-outline-dark" onClick={() => this.setState({vision: !this.state.vision})}>
             {this.state.vision 
               ? <VisibilityOff style={{cursor: 'pointer'}}/>
               : <Visibility style={{cursor: 'pointer'}}/>  
             }
           </button>
+        : null}
         </div>
       </div>
     </div>
@@ -85,9 +108,19 @@ class CambiarContraseña extends Component {
           ? this.renderInputs()
           : <fieldset disabled>{this.renderInputs()}</fieldset>
         }
+
+        <Dialog open={this.state.abrir}>
+          <DialogTitle><span className="text-info">Contraseña cambiada correctamente</span></DialogTitle>
+          <DialogContent>
+            <DialogContentText className="text-dark">Vuelve a iniciar sesión para verificarlo.</DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <button className="btn btn-secondary" onClick={() => this.setState({abrir: false})}>Cerrar</button>
+          </DialogActions>
+        </Dialog>
       </Paper>
     )
   }
 }
 
-export default connect()(CambiarContraseña);
+export default CambiarContraseña;
