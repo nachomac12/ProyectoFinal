@@ -5,7 +5,10 @@ import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 
 import { connect } from 'react-redux';
-import { cambiarPassword } from '../../../redux/actions/usuario_actions'
+
+import axios from 'axios';
+
+import { USUARIO_SERVER } from '../../Utilidades/misc';
 
 class CambiarContraseña extends Component {
   state = {
@@ -48,7 +51,8 @@ class CambiarContraseña extends Component {
       />
       <div className="row text-center mt-3">
         <div className="col">
-          <button className="btn btn-outline-info" onClick={() => this.props.dispatch(cambiarPassword({"contraseña": this.state.contraseñaNueva}, this.props.usuario))}>Guardar</button>
+          {/* <button className="btn btn-outline-info" onClick={() => this.props.dispatch(cambiarPassword({"contraseña": this.state.contraseñaNueva}, this.props.usuario))}>Guardar</button> */}
+          <button className="btn btn-outline-info" onClick={() => axios.put(`${USUARIO_SERVER}/cambiarpassword`, {"contraseña": this.state.contraseñaNueva})}>Guardar</button>
         </div>
         <div className="col">
           <button className="btn btn-outline-danger" onClick={() => this.setState({edit: false})}>Cancelar</button>
