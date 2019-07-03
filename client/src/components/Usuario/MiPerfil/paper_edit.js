@@ -7,11 +7,10 @@ import Close from '@material-ui/icons/Close';
 import { connect } from 'react-redux';
 import { 
   cambiarEmail,
-  editarNombreProfesional, 
-  editarApellidoProfesional,
-  editarNombreEmpleador,
-  editarApellidoEmpleador 
-} from '../../redux/actions/usuario_actions';
+  cambiarNombre,
+  cambiarApellido,
+  cambiarTelefono
+} from '../../../redux/actions/usuario_actions';
 
 class PaperEdit extends Component {
   state = {
@@ -31,7 +30,6 @@ class PaperEdit extends Component {
     var dataToSubmit = {};
     switch(this.props.case) {
       case "email":
-        console.log('hola')
         if (this.state.texto !== "" && this.state.texto.includes('@')) {
           dataToSubmit = {"email": this.state.texto}
           this.props.dispatch(cambiarEmail(dataToSubmit, this.props.usuario))
@@ -41,25 +39,22 @@ class PaperEdit extends Component {
       case "nombre":
         if (this.state.texto !== "") {
           dataToSubmit = {"nombre": this.state.texto}
-          if (this.props.usuario.esProfesional) {
-            this.props.dispatch(editarNombreProfesional(dataToSubmit, this.props.tipoUsuario))
-              .then(res => {this.setState({edit: false})})
-          } else {
-            this.props.dispatch(editarNombreEmpleador(dataToSubmit, this.props.tipoUsuario))
-              .then (res => {this.setState({edit: false})})
-          }
+          this.props.dispatch(cambiarNombre(dataToSubmit, this.props.usuario))
+            .then(res => {this.setState({edit: false})})
         }
       break;
       case "apellido":
         if (this.state.texto !== "") {
           dataToSubmit = {"apellido": this.state.texto}
-          if (this.props.usuario.esProfesional) {
-            this.props.dispatch(editarApellidoProfesional(dataToSubmit, this.props.tipoUsuario))
-              .then(res => {this.setState({edit: false})})
-          } else {
-            this.props.dispatch(editarApellidoEmpleador(dataToSubmit, this.props.tipoUsuario))
-              .then(res => {this.setState({edit: false})})
-          }
+          this.props.dispatch(cambiarApellido(dataToSubmit, this.props.usuario))
+            .then(res => {this.setState({edit: false})})
+        }
+      break;
+      case "telefono":
+        if (this.state.texto) {
+          dataToSubmit = {"telefono": this.state.texto}
+          this.props.dispatch(cambiarTelefono(dataToSubmit, this.props.usuario))
+            .then(res => {this.setState({edit: false})})
         }
       break;
     }

@@ -27,6 +27,7 @@ const { Usuario } = require('./models/usuario');
 const { Profesional } = require('./models/profesional');
 const { Empleador } = require('./models/empleador');
 const { Habilidad } = require('./models/habilidad');
+const { Domicilio } = require('./models/domicilio');
 
 //==========================================\\
 //                   FILES                  \\
@@ -79,13 +80,18 @@ app.get('/api/usuarios/auth', auth, (req, res) => {
     res.status(200).json({
         //req.usuario me pasa el usuario que agarre en el middleware con buscarPorToken
         isAuth: true,
-        id: req.usuario._id,
         esProfesional: req.usuario.profesional ? true : false,
         esEmpleador: req.usuario.empleador ? true : false,
+        id: req.usuario._id,
+        nombre: req.usuario.nombre,
+        apellido: req.usuario.apellido,
         email: req.usuario.email,
+        domicilio: req.usuario.domicilio,
+        descripcion: req.usuario.descripcion,
+        fotoDePerfil: req.usuario.fotoDePerfil,
+        telefono: req.usuario.telefono,
         profesional: req.usuario.profesional,
-        empleador: req.usuario.empleador,
-        fotoDePerfil: req.usuario.fotoDePerfil
+        empleador: req.usuario.empleador
     })
 })
 
@@ -187,6 +193,92 @@ app.put('/api/usuarios/cambiarpassword', auth, (req, res) => {
     });
 })
 
+app.put('/api/usuarios/cambiarnombre', auth, (req, res) => {
+    Usuario.update(
+        {_id: req.usuario._id},
+        {nombre: req.body.nombre},
+        (err, doc) => {
+            if (err) return res.json({success:false, err});
+            return res.status(200).send({
+                success: true,
+                nombre: req.body.nombre
+            })
+        }
+    )
+})
+
+app.put('/api/usuarios/cambiarapellido', auth, (req, res) => {
+    Usuario.update(
+        {_id: req.usuario._id},
+        {apellido: req.body.apellido},
+        (err, doc) => {
+            if (err) return res.json({success:false, err});
+            return res.status(200).send({
+                success: true,
+                apellido: req.body.apellido
+            })
+        }
+    )
+})
+
+app.put('/api/usuarios/cambiardescripcion', auth, (req, res) => {
+    Usuario.update(
+        {_id: req.usuario._id},
+        {descripcion: req.body.descripcion},
+        (err, doc) => {
+            if (err) return res.json({success:false, err});
+            return res.status(200).send({
+                success: true,
+                descripcion: req.body.descripcion
+            })
+        }
+    )
+})
+
+app.put('/api/usuarios/cambiartelefono', auth, (req, res) => {
+    Usuario.update(
+        {_id: req.usuario._id},
+        {telefono: req.body.telefono},
+        (err, doc) => {
+            if (err) return res.json({success:false, err});
+            return res.status(200).send({
+                success: true,
+                telefono: req.body.telefono
+            })
+        }
+    )
+})
+
+app.put('/api/usuarios/cambiardomicilio', auth, (req, res) => {
+    Usuario.update(
+        {_id: req.usuario._id},
+        {domicilio: req.body.domicilio},
+        (err, doc) => {
+            if (err) return res.json({success: false, err});
+            return res.status(200).send({
+                success: true,
+                nombre: req.body.domicilio
+            })
+        }
+    )
+})
+
+//==========================================\\
+//                 DOMICILIO                \\
+//==========================================\\
+
+app.post('/api/usuario/domicilio', auth, (req, res) => {
+    const domicilio = new Domicilio(req.body);
+
+    domicilio.save((err, doc) => {
+        if (err) return res.json({success: false, err});
+        res.status(200).send({
+            success: true, 
+            domicilio: doc
+        })
+    })
+})
+
 //==========================================\\
 //                PROFESIONAL               \\
 //==========================================\\
@@ -208,34 +300,6 @@ app.get('/api/usuarios/profesional_por_id', auth, (req, res) => {
         if (err) return res.status(400).send(err);
         res.status(200).send(profesional);
     })
-})
-
-app.put('/api/usuarios/editar_nombre_profesional', auth, (req, res) => {
-    Profesional.update(
-        {_id: req.usuario.profesional},
-        {nombre: req.body.nombre},
-        (err, doc) => {
-            if (err) return res.json({success: false, err});
-            res.status(200).json({
-                success: true,
-                nombre: req.body.nombre,
-            })
-        }
-    )
-})
-
-app.put('/api/usuarios/editar_apellido_profesional', auth, (req, res) => {
-    Profesional.update(
-        {_id: req.usuario.profesional},
-        {apellido: req.body.apellido},
-        (err, doc) => {
-            if (err) return res.json({success: false, err});
-            res.status(200).json({
-                success: true,
-                apellido: req.body.apellido
-            })
-        }
-    )
 })
 
 app.put('/api/usuarios/agregar_habilidades', auth, (req, res) => {
@@ -282,34 +346,6 @@ app.get('/api/usuarios/empleador_por_id', auth, (req, res) => {
         if (err) return res.status(400).send(err);
         res.status(200).send(empleador);
     })
-})
-
-app.put('/api/usuarios/editar_nombre_empleador', auth, (req, res) => {
-    Empleador.update(
-        {_id: req.usuario.empleador},
-        {nombre: req.body.nombre},
-        (err, doc) => {
-            if (err) return res.json({success: false, err});
-            res.status(200).json({
-                success: true,
-                nombre: req.body.nombre,
-            })
-        }
-    )
-})
-
-app.put('/api/usuarios/editar_apellido_empleador', auth, (req, res) => {
-    Empleador.update(
-        {_id: req.usuario.empleador},
-        {apellido: req.body.apellido},
-        (err, doc) => {
-            if (err) return res.json({success: false, err});
-            res.status(200).json({
-                success: true,
-                apellido: req.body.apellido
-            })
-        }
-    )
 })
 
 

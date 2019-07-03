@@ -9,12 +9,14 @@ export const BUSCAR_EMPLEADOR_POR_ID = 'buscar_empleador_por_id';
 export const LOGOUT = 'logout';
 export const CAMBIAR_FOTO_PERFIL = 'cambiar_foto_perfil';
 export const CAMBIAR_EMAIL = 'cambiar_email';
-export const EDITAR_NOMBRE_PROFESIONAL = 'editar_nombre_profesional';
-export const EDITAR_APELLIDO_PROFESIONAL = 'editar_apellido_profesional';
+export const CAMBIAR_NOMBRE = 'cambiar_nombre';
+export const CAMBIAR_APELLIDO = 'cambiar_apellido';
+export const CAMBIAR_DESCRIPCION = 'cambiar_descripcion';
+export const CAMBIAR_TELEFONO = 'cambiar_telefono';
+
+// PROFESIONAL
 export const AGREGAR_HABILIDADES_PROFESIONAL = 'agregar_habilidades_profesional';
 export const ELIMINAR_HABILIDAD_PROFESIONAL = 'eliminar_habilidad_profesional';
-export const EDITAR_NOMBRE_EMPLEADOR = 'editar_nombre_empleador';
-export const EDITAR_APELLIDO_EMPLEADOR = 'editar_apellido_empleador';
 
 // HABILIDADES
 export const GET_HABILIDADES = 'get_habilidades';

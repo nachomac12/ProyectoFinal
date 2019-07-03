@@ -69,19 +69,12 @@ class Header extends Component {
   )
 
   nombreLink = (item, i) => {
-    var nombre='';
-    if (this.props.usuario.profesional) {
-      nombre = this.props.usuario.profesional.nombre;
-    }
-    if (this.props.usuario.empleador) {
-      nombre = this.props.usuario.empleador.nombre;
-    }
     return (
       <li className="nav-item" key={i}>
         <Link to={item.linkTo} className="nav-link"> 
           <div>
             <AccountCircle style={{marginRight: '5px', fontSize: '1.6em'}} />
-            {nombre}
+            {this.props.usuario.usuarioDatos.nombre}
           </div>
         </Link>
       </li>

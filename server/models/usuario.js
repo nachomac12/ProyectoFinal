@@ -17,9 +17,27 @@ const usuarioSchema = Schema({
         required: true,
         minlength: 6
     },
+    nombre: {
+        type: String,
+        required: true
+    },
+    apellido: {
+        type: String,
+        required: true
+    },
+    descripcion: {
+        type: String
+    },
+    telefono: {
+        type: String
+    },
     fotoDePerfil: {
         type: String,
         default: '/images/avatar3.png'
+    },
+    domicilio: {
+        type: Schema.Types.ObjectId,
+        ref: "Domicilio"
     },
     profesional: {
         type: Schema.Types.ObjectId,

@@ -5,12 +5,10 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import MenuIcon from '@material-ui/icons/Menu';
 import IconButton from '@material-ui/core/IconButton';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import PersonIcon from '@material-ui/icons/Person';
-import EditIcon from '@material-ui/icons/Edit';
 import SearchIcon from '@material-ui/icons/Search';
 import AttachmentIcon from '@material-ui/icons/Attachment';
 import WorkOutlineIcon from '@material-ui/icons/WorkOutline';
@@ -43,11 +41,6 @@ class UsuarioLayout extends Component {
         nombre: 'Buscar Empleos',
         linkTo: '/buscar_empleos',
         icon: <SearchIcon />
-      },
-      {
-        nombre: 'Modificar Perfil',
-        linkTo: '/modificar_profesional',
-        icon: <EditIcon />
       }
     ],
     empleadores: [
@@ -70,11 +63,6 @@ class UsuarioLayout extends Component {
         nombre: 'Buscar Profesionales',
         linkTo: '/buscar_profesionales',
         icon: <SearchIcon />
-      },
-      {
-        nombre: 'Modificar Perfil',
-        linkTo: '/modificar_empleador',
-        icon: <EditIcon />
       }
     ]
   }

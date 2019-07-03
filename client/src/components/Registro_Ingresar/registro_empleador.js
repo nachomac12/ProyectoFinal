@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 // UTILIDADES
 import InputGroup from "../Utilidades/input-group";
-import CollapsibleGroup from "../Utilidades/collapsible_group";
+import CollapsibleGroup from "./collapsible_group";
 // REDUX
 import { connect } from 'react-redux';
 import { nuevoEmpleador, registrarUsario } from '../../redux/actions/usuario_actions';
@@ -26,13 +26,14 @@ const tipos = [
 class RegistroEmpleador extends Component {
   state = {
     nombre: '',
+    apellido: '',
     profesion: '',
     tipos,
     email: '',
     password: '',
     repetirPassword: '',
     errors: {},
-    desactivarFormDatosPersonales: false,
+    desactivarFormTipo: false,
     desactivarFormDatosCuenta: false,
     empleadorID: '',
     open: false,
@@ -49,9 +50,9 @@ class RegistroEmpleador extends Component {
 
   handleBloquearFormulario = (caso) => {
     switch(caso) {
-      case ('datosPersonales'):
+      case ('Tipo'):
         return this.setState({
-          desactivarFormDatosPersonales: true
+          desactivarFormTipo: true
         });
       case ('datosCuenta'):
         return this.setState({
@@ -62,25 +63,20 @@ class RegistroEmpleador extends Component {
     }
   }
 
-  submitDatosPersonales = (event) => {
+  submitTipo = (event) => {
     event.preventDefault();
-    const { nombre, apellido, tipo } = this.state;
-    if (nombre === "") {
-      this.setState({errors: {nombre: "Falta ingresar el nombre"}});
-      return;
-    }
-
+    const { tipo } = this.state;
     if (tipo === "") {
       this.setState({errors: {tipo: "Falta ingresar el tipo"}});
       return;
     }
 
-    var dataToSubmit = {"nombre": nombre, "apellido": apellido, "tipo": tipo};
+    var dataToSubmit = {"tipo": tipo};
     this.props.dispatch(nuevoEmpleador(dataToSubmit)).then(res => {
       if (res.payload.success) {
         this.setState({empleadorID: res.payload.empleadorData._id})
         console.log(this.state.empleadorID);
-        this.handleBloquearFormulario('datosPersonales');
+        this.handleBloquearFormulario('Tipo');
       } else {
         return (
           alert("Hubo un error")
@@ -92,10 +88,15 @@ class RegistroEmpleador extends Component {
 
   submitDatosCuenta = (event) => {
     event.preventDefault();
-    const { email, password, repetirPassword } = this.state;
-    if (this.state.desactivarFormDatosPersonales) {
+    const { email, password, repetirPassword, nombre, apellido } = this.state;
+    if (this.state.desactivarFormTipo) {
+      if (nombre === "") {
+        this.setState({errors: {nombre: "Falta ingresar su nombre"}});
+        return;
+      }
+
       if (email === "") {
-        this.setState({errors: {email: "Falta ingresar el mail"}});
+        this.setState({errors: {email: "Falta ingresar el email"}});
         return;
       }
 
@@ -119,7 +120,13 @@ class RegistroEmpleador extends Component {
         return;
       }
 
-      var dataToSubmit = {"email": email, "contraseña": password, "empleador": this.state.empleadorID};
+      var dataToSubmit = {
+        "email": email, 
+        "contraseña": password,
+        "empleador": this.state.empleadorID,
+        "nombre": nombre,
+        "apellido": apellido
+      };
       this.props.dispatch(registrarUsario(dataToSubmit)).then(res => {
         if (res.payload.success) {
           this.handleBloquearFormulario('datosCuenta');
@@ -150,32 +157,10 @@ class RegistroEmpleador extends Component {
         <div className="row justify-content-center m-3">
           <div className="col-md-5">
             <CollapsibleGroup
-              titulo="Datos personales"
+              titulo="Seleccionar Tipo"
               open={true}
             >
-              <form onSubmit={(event) => this.submitDatosPersonales(event)}>
-                <InputGroup 
-                  caso="input"
-                  label="Nombre"
-                  name="nombre"
-                  value={this.state.nombre}
-                  type="text"
-                  placeholder="Ingrese su nombre..."
-                  onChange={this.onChange}
-                  error={this.state.errors.nombre}
-                  disabled={this.state.desactivarFormDatosPersonales}
-                />
-                <InputGroup 
-                  caso="input"
-                  label="Apellido"
-                  name="apellido"
-                  value={this.state.apellido}
-                  type="text"
-                  placeholder="Ingrese su apellido..."
-                  onChange={this.onChange}
-                  error={this.state.errors.apellido}
-                  disabled={this.state.desactivarFormDatosPersonales}
-                />
+              <form onSubmit={(event) => this.submitTipo(event)}>
                 <InputGroup
                   caso="select"
                   label="Tipo"
@@ -185,9 +170,9 @@ class RegistroEmpleador extends Component {
                   onChange={this.onChange}
                   error={this.state.errors.tipo}
                   list={tipos}
-                  disabled={this.state.desactivarFormDatosPersonales}
+                  disabled={this.state.desactivarFormTipo}
                 />
-                { this.state.desactivarFormDatosPersonales ?
+                { this.state.desactivarFormTipo ?
                     <fieldset disabled>
                       <div className="text-center">
                         <input type="Submit" className="btn btn-info" value="Guardar datos personales"/>
@@ -195,7 +180,7 @@ class RegistroEmpleador extends Component {
                     </fieldset>
                   : 
                     <div className="text-center">
-                      <input type="Submit" className="btn btn-info" value="Guardar datos personales"/>
+                      <input type="Submit" className="btn btn-info" value="Guardar tipo"/>
                     </div>
                 }
               </form>
@@ -210,6 +195,28 @@ class RegistroEmpleador extends Component {
               open={false}
             >
               <form onSubmit={(event) => this.submitDatosCuenta(event)}>
+              <InputGroup 
+                  caso="input"
+                  label="Nombre"
+                  name="nombre"
+                  value={this.state.nombre}
+                  type="text"
+                  placeholder="Ingrese su nombre..."
+                  onChange={this.onChange}
+                  error={this.state.errors.nombre}
+                  disabled={this.state.desactivarFormDatosCuenta}
+                />
+                <InputGroup 
+                  caso="input"
+                  label="Razon Social / Apellido"
+                  name="apellido"
+                  value={this.state.apellido}
+                  type="text"
+                  placeholder="Ingrese su apellido..."
+                  onChange={this.onChange}
+                  error={this.state.errors.apellido}
+                  disabled={this.state.desactivarFormDatosCuenta}
+                />
                 <InputGroup 
                   caso="input"
                   label="Email"
@@ -234,7 +241,7 @@ class RegistroEmpleador extends Component {
                 />
                 <InputGroup 
                   caso="input"
-                  label="Contraseña"
+                  label="Repetir contraseña"
                   name="repetirPassword"
                   value={this.state.repetirPassword}
                   type="password"
@@ -244,7 +251,7 @@ class RegistroEmpleador extends Component {
                   disabled={this.state.desactivarFormDatosCuenta}
                 />
                 <div className="text-center">
-                  <input type="Submit" className="btn btn-info" value="Guardar datos de la cuenta"/>
+                  <input type="Submit" className="btn btn-info" value="Guardar datos"/>
                 </div>
                 </form>
             </CollapsibleGroup>

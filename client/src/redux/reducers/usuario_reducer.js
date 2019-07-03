@@ -9,12 +9,12 @@ import {
   LOGOUT,
   CAMBIAR_FOTO_PERFIL,
   CAMBIAR_EMAIL,
-  EDITAR_NOMBRE_PROFESIONAL,
-  EDITAR_APELLIDO_PROFESIONAL,
+  CAMBIAR_NOMBRE,
+  CAMBIAR_APELLIDO,
+  CAMBIAR_DESCRIPCION,
+  CAMBIAR_TELEFONO,
   AGREGAR_HABILIDADES_PROFESIONAL,
-  ELIMINAR_HABILIDAD_PROFESIONAL,
-  EDITAR_NOMBRE_EMPLEADOR,
-  EDITAR_APELLIDO_EMPLEADOR
+  ELIMINAR_HABILIDAD_PROFESIONAL
 } from "../actions/types";
 
 export default function(state = {}, action) {
@@ -45,30 +45,30 @@ export default function(state = {}, action) {
           cambiarEmail: action.payload.success,
           usuarioDatos: action.payload.usuarioDatos
         }
-      case EDITAR_NOMBRE_PROFESIONAL:
+      case CAMBIAR_NOMBRE:
         return {
           ...state,
-          editarNombre: action.payload.success,
-          profesional: action.payload.profesionalDatos
+          cambiarNombre: action.payload.success,
+          usuarioDatos: action.payload.usuarioDatos
         }
-      case EDITAR_APELLIDO_PROFESIONAL:
+      case CAMBIAR_APELLIDO:
         return {
           ...state,
-          editarApellido: action.payload.success,
-          profesional: action.payload.profesionalDatos
+          cambiarApellido: action.payload.success,
+          usuarioDatos: action.payload.usuarioDatos
         }
-        case EDITAR_NOMBRE_EMPLEADOR:
-            return {
-              ...state,
-              editarNombre: action.payload.success,
-              empleador: action.payload.empleadorDatos
-            }
-        case EDITAR_APELLIDO_EMPLEADOR:
-          return {
-            ...state,
-            editarApellido: action.payload.success,
-            empleador: action.payload.empleadorDatos
-          }
+      case CAMBIAR_DESCRIPCION:
+        return {
+          ...state,
+          cambiarDescripcion: action.payload.success,
+          usuarioDatos: action.payload.usuarioDatos
+        }
+      case CAMBIAR_TELEFONO:
+        return {
+          ...state,
+          cambiarTelefono: action.payload.success,
+          usuarioDatos: action.payload.usuarioDatos
+        }
       case AGREGAR_HABILIDADES_PROFESIONAL:
         return {
           ...state,

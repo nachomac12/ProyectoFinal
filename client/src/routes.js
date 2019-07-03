@@ -7,10 +7,8 @@ import Main from './components/Main';
 import Ingresar from './components/Registro_Ingresar/ingresar';
 import RegistroProfesional from './components/Registro_Ingresar/registro_profesional';
 import RegistroEmpleador from './components/Registro_Ingresar/registro_empleador';
-import Perfil from './components/Usuario/perfil';
-import ModificarPerfilProfesional from './components/Usuario/Profesional/modificar_perfil_profesional';
-import Nosotros from './components/Utilidades/nosotros';
-import ModificarPerfilEmpleador from './components/Usuario/Empleador/modificar_perfil_empleador';
+import Perfil from './components/Usuario/MiPerfil/perfil';
+import Nosotros from './components/Nosotros/nosotros';
 
 const Routes = () => {
   return (
@@ -23,8 +21,6 @@ const Routes = () => {
         <Route path='/nosotros' exact component={Permisos(Nosotros, null)} />
 
         <Route path="/perfil" exact component={Permisos(Perfil, true)} />
-        <Route path="/modificar_profesional" exact component={Permisos(ModificarPerfilProfesional, true)} />
-        <Route path="/modificar_empleador" exact component={Permisos(ModificarPerfilEmpleador, true)} />
 
         <Route component={Permisos(NotFound)} />
       </Switch>

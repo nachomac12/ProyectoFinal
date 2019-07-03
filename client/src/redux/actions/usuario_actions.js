@@ -13,12 +13,12 @@ import {
     LOGOUT,
     CAMBIAR_FOTO_PERFIL,
     CAMBIAR_EMAIL,
-    EDITAR_NOMBRE_PROFESIONAL,
-    EDITAR_APELLIDO_PROFESIONAL,
+    CAMBIAR_NOMBRE,
+    CAMBIAR_APELLIDO,
+    CAMBIAR_DESCRIPCION,
+    CAMBIAR_TELEFONO,
     AGREGAR_HABILIDADES_PROFESIONAL,
-    ELIMINAR_HABILIDAD_PROFESIONAL,
-    EDITAR_APELLIDO_EMPLEADOR,
-    EDITAR_NOMBRE_EMPLEADOR
+    ELIMINAR_HABILIDAD_PROFESIONAL
 } from './types';
 
 ///// USUARIOS /////
@@ -141,40 +141,78 @@ export function cambiarEmail(dataToSubmit, usuarioDatosExistentes) {
     }
 }
 
-export function editarNombreProfesional(dataToSubmit, profesionalDatosExistente) {
-    const request = axios.put(`${USUARIO_SERVER}/editar_nombre_profesional`, dataToSubmit)
+export function cambiarNombre(dataToSubmit, usuarioDatosExistentes) {
+    const request = axios.put(`${USUARIO_SERVER}/cambiarnombre`, dataToSubmit)
         .then(res => {
-            let profesionalDatos = {
-                ...profesionalDatosExistente,
+            let usuarioDatos = {
+                ...usuarioDatosExistentes,
                 "nombre": res.data.nombre
             };
             return {
                 success: res.data.success,
-                profesionalDatos
+                usuarioDatos
             }
         })
-    
+
     return {
-        type: EDITAR_NOMBRE_PROFESIONAL,
+        type: CAMBIAR_NOMBRE,
         payload: request
     }
 }
 
-export function editarApellidoProfesional(dataToSubmit, profesionalDatosExistente) {
-    const request = axios.put(`${USUARIO_SERVER}/editar_apellido_profesional`, dataToSubmit)
+export function cambiarApellido(dataToSubmit, usuarioDatosExistentes) {
+    const request = axios.put(`${USUARIO_SERVER}/cambiarapellido`, dataToSubmit)
         .then(res => {
-            let profesionalDatos = {
-                ...profesionalDatosExistente,
+            let usuarioDatos = {
+                ...usuarioDatosExistentes,
                 "apellido": res.data.apellido
             };
             return {
                 success: res.data.success,
-                profesionalDatos
+                usuarioDatos
             }
         })
-    
+
     return {
-        type: EDITAR_APELLIDO_PROFESIONAL,
+        type: CAMBIAR_APELLIDO,
+        payload: request
+    }
+}
+
+export function cambiarDescripcion(dataToSubmit, usuarioDatosExistentes) {
+    const request = axios.put(`${USUARIO_SERVER}/cambiardescripcion`, dataToSubmit)
+        .then(res => {
+            let usuarioDatos = {
+                ...usuarioDatosExistentes,
+                "descripcion": res.data.descripcion
+            };
+            return {
+                success: res.data.success,
+                usuarioDatos
+            }
+        })
+
+    return {
+        type: CAMBIAR_DESCRIPCION,
+        payload: request
+    }
+}
+
+export function cambiarTelefono(dataToSubmit, usuarioDatosExistentes) {
+    const request = axios.put(`${USUARIO_SERVER}/cambiartelefono`, dataToSubmit)
+        .then(res => {
+            let usuarioDatos = {
+                ...usuarioDatosExistentes,
+                "telefono": res.data.telefono
+            };
+            return {
+                success: res.data.success,
+                usuarioDatos
+            }
+        })
+
+    return {
+        type: CAMBIAR_TELEFONO,
         payload: request
     }
 }
@@ -211,44 +249,6 @@ export function eliminarHabilidadProfesional(nombre, profesionalDatosExistente) 
     
     return {
         type: ELIMINAR_HABILIDAD_PROFESIONAL,
-        payload: request
-    }
-}
-
-export function editarNombreEmpleador(dataToSubmit, empleadorDatosExistente) {
-    const request = axios.put(`${USUARIO_SERVER}/editar_nombre_empleador`, dataToSubmit)
-        .then(res => {
-            let empleadorDatos = {
-                ...empleadorDatosExistente,
-                "nombre": res.data.nombre
-            };
-            return {
-                success: res.data.success,
-                empleadorDatos
-            }
-        })
-    
-    return {
-        type: EDITAR_NOMBRE_EMPLEADOR,
-        payload: request
-    }
-}
-
-export function editarApellidoEmpleador(dataToSubmit, empleadorDatosExistente) {
-    const request = axios.put(`${USUARIO_SERVER}/editar_apellido_empleador`, dataToSubmit)
-        .then(res => {
-            let empleadorDatos = {
-                ...empleadorDatosExistente,
-                "apellido": res.data.apellido
-            };
-            return {
-                success: res.data.success,
-                empleadorDatos
-            }
-        })
-    
-    return {
-        type: EDITAR_APELLIDO_EMPLEADOR,
         payload: request
     }
 }
