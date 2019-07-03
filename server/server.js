@@ -249,7 +249,7 @@ app.put('/api/usuarios/cambiartelefono', auth, (req, res) => {
     )
 })
 
-app.put('/api/usuarios/cambiardomicilio', auth, (req, res) => {
+app.put('/api/usuarios/agregardomicilio', auth, (req, res) => {
     Usuario.update(
         {_id: req.usuario._id},
         {domicilio: req.body.domicilio},
@@ -257,7 +257,7 @@ app.put('/api/usuarios/cambiardomicilio', auth, (req, res) => {
             if (err) return res.json({success: false, err});
             return res.status(200).send({
                 success: true,
-                nombre: req.body.domicilio
+                domicilio: req.body.domicilio
             })
         }
     )
@@ -277,6 +277,21 @@ app.post('/api/usuario/domicilio', auth, (req, res) => {
             domicilio: doc
         })
     })
+})
+
+app.put('/api/usuario/domicilio', auth, (req, res) => {
+    Domicilio.findOneAndUpdate(
+        {_id: req.usuario.domicilio},
+        {$set: req.body},
+        {new: true},
+        (err, doc) => {
+            if (err) return res.json({success: false});
+            return res.status(200).send({
+                success: true,
+                domicilio: doc
+            })
+        }
+    )
 })
 
 //==========================================\\

@@ -3,6 +3,8 @@ import UsuarioLayout from '../usuario_layout';
 import { connect } from 'react-redux';
 import UsuarioCard from './Usuario_Card';
 import EditarDatos from './editar_datos';
+import SeleccionarHabilidades from './seleccionar_habilidades';
+import DomicilioUsuario from './domicilio_usuario';
 
 class Perfil extends Component {
 
@@ -20,7 +22,11 @@ class Perfil extends Component {
               empleador={empleador}
             />
           </div>
-          <div className="col-md"><EditarDatos usuario={usuario}/></div>
+          <div className="col-md">
+            <EditarDatos usuario={usuario}/>
+            {/* <div style={{marginTop: 20}}><SeleccionarHabilidades profesional={profesional}/></div> */}
+            <div className="mt-2"><DomicilioUsuario /></div>
+          </div>
         </div>
       </UsuarioLayout>
     )

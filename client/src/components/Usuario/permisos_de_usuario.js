@@ -16,10 +16,8 @@ export default function (ComposedClass, reload, profesionalRoute=null, empleador
         let usuario = this.props.usuario.usuarioDatos;
         console.log(usuario);
         if (usuario) {
-          this.props.dispatch(buscarEmpleadorPorID())
-            .then(res => console.log(this.props.usuario.empleador))
-          this.props.dispatch(buscarProfesionalPorID())
-            .then(res => console.log(this.props.usuario.profesional))
+          this.props.dispatch(buscarEmpleadorPorID());
+          this.props.dispatch(buscarProfesionalPorID());
         }
         
         if (!usuario.isAuth) {

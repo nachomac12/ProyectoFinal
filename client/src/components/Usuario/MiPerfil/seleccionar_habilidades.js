@@ -16,9 +16,9 @@ class SeleccionarHabilidades extends Component {
 
   componentDidUpdate() {
     // this.handleOptions()
-    if (this.props.habilidades && this.props.profesion) {
+    if (this.props.profesional) {
       var habilidades = [];
-      this.props.dispatch(getHabilidades(this.props.profesion)).then(res => {
+      this.props.dispatch(getHabilidades(this.props.profesional.profesion)).then(res => {
         habilidades = res.payload;
         habilidades.map(item => {
           item.label = item.nombre;
@@ -26,7 +26,7 @@ class SeleccionarHabilidades extends Component {
           delete item.nombre;
         });
         habilidades = habilidades
-          .filter(habilidad => !this.props.habilidades.includes(habilidad.value))
+          .filter(habilidad => !this.props.profesional.habilidades.includes(habilidad.value))
           .sort(this.dynamicSort("label"));
         this.setState({habilidades});
       });
@@ -78,8 +78,8 @@ class SeleccionarHabilidades extends Component {
   }
 
   renderChips = () => {
-    if (this.props.habilidades) {
-      return this.props.habilidades.map((habilidad, i) => {
+    if (this.props.profesional) {
+      return this.props.profesional.habilidades.map((habilidad, i) => {
         return (
           <Chip
             key={i}
@@ -112,10 +112,10 @@ class SeleccionarHabilidades extends Component {
             styles={colourStyles}
           />
           <div style={{
-            border: '1px solid #17a2b8', 
+            border: '1px solid #3F51B5', 
             borderRadius: '5px', 
             marginTop: '10px', 
-            padding: '8px'
+            padding: '10px'
           }}>
             {this.renderChips()}
           </div>

@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const domicilioSchema = Schema({
-    ciudad: {
+    localidad: {
         type: String,
         required: true
     },
