@@ -1,7 +1,7 @@
 // USUARIOS {PROFESIONALES Y EMPLEADORES}
+export const REGISTRAR_USUARIO = 'registrar_usuario';
 export const INGRESAR_USUARIO = 'ingresar_usuario';
 export const NUEVO_PROFESIONAL = 'nuevo_profesional';
-export const REGISTRAR_USUARIO = 'registrar_usuario';
 export const NUEVO_EMPLEADOR = 'nuevo_empleador';
 export const AUTH = 'auth';
 export const BUSCAR_PROFESIONAL_POR_ID = 'buscar_profesional_por_id';
@@ -13,6 +13,10 @@ export const CAMBIAR_NOMBRE = 'cambiar_nombre';
 export const CAMBIAR_APELLIDO = 'cambiar_apellido';
 export const CAMBIAR_DESCRIPCION = 'cambiar_descripcion';
 export const CAMBIAR_TELEFONO = 'cambiar_telefono';
+export const CREAR_DOMICILIO = 'crear_domicilio';
+export const CAMBIAR_DOMICILIO = 'cambiar_domicilio';
+export const AGREGAR_DOMICILIO_USUARIO = 'agregar_domicilio_usuario';
+export const GET_DOMICILIO = 'get_domicilio';
 
 // PROFESIONAL
 export const AGREGAR_HABILIDADES_PROFESIONAL = 'agregar_habilidades_profesional';

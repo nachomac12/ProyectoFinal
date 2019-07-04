@@ -267,31 +267,32 @@ app.put('/api/usuarios/agregardomicilio', auth, (req, res) => {
 //                 DOMICILIO                \\
 //==========================================\\
 
-app.post('/api/usuario/domicilio', auth, (req, res) => {
+app.post('/api/usuarios/domicilio', auth, (req, res) => {
     const domicilio = new Domicilio(req.body);
 
-    domicilio.save((err, doc) => {
+    domicilio.save((err, domicilio) => {
         if (err) return res.json({success: false, err});
-        res.status(200).send({
-            success: true, 
-            domicilio: doc
-        })
+        res.status(200).send(domicilio)
     })
 })
 
-app.put('/api/usuario/domicilio', auth, (req, res) => {
+app.put('/api/usuarios/domicilio', auth, (req, res) => {
     Domicilio.findOneAndUpdate(
         {_id: req.usuario.domicilio},
         {$set: req.body},
         {new: true},
-        (err, doc) => {
-            if (err) return res.json({success: false});
-            return res.status(200).send({
-                success: true,
-                domicilio: doc
-            })
+        (err, domicilio) => {
+            if (err) return res.json({success: false, err});
+            return res.status(200).send(domicilio)
         }
     )
+})
+
+app.get('/api/usuarios/domicilio', auth, (req, res) => {
+    Domicilio.findOne({'_id': req.usuario.domicilio}, (err, domicilio) => {
+        if (err) return res.status(400).send(err);
+        res.status(200).send(domicilio);
+    })
 })
 
 //==========================================\\

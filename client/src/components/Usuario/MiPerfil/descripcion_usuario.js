@@ -31,6 +31,7 @@ class DescripcionUsuario extends Component {
           className="form-control" 
           value={this.state.descripcion} 
           onChange={this.onChange}
+          autoFocus
         />
         <div className="text-center mt-2">
           <button className="btn btn-outline-info mr-1" onClick={() => this.guardarDescripcion()}>Guardar</button>
@@ -39,8 +40,9 @@ class DescripcionUsuario extends Component {
       </div>
       :
       <div>
-        <i style={{marginTop: 10}}>{this.props.usuario.descripcion ? this.props.usuario.descripcion : "Escribe una descripción personal..."}</i>
-        <div className="text-right"><Edit color="primary" style={{cursor: 'pointer'}} onClick={() => this.setState({edit: true})}/></div>
+        <i style={{marginTop: 10}} onClick={() => this.setState({edit: true})}>
+          {this.props.usuario.descripcion ? this.props.usuario.descripcion : "Escribe una descripción personal..."}
+        </i>
       </div>
       }
     </div>

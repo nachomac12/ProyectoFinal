@@ -116,13 +116,7 @@ class UsuarioCard extends Component {
           }
           <CardContent >
             <DescripcionUsuario usuario={this.props.datosUsuario}/>
-            {this.props.profesional ?
-            <div>
             <Divider className="mt-2"/>
-            <div className="text-center mt-2">{this.rateIcon()}</div>
-            </div>
-            : null
-            }
           </CardContent>
         </Card>
         <input 

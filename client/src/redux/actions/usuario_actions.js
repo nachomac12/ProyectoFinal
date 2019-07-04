@@ -18,7 +18,11 @@ import {
     CAMBIAR_DESCRIPCION,
     CAMBIAR_TELEFONO,
     AGREGAR_HABILIDADES_PROFESIONAL,
-    ELIMINAR_HABILIDAD_PROFESIONAL
+    ELIMINAR_HABILIDAD_PROFESIONAL,
+    CREAR_DOMICILIO,
+    CAMBIAR_DOMICILIO,
+    AGREGAR_DOMICILIO_USUARIO,
+    GET_DOMICILIO
 } from './types';
 
 ///// USUARIOS /////
@@ -249,6 +253,54 @@ export function eliminarHabilidadProfesional(nombre, profesionalDatosExistente) 
     
     return {
         type: ELIMINAR_HABILIDAD_PROFESIONAL,
+        payload: request
+    }
+}
+
+export function crearDomicilio(dataToSubmit) {
+    const request = axios.post(`${USUARIO_SERVER}/domicilio`, dataToSubmit)
+        .then(res => res.data)
+
+    return {
+        type: CREAR_DOMICILIO,
+        payload: request
+    }
+}
+
+export function cambiarDomicilio(dataToSubmit) {
+    const request = axios.put(`${USUARIO_SERVER}/domicilio`, dataToSubmit)
+        .then(res => res.data)
+
+    return {
+        type: CAMBIAR_DOMICILIO,
+        payload: request
+    }
+}
+
+export function agregarDomicilioUsuario(dataToSubmit, usuarioDatosExistentes) {
+    const request = axios.put(`${USUARIO_SERVER}/agregardomicilio`, dataToSubmit)
+    .then(res => {
+        let usuarioDatos = {
+            ...usuarioDatosExistentes,
+            "domicilio": res.data.domicilio
+        };
+        return {
+            success: res.data.success,
+            usuarioDatos
+        }
+    })
+
+    return {
+        type: AGREGAR_DOMICILIO_USUARIO,
+        payload: request
+    }
+}
+
+export function getDomicilio() {
+    const request = axios.get(`${USUARIO_SERVER}/domicilio`)
+        .then(res => res.data)
+    return {
+        type: GET_DOMICILIO,
         payload: request
     }
 }

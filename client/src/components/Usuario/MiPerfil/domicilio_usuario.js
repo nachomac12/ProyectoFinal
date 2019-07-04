@@ -3,6 +3,12 @@ import axios from 'axios';
 import { Paper, Divider } from '@material-ui/core';
 import Select from 'react-select';
 import Edit from '@material-ui/icons/Edit';
+import { connect } from 'react-redux';
+import {
+  crearDomicilio, 
+  cambiarDomicilio, 
+  agregarDomicilioUsuario 
+} from '../../../redux/actions/usuario_actions';
 
 class DomicilioUsuario extends Component {
   state = {
@@ -56,9 +62,50 @@ class DomicilioUsuario extends Component {
     this.setState({localidad: opcion})
   }
 
+  guardarDomicilio = () => {
+    const { provincia, localidad, direccion, piso } = this.state;
+    const dataToSubmit = {
+      "provincia": provincia.label,
+      "localidad": localidad.label,
+      "direccion": direccion,
+      "piso": piso
+    }
+    if (this.props.usuarioDatos) {
+      if (!this.props.usuarioDatos.domicilio) {
+        this.props.dispatch(crearDomicilio(dataToSubmit)).then(res => {
+          const domicilioID = {"domicilio": res.payload.domicilio._id}
+          this.props.dispatch(agregarDomicilioUsuario(domicilioID, this.props.usuarioDatos)).then(res2 => {
+            this.setState({
+              provincia: "",
+              localidad: "",
+              direccion: "",
+              piso: "",
+              edit: false
+            })
+          })
+        })
+      } else {
+        for (var propName in dataToSubmit) { 
+          if (dataToSubmit[propName] === null || dataToSubmit[propName] === undefined || dataToSubmit[propName] === "") {
+            delete dataToSubmit[propName];
+          }
+        }
+        this.props.dispatch(cambiarDomicilio(dataToSubmit)).then(res => {
+          this.setState({
+            provincia: "",
+            localidad: "",
+            direccion: "",
+            piso: "",
+            edit: false
+          })
+        })
+      }
+    }
+  }
+
   render() {
+    console.log(this.state);
     const localidadNula = [{label: "Debe ingresar una provincia", value:""}]
-    console.log(this.state)
     return (
       <Paper className="col-md" style={{padding: 10}}>
         <h4 className="text-center" style={{color: '#3f51b5'}}>Domicilio</h4>
@@ -87,6 +134,7 @@ class DomicilioUsuario extends Component {
             type="text"
             placeholder="Ej: Calle 47 742"
             onChange={this.onChange}
+            value={this.state.direccion}
           />
           <h5 className="font-weight-bold text-secondary mt-2" htmlFor="piso">Piso</h5>
           <input className="form-control"
@@ -94,18 +142,19 @@ class DomicilioUsuario extends Component {
             type="text"
             placeholder="Ej: 7 C"
             onChange={this.onChange}
+            value={this.state.piso}
           />
-          <div className="text-center mt-2">
-            <button className="btn btn-outline-info mr-2">Guardar</button>
+          <div className="text-right mt-2">
+            <button className="btn btn-outline-info mr-2" onClick={() => this.guardarDomicilio()}>Guardar</button>
             <button className="btn btn-outline-secondary" onClick={() => this.setState({edit: false})}>Cancelar</button>
           </div>
         </div>
         :
         <div className="text-center mt-2">
-          <p>Buenos Aires</p>
-          <p>La Plata</p>
-          <p>Calle 2, 1052</p>
-          <p>9 B</p>
+          <p>{this.props.domicilio ? this.props.domicilio.provincia : null}</p>
+          <p>{this.props.domicilio ? this.props.domicilio.localidad : null}</p>
+          <p>{this.props.domicilio ? this.props.domicilio.direccion : null}</p>
+          <p>{this.props.domicilio ? this.props.domicilio.piso : null}</p>
           <Edit 
             style={{top: 10, right: 25, position:'absolute', cursor:"pointer"}} 
             color="primary"
@@ -118,4 +167,4 @@ class DomicilioUsuario extends Component {
   }
 }
 
-export default DomicilioUsuario;
+export default connect()(DomicilioUsuario);

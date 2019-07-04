@@ -7,11 +7,14 @@ import {
   eliminarHabilidadProfesional 
 } from '../../../redux/actions/usuario_actions';
 import Chip from '@material-ui/core/Chip';
+import { Paper, Divider } from '@material-ui/core';
+import Edit from '@material-ui/icons/Edit';
 
 class SeleccionarHabilidades extends Component {
   state = {
     habilidades: null,
-    valores: null
+    valores: null,
+    edit: false
   };
 
   componentDidUpdate() {
@@ -80,57 +83,82 @@ class SeleccionarHabilidades extends Component {
   renderChips = () => {
     if (this.props.profesional) {
       return this.props.profesional.habilidades.map((habilidad, i) => {
-        return (
-          <Chip
-            key={i}
-            style={{
-              marginTop: 3,
-              marginLeft: 3
-            }}
-            label={habilidad}
-            onDelete={() => this.handleDelete(habilidad)}
-            variant="outlined"
-            color="primary"
-          />
-        )
+        if (this.state.edit) {
+          return (
+            <Chip
+              key={i}
+              style={{
+                marginTop: 3,
+                marginLeft: 3
+              }}
+              label={habilidad}
+              onDelete={() => this.handleDelete(habilidad)}
+              variant="outlined"
+              color="primary"
+            />
+          )
+        } else {
+          return (
+            <Chip
+              key={i}
+              style={{
+                marginTop: 3,
+                marginLeft: 3
+              }}
+              label={habilidad}
+              variant="outlined"
+              color="primary"
+            />
+          )
+        }
       })
     }
   }
 
   render() {
     return (
-      <div className="row mt-2">
-        <div className="col">
+      <Paper className="col-md" style={{padding: 10}}>
+        <h4 className="text-center" style={{color: '#3f51b5'}}>Habilidades</h4>
+        <Divider />
+        {this.state.edit ?
+        <div>
           <Select
             isMulti
             options={this.state.habilidades}
-            className="basic-multi-select"
+            className="basic-multi-select mt-2"
             classNamePrefix="select"
             value={this.state.valores}
             onChange={this.handleChange}
             placeholder={"Seleccione sus habilidades..."}
             styles={colourStyles}
           />
-          <div style={{
-            border: '1px solid #3F51B5', 
-            borderRadius: '5px', 
-            marginTop: '10px', 
-            padding: '10px'
-          }}>
+
+          <div style={{marginTop: 10}}>
             {this.renderChips()}
           </div>
-        </div>
 
-        <div className="col-xs-1">
-          <button 
-              className="btn btn-outline-primary"
-              onClick={() => {this.guardarValores()}}
-          >Guardar</button>
+          <div className="text-right mt-2">
+            <button className="btn btn-outline-primary mr-2" onClick={() => {this.guardarValores()}}>OK</button>
+            <button className="btn btn-outline-secondary" onClick={() => this.setState({edit: false})}>Cerrar</button>
+          </div>
         </div>
-      </div>
+        :
+        <div style={{marginTop: 10}}>
+          {this.renderChips()}
+          <Edit 
+            style={{top: 10, right: 25, position:'absolute', cursor:"pointer"}} 
+            color="primary"
+            onClick={() => this.setState({edit: true})}
+          />
+        </div>
+        }
+      </Paper>
+      
     );
   }
 }
+
+
 
 const colourStyles = {
   option: (styles) => ({

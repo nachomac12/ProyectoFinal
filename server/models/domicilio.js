@@ -15,8 +15,7 @@ const domicilioSchema = Schema({
         required: true
     },
     piso: {
-        type: String,
-        required: true
+        type: String
     }
 })
 
