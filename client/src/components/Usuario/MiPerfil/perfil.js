@@ -32,7 +32,7 @@ class Perfil extends Component {
             <EditarDatos usuario={usuario}/>
             <div className="row mt-2">
               <div className="col-md"><DomicilioUsuario usuarioDatos={usuario} domicilio={domicilio}/></div>
-              {profesional 
+              {usuario.esProfesional 
                 ? <div className="col-md"><SeleccionarHabilidades profesional={profesional}/></div>
                 : null
               }

@@ -81,7 +81,7 @@ class SeleccionarHabilidades extends Component {
   }
 
   renderChips = () => {
-    if (this.props.profesional) {
+    if (this.props.profesional && this.props.profesional.habilidades) {
       return this.props.profesional.habilidades.map((habilidad, i) => {
         if (this.state.edit) {
           return (
