@@ -73,7 +73,7 @@ class DomicilioUsuario extends Component {
     if (this.props.usuarioDatos) {
       if (!this.props.usuarioDatos.domicilio) {
         this.props.dispatch(crearDomicilio(dataToSubmit)).then(res => {
-          const domicilioID = {"domicilio": res.payload.domicilio._id}
+          const domicilioID = {"domicilio": res.payload._id}
           this.props.dispatch(agregarDomicilioUsuario(domicilioID, this.props.usuarioDatos)).then(res2 => {
             this.setState({
               provincia: "",
