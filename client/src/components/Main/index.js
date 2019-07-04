@@ -6,7 +6,7 @@ import './main.css';
 class Main extends Component {
   render() {
     return (
-      <div className="col-md">
+      <div className="LetraPagina" style={{width: '100%', overflowX: 'hidden'}}>
         <Header />
         <div>
             {this.props.children}

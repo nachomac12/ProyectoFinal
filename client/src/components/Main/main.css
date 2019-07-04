@@ -1,5 +1,16 @@
-* {
+.LetraPagina {
   font-family: "Muli", sans-serif;
+}
+
+.LogoHeader {
+  font-family: 'Chivo', sans-serif;
+  font-size: 40px;
+  font-weight: bolder;
+  color: #17a2b8;
+}
+
+.LogoHeader:hover {
+  color: #97BAD3
 }
 
 .LogoFooter {

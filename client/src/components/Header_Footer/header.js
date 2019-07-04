@@ -91,8 +91,8 @@ class Header extends Component {
     return (
       <div>
         <nav className="navbar navbar-light bg-white">
-          <Link to="/" className="navbar-brand ml-2">
-              <img src="/images/logo.jpg" style={{width: 'auto', height: 60}} />
+          <Link to="/" className="navbar-brand">
+              <div className="LogoHeader">redemplear</div>
           </Link>
           <ul className="nav justify-content-end">{ this.renderNavs() }</ul>
         </nav>

@@ -15,7 +15,7 @@ class Home extends Component {
         <div style={{marginTop: 3}}>
           <Carousel/>
         </div>
-        <div className="row" style={{marginTop: 30, marginBottom: 30}}>
+        <div className="row" style={{margin: '30px'}}>
           <div className="col-md-3 mb-1">
             <PaperHome 
               titulo="Publicar trabajos"
@@ -43,9 +43,8 @@ class Home extends Component {
               titulo="Gestionar postulantes"
               icono={<People style={{fontSize: 100}}/>}
               texto="Una vez que hayas creado y publicado un trabajo, podrás gestionar la cantidad de personas
-              que se pueden postular al mismo. De cada una de estas personas vas a poder evaluar sus aptitudes
-              para decidir cual es el más capaz para desarrollar tu trabajo. Para esto tendrás acceso a sus
-              habilidades y a su currículum."
+              a postularse al mismo pudiendo evaluar su aptitudes personales y quedarte con el que
+              consideres mas apto para el puesto."
               linkTo="/registro_empleador"
             />
           </div>   

@@ -32,7 +32,9 @@ const styles = {
   },
   textBox: {
     color: '#4E5C66',
-    fontWeight: '500'
+    height: 250,
+    width: 'auto',
+    margin: 'auto'
   }
 }
 

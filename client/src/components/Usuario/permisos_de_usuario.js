@@ -47,7 +47,7 @@ export default function (ComposedClass, reload, profesionalRoute=null, empleador
             <Dialog open={this.state.loading}>
               <DialogTitle>Cargando...</DialogTitle>
               <DialogContent>
-                <CircularProgress style={{color: '#2196F3'}} thickness={7} style={{left:'30%', position:'relative'}} />
+                <CircularProgress thickness={7} style={{left:'30%', position:'relative', color: '#2196F3'}} />
               </DialogContent>
             </Dialog>
           </div>
