@@ -3,6 +3,7 @@ import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux'; 
 import { logout } from '../../redux/actions/usuario_actions';
 import AccountCircle from '@material-ui/icons/AccountCircle';
+import MenuUsuario from '../Usuario/menu_usuario';
 
 class Header extends Component {
   state = {
@@ -71,12 +72,7 @@ class Header extends Component {
   nombreLink = (item, i) => {
     return (
       <li className="nav-item" key={i}>
-        <Link to={item.linkTo} className="nav-link"> 
-          <div>
-            <AccountCircle style={{marginRight: '5px', fontSize: '1.6em'}} />
-            {this.props.usuario.usuarioDatos.nombre}
-          </div>
-        </Link>
+        <MenuUsuario usuario={this.props.usuario.usuarioDatos}/>
       </li>
     )  
   }

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import UsuarioLayout from '../usuario_layout';
 import { connect } from 'react-redux';
 import { getDomicilio } from '../../../redux/actions/usuario_actions';
 import UsuarioCard from './Usuario_Card';
@@ -19,27 +18,23 @@ class Perfil extends Component {
     const domicilio = this.props.usuario.domicilio;
     console.log(domicilio)
     return (
-      <UsuarioLayout>
-        <div className="row">
-          <div className="col-md-4">
-            <UsuarioCard 
-              datosUsuario={usuario}
-              profesional={profesional}
-              empleador={empleador}
-            />
-          </div>
-          <div className="col-md">
-            <EditarDatos usuario={usuario}/>
-            <div className="row mt-2">
-              <div className="col-md"><DomicilioUsuario usuarioDatos={usuario} domicilio={domicilio}/></div>
-              {usuario.esProfesional 
-                ? <div className="col-md"><SeleccionarHabilidades profesional={profesional}/></div>
-                : null
-              }
-            </div>
-          </div>
+      <div className="row justify-content-center" style={{margin: 10}}>
+        <div className="col-md-4">
+          <UsuarioCard 
+            datosUsuario={usuario}
+            profesional={profesional}
+            empleador={empleador}
+          />
         </div>
-      </UsuarioLayout>
+        <div className="col-md-5">
+          {usuario.esProfesional 
+            ? <div className="mb-2"><SeleccionarHabilidades profesional={profesional}/></div>
+            : null
+          }
+          <EditarDatos usuario={usuario}/>
+          <div className="mb-2"><DomicilioUsuario usuarioDatos={usuario} domicilio={domicilio}/></div>
+        </div>
+      </div>
     )
   }
 }

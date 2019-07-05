@@ -5,8 +5,7 @@ class EditarDatos extends Component {
   render() {
     return (
       <div className="text-center"> 
-        <div className="row">
-          <div className="col-md">
+          <div className="mb-2">
             <PaperEdit 
               nombre="Nombre"
               data={this.props.usuario.nombre}
@@ -15,7 +14,7 @@ class EditarDatos extends Component {
               usuario={this.props.usuario}
             />
           </div>
-          <div className="col-md">
+          <div className="mb-2">
             <PaperEdit 
               nombre="Apellido"
               data={this.props.usuario.apellido}
@@ -24,26 +23,23 @@ class EditarDatos extends Component {
               usuario={this.props.usuario}
             />
           </div>
+        <div className="mb-2">
+          <PaperEdit 
+            nombre="Email"
+            data={this.props.usuario.email}
+            inputType="email"
+            case="email"
+            usuario={this.props.usuario}
+          />
         </div>
-        <div className="row mt-2">
-          <div className="col-md">
-            <PaperEdit 
-              nombre="Email"
-              data={this.props.usuario.email}
-              inputType="email"
-              case="email"
-              usuario={this.props.usuario}
-            />
-          </div>
-          <div className="col-md">
-            <PaperEdit 
-              nombre="Telefono"
-              data={this.props.usuario.telefono}
-              inputType="text"
-              case="telefono"
-              usuario={this.props.usuario}
-            />
-          </div>
+        <div className="mb-2">
+          <PaperEdit 
+            nombre="Telefono"
+            data={this.props.usuario.telefono}
+            inputType="text"
+            case="telefono"
+            usuario={this.props.usuario}
+          />
         </div>
       </div>
     )
