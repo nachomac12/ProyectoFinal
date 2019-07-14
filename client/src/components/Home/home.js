@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import Carousel from './carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import PaperHome from './paper_home';

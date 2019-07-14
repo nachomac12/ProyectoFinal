@@ -104,7 +104,6 @@ class DomicilioUsuario extends Component {
   }
 
   render() {
-    console.log(this.state);
     const localidadNula = [{label: "Debe ingresar una provincia", value:""}]
     return (
       <Paper className="col-md" style={{padding: 10}}>

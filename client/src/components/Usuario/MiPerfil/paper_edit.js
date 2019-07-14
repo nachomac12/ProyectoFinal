@@ -57,6 +57,7 @@ class PaperEdit extends Component {
             .then(res => {this.setState({edit: false})})
         }
       break;
+      default: return null
     }
   }
 

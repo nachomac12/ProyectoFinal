@@ -16,7 +16,6 @@ class Perfil extends Component {
     const profesional = this.props.usuario.profesional;
     const empleador = this.props.usuario.empleador;
     const domicilio = this.props.usuario.domicilio;
-    console.log(domicilio)
     return (
       <div className="row justify-content-center" style={{margin: 10}}>
         <div className="col-md-4">

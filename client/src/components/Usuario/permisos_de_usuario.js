@@ -14,7 +14,6 @@ export default function (ComposedClass, reload, profesionalRoute=null, empleador
     componentDidMount() {
       this.props.dispatch(auth()).then(res => {
         let usuario = this.props.usuario.usuarioDatos;
-        console.log(usuario);
         if (usuario) {
           this.props.dispatch(buscarEmpleadorPorID());
           this.props.dispatch(buscarProfesionalPorID());

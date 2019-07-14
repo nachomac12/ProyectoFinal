@@ -84,12 +84,12 @@ class MenuUsuario extends Component {
 
   render() {
     return (
-      <li className="nav-item dropleft">
-        <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="" role="button" aria-haspopup="true" aria-expanded="false">{this.props.usuario.nombre}</a>
+      <div className="nav-item dropleft">
+        <a className="nav-link dropdown-toggle" href="#" data-toggle="dropdown" href="" role="button" aria-haspopup="true" aria-expanded="false">{this.props.usuario.nombre}</a>
         <div className="dropdown-menu">
           {this.cargarOpciones()}
         </div>
-      </li>
+      </div>
     )
   }
 }

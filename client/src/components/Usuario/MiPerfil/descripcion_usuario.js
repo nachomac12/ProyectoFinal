@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { cambiarDescripcion } from '../../../redux/actions/usuario_actions';
 import { connect } from 'react-redux';
-import Edit from '@material-ui/icons/Edit';
 
 class DescripcionUsuario extends Component {
   state = {

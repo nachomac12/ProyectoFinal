@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux'; 
 import { logout } from '../../redux/actions/usuario_actions';
-import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuUsuario from '../Usuario/menu_usuario';
 
 class Header extends Component {
@@ -60,7 +59,7 @@ class Header extends Component {
   defaultLink = (item, i) => (
     item.nombre === 'Salir' ?
       <li className="nav-item" key={i}>
-          <Link onClick={() => {this.handlerLogout()}} className="nav-link">{item.nombre}</Link>
+          <a href="#" onClick={() => {this.handlerLogout()}} className="nav-link">{item.nombre}</a>
       </li>
 
     : 

@@ -81,19 +81,24 @@
 
   .FotoUno {
     font-size: 10px;
-    height: 60px;
-    width: 200px;
+    height: auto;
+    width: auto;
   }
 
   .FotoDos {
     font-size: 10px;
-    height: 60px;
-    width: 200px;
+    height: auto;
+    width: auto;
   }
 
-  .btn {
+  .btnCarouselUno {
     font-size: 10px;
-    width: 70%;
-    height: 80%
+  }
+
+  .btnCarouselDos {
+    font-size: 10px;
+    position: absolute;
+    right: 25px;
+    bottom: -15px;
   }
 }

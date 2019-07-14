@@ -9,7 +9,6 @@ import ContactPhone from '@material-ui/icons/ContactPhone';
 import WatchLater from '@material-ui/icons/WatchLater';
 import ContactMail from '@material-ui/icons/ContactMail';
 import QRCode from 'qrcode.react';
-import Map from '../Utilidades/map';
 
 const Footer = () => {
     return (

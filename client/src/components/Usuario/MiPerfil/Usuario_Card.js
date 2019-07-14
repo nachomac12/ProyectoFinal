@@ -103,7 +103,7 @@ class UsuarioCard extends Component {
             <label htmlFor="file-upload" style={{cursor: 'pointer'}}>
               <div className="overlay">
                 <h2>Elegir foto</h2>
-                <a className="info">
+                <a className="info" href="#">
                   <Edit fontSize="inherit" style={{fontSize: '4em'}}/>
                 </a>
               </div>
