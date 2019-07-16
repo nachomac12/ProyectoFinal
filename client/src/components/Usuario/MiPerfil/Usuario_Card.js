@@ -110,7 +110,7 @@ class UsuarioCard extends Component {
             </label>
           </div>
           :
-          <div style={{height: 350, width: 350, marginBottom: 10}}>
+          <div style={{height: 300}}>
             <CircularProgress style={{top: 175, left: 175, position: 'absolute'}}/>
           </div>
           }

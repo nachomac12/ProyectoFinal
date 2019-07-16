@@ -11,7 +11,8 @@ const InputGroup = (props) => {
         group = (
           <div className="p-1">
             <h5 className="font-weight-bold text-secondary" htmlFor={props.name}>{props.label}</h5>
-            <input 
+            <input
+              autoFocus={props.autoFocus ? true : false}
               type={props.type}
               name={props.name}
               className={classnames('form-control form-control-lg', {'is-invalid': props.error})}
@@ -29,12 +30,13 @@ const InputGroup = (props) => {
             <h5 className="font-weight-bold text-secondary" htmlFor={props.name}>{props.label}</h5>
             <select 
               className={classnames('form-control form-control-lg', {'is-invalid': props.error})}
+              autoFocus={props.autoFocus ? true : false}
               name={props.name}
               type={props.type}
               value={props.value}
               onChange={props.onChange}
             >
-            <option value="">Seleccione una...</option>
+            <option value="">Seleccionar...</option>
               {
                 props.list ? 
                   props.list.map(item => (

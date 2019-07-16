@@ -1,17 +1,17 @@
-import React, { Component } from "react";
-// UTILIDADES
-import InputGroup from "../Utilidades/input-group";
-import CollapsibleGroup from "./collapsible_group";
-// REDUX
-import { connect } from 'react-redux';
-import { nuevoEmpleador, registrarUsario } from '../../redux/actions/usuario_actions';
-// COMPONENTES
+import React, { Component } from 'react';
+import Stepper from '@material-ui/core/Stepper';
+import Step from '@material-ui/core/Step';
+import StepLabel from '@material-ui/core/StepLabel';
 import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogActions from '@material-ui/core/DialogActions';
 import LinearProgress from '@material-ui/core/LinearProgress';
+import InputGroup from '../Utilidades/input-group'
+import { connect } from 'react-redux';
+import { nuevoEmpleador, registrarUsario, ingresarUsuario } from '../../redux/actions/usuario_actions';
 
+const steps = ["Elige el tipo de empleador", "Completa tus datos"];
 const tipos = [
   {
     "_id": 0,
@@ -25,20 +25,17 @@ const tipos = [
 
 class RegistroEmpleador extends Component {
   state = {
+    activeStep: 0,
+    errors: {},
     nombre: '',
     apellido: '',
-    profesion: '',
-    tipos,
+    tipo: '',
     email: '',
-    password: '',
-    repetirPassword: '',
-    errors: {},
-    desactivarFormTipo: false,
-    desactivarFormDatosCuenta: false,
-    empleadorID: '',
-    open: false,
-    dialogText: '',
-    dialogAction: false
+    contraseña: '',
+    repetirContraseña: '',
+    openDialog: false,
+    dialogAction: false,
+    dialogText: ''
   }
 
   onChange = e => {
@@ -48,231 +45,188 @@ class RegistroEmpleador extends Component {
     })
   }
 
-  handleBloquearFormulario = (caso) => {
-    switch(caso) {
-      case ('Tipo'):
-        return this.setState({
-          desactivarFormTipo: true
-        });
-      case ('datosCuenta'):
-        return this.setState({
-          desactivarFormDatosCuenta: true
-        });
+  handleNext = () => {
+    const { tipo, nombre, apellido, email, contraseña, repetirContraseña } = this.state;
+
+    if (this.state.activeStep === 0) {
+      if (tipo === "") return this.setState({errors: {tipo: "Debe seleccionar una profesion"}});
+    }
+    if (this.state.activeStep === 1) {
+      if (nombre === "") return this.setState({errors: {nombre: "Debe ingresar su nombre"}});
+      if (apellido === "") return this.setState({errors: {apellido: "Debe ingresar su apellido"}});
+      if (email === "") return this.setState({errors: {email: "Debe ingresar su email"}});
+      if (!/\S+@\S+\.\S+/.test(email)) return this.setState({errors: {email: "El email es incorrecto"}});
+      if (contraseña === "") return this.setState({errors: {contraseña: "Debe ingresar una contraseña"}});
+      if (contraseña.length < 6) return this.setState({errors: {contraseña: "La contraseña debe contener al menos seis caracteres"}});
+      if (repetirContraseña === "") return this.setState({errors: {repetirContraseña: "Debe ingresar una contraseña"}});
+      if (contraseña !== repetirContraseña) return this.setState({errors: {repetirContraseña: "Las contraseñas no coinciden"}});
+    }
+
+    setTimeout(() => {
+      this.setState({errors: {}})
+    }, 1000);
+
+    this.setState({activeStep: this.state.activeStep + 1})
+  }
+
+  handleBack = () => {
+    this.setState({activeStep: this.state.activeStep -1})
+  }
+
+  getStepContent = (step) => {
+    switch (step) {
+      case 0:
+        return this.primerPaso();
+      case 1:
+        return this.segundoPaso();
       default:
-        return null
+        return 'Unknown step';
     }
   }
 
-  submitTipo = (event) => {
+  primerPaso = () => (
+    <div className="col-md-5 text-left">
+      <InputGroup
+        caso="select"
+        label="Tipo de empleador"
+        name="tipo"
+        value={this.state.tipo}
+        type="text"
+        onChange={this.onChange}
+        error={this.state.errors.tipo}
+        list={tipos}
+        autoFocus={true}
+      />
+    </div>
+  )
+
+  segundoPaso = () => (
+    <div className="col-md-5 text-left">
+      <InputGroup 
+        caso="input"
+        label="Nombre"
+        name="nombre"
+        placeholder="Ingrese su nombre..."
+        value={this.state.nombre}
+        type="text"
+        onChange={this.onChange}
+        error={this.state.errors.nombre}
+        autoFocus={true}
+      />
+      <InputGroup 
+        caso="input"
+        label="Apellido"
+        name="apellido"
+        placeholder="Ingrese su apellido"
+        value={this.state.apellido}
+        type="text"
+        onChange={this.onChange}
+        error={this.state.errors.apellido}
+      />
+      <InputGroup 
+        caso="input"
+        label="Email"
+        name="email"
+        placeholder="Ingrese su email..."
+        value={this.state.email}
+        type="email"
+        onChange={this.onChange}
+        error={this.state.errors.email}
+      />
+      <InputGroup 
+        caso="input"
+        label="Contraseña"
+        name="contraseña"
+        placeholder="Ingrese su contraseña..."
+        value={this.state.contraseña}
+        type="password"
+        onChange={this.onChange}
+        error={this.state.errors.contraseña}
+      />
+      <InputGroup 
+        caso="input"
+        label="Repetir contraseña"
+        name="repetirContraseña"
+        placeholder="Repita la contraseña..."
+        value={this.state.repetirContraseña}
+        type="password"
+        onChange={this.onChange}
+        error={this.state.errors.repetirContraseña}
+      />
+    </div>
+  )
+
+  onSubmit = (event) => {
+    const { tipo, nombre, apellido, email, contraseña } = this.state;
+
     event.preventDefault();
-    const { tipo } = this.state;
-    if (tipo === "") {
-      this.setState({errors: {tipo: "Falta ingresar el tipo"}});
-      return;
-    }
 
-    var dataToSubmit = {"tipo": tipo};
-    this.props.dispatch(nuevoEmpleador(dataToSubmit)).then(res => {
-      if (res.payload.success) {
-        this.setState({empleadorID: res.payload.empleadorData._id})
-        console.log(this.state.empleadorID);
-        this.handleBloquearFormulario('Tipo');
-      } else {
-        return (
-          alert("Hubo un error")
-        )
-      }
-    })
-    
-  }
+    const empleador = {"tipo": tipo};
 
-  submitDatosCuenta = (event) => {
-    event.preventDefault();
-    const { email, password, repetirPassword, nombre, apellido } = this.state;
-    if (this.state.desactivarFormTipo) {
-      if (nombre === "") {
-        this.setState({errors: {nombre: "Falta ingresar su nombre"}});
-        return;
-      }
-
-      if (email === "") {
-        this.setState({errors: {email: "Falta ingresar el email"}});
-        return;
-      }
-
-      if (password === "") {
-        this.setState({errors: {password: "Ingrese una contraseña"}});
-        return;
-      }
-
-      if (password.length < 6) {
-        this.setState({errors: {password: "La contraseña debe tener como mínimo 6 caracteres"}});
-        return;
-      }
-
-      if (repetirPassword === "") {
-        this.setState({errors: {repetirPassword: "Repita la contraseña"}});
-        return;
-      }
-
-      if (password !== repetirPassword) {
-        this.setState({errors: {repetirPassword: "Las contraseñas no coinciden"}});
-        return;
-      }
-
-      var dataToSubmit = {
-        "email": email, 
-        "contraseña": password,
-        "empleador": this.state.empleadorID,
-        "nombre": nombre,
-        "apellido": apellido
-      };
-      this.props.dispatch(registrarUsario(dataToSubmit)).then(res => {
-        if (res.payload.success) {
-          this.handleBloquearFormulario('datosCuenta');
+    this.props.dispatch(nuevoEmpleador(empleador)).then(res => {
+      const usuario = {"nombre": nombre, "apellido": apellido, "email": email, "contraseña": contraseña, "empleador": res.payload.empleadorData._id}
+      this.props.dispatch(registrarUsario(usuario)).then(res2 => {
+        this.props.dispatch(ingresarUsuario({email, contraseña})).then(res3 => {
           this.setState({
-            open: true,
-            dialogText: 
-              <span>
-              ¡Felicidades, ya se ha registrado! Sera redirigido en breve<br/><LinearProgress variant="query"/>
-              </span> 
+            openDialog: true,
+            dialogAction: false,
+            dialogText: <span style={{fontSize: 20}}>¡Felicidades, ya se ha registrado! Sera redirigido en breve<br/><LinearProgress variant="query"/></span>
           })
           setTimeout(() => {
             this.props.history.push('/ingresar')
           }, 4000);
-        }
+        })
       })
-    } else {
-      this.setState({
-        open: true,
-        dialogText: "Debe completar el formulario anterior",
-        dialogAction: true
-      })
-    }
+    })
+
   }
-  
+
   render() {
     return (
-      <div>
-        <div className="row justify-content-center m-3">
-          <div className="col-md-5">
-            <CollapsibleGroup
-              titulo="Seleccionar Tipo"
-              open={true}
-            >
-              <form onSubmit={(event) => this.submitTipo(event)}>
-                <InputGroup
-                  caso="select"
-                  label="Tipo"
-                  name="tipo"
-                  value={this.state.tipo}
-                  type="text"
-                  onChange={this.onChange}
-                  error={this.state.errors.tipo}
-                  list={tipos}
-                  disabled={this.state.desactivarFormTipo}
-                />
-                { this.state.desactivarFormTipo ?
-                    <fieldset disabled>
-                      <div className="text-center">
-                        <input type="Submit" className="btn btn-info" value="Guardar datos personales"/>
-                      </div>
-                    </fieldset>
-                  : 
-                    <div className="text-center">
-                      <input type="Submit" className="btn btn-info" value="Guardar tipo"/>
-                    </div>
-                }
-              </form>
-            </CollapsibleGroup>
-          </div>
+      <div style={{padding: 100, height: 800}}>
+        <Stepper activeStep={this.state.activeStep}>
+          {steps.map((label, index) => {
+            return (
+              <Step key={index}>
+                <StepLabel><b>{label}</b></StepLabel>
+              </Step>
+            );
+          })}
+        </Stepper>
+        <div>
+          {this.state.activeStep === steps.length ? (
+            null
+          ) : (
+            <div className="text-center">
+              <div className="row justify-content-center">{this.getStepContent(this.state.activeStep)}</div>
+              <button className="btn btn-outline-secondary btn-lg mr-2" disabled={this.state.activeStep === 0} onClick={this.handleBack}>Atrás</button>
+              {this.state.activeStep === steps.length - 1 
+                ? <button className="btn btn-outline-info btn-lg" onClick={(event) => this.onSubmit(event)}>
+                    Finalizar
+                  </button>
+                : <button className="btn btn-outline-info btn-lg" onClick={this.handleNext}>
+                  Siguiente
+                </button>
+              }
+            </div>
+          )}
         </div>
-
-        <div className="row justify-content-center m-3">
-          <div className="col-md-5">
-            <CollapsibleGroup
-              titulo="Datos de cuenta"
-              open={false}
-            >
-              <form onSubmit={(event) => this.submitDatosCuenta(event)}>
-              <InputGroup 
-                  caso="input"
-                  label="Nombre"
-                  name="nombre"
-                  value={this.state.nombre}
-                  type="text"
-                  placeholder="Ingrese su nombre..."
-                  onChange={this.onChange}
-                  error={this.state.errors.nombre}
-                  disabled={this.state.desactivarFormDatosCuenta}
-                />
-                <InputGroup 
-                  caso="input"
-                  label="Razon Social / Apellido"
-                  name="apellido"
-                  value={this.state.apellido}
-                  type="text"
-                  placeholder="Ingrese su apellido..."
-                  onChange={this.onChange}
-                  error={this.state.errors.apellido}
-                  disabled={this.state.desactivarFormDatosCuenta}
-                />
-                <InputGroup 
-                  caso="input"
-                  label="Email"
-                  name="email"
-                  value={this.state.email}
-                  type="email"
-                  placeholder="Ingrese su email..."
-                  onChange={this.onChange}
-                  error={this.state.errors.email}
-                  disabled={this.state.desactivarFormDatosCuenta}
-                />
-                <InputGroup 
-                  caso="input"
-                  label="Contraseña"
-                  name="password"
-                  value={this.state.password}
-                  type="password"
-                  placeholder="Ingrese su contraseña..."
-                  onChange={this.onChange}
-                  error={this.state.errors.password}
-                  disabled={this.state.desactivarFormDatosCuenta}
-                />
-                <InputGroup 
-                  caso="input"
-                  label="Repetir contraseña"
-                  name="repetirPassword"
-                  value={this.state.repetirPassword}
-                  type="password"
-                  placeholder="Repita la contraseña..."
-                  onChange={this.onChange}
-                  error={this.state.errors.repetirPassword}
-                  disabled={this.state.desactivarFormDatosCuenta}
-                />
-                <div className="text-center">
-                  <input type="Submit" className="btn btn-info" value="Guardar datos"/>
-                </div>
-                </form>
-            </CollapsibleGroup>
-          </div>
-        </div>
-      
-        <Dialog open={this.state.open}>
+        <Dialog open={this.state.openDialog}>
           <DialogContent>
             <DialogContentText className="text-primary">{this.state.dialogText}</DialogContentText>
           </DialogContent>
           { 
           this.state.dialogAction ?
             <DialogActions>
-              <button className="btn btn-outline-info" onClick={() => this.setState({open: false})}>OK</button>
+              <button className="btn btn-outline-info" onClick={() => this.setState({openDialog: false})}>OK</button>
             </DialogActions>
           : null
           }
         </Dialog>
       </div>
-    );
+    )
   }
 }
 
 export default connect()(RegistroEmpleador);
+

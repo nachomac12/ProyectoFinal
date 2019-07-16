@@ -11,6 +11,8 @@ import ContactMail from '@material-ui/icons/ContactMail';
 import QRCode from 'qrcode.react';
 
 const Footer = () => {
+    const dia = new Date;
+    var año = dia.getFullYear()
     return (
         <div className="container-fluid bg-white text-info">
             <hr className="my-auto flex-grow-1" style={{borderColor: "#CEECF5"}}/>
@@ -40,7 +42,7 @@ const Footer = () => {
                     </div> 
                 </div>
             </div>
-            <p className="text-center p-3">© Copyright SamaProject Development</p>
+            <p className="text-center p-3">© Copyright SamaProject Development {año}</p>
         </div>
     )
 }
