@@ -183,7 +183,8 @@ class RegistroEmpleador extends Component {
 
   render() {
     return (
-      <div style={{padding: 100, height: 800}}>
+      <div className="container-fluid" style={{padding: '20px 100px 100px 100px', height: 800}}>
+        <h2 className="text-info text-center p-4">Registrarme como empleador</h2>
         <Stepper activeStep={this.state.activeStep}>
           {steps.map((label, index) => {
             return (

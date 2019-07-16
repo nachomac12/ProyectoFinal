@@ -222,7 +222,8 @@ class RegistroProfesional extends Component {
 
   render() {
     return (
-      <div style={{padding: 100, height: 800}}>
+      <div className="container-fluid" style={{padding: '20px 100px 100px 100px', height: 800}}>
+        <h2 className="text-info text-center p-4">Registrarme como profesional</h2>
         <Stepper activeStep={this.state.activeStep}>
         {steps.map((label, index) => {
           return (
@@ -246,7 +247,7 @@ class RegistroProfesional extends Component {
               : <button className="btn btn-outline-info btn-lg" onClick={this.handleNext}>
                 Siguiente
               </button>
-            }  
+            } 
           </div>
         )}
       </div>
