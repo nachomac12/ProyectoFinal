@@ -65,7 +65,8 @@ const styles = {
     color: '#4E5C66',
     height: '100%',
     width: 'auto',
-    margin: 'auto'
+    margin: 'auto',
+    textAlign: 'left'
   },
   continuar: {
     color: '#4E5C66',

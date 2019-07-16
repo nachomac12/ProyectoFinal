@@ -10,7 +10,7 @@ class Home extends Component {
         <div style={{marginTop: 3}}>
           <Carousel/>
         </div>
-        <div className="bg-light" style={{paddingTop: 40, paddingBottom: 40, marginTop: 3, marginBottom: 3}}>
+        <div style={{paddingTop: 40, paddingBottom: 40, marginTop: 3, marginBottom: 3, backgroundColor: '#F0F0F0'}}>
           <PaperHomeList />
         </div>
       </div>
