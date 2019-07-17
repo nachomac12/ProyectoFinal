@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './registro.css';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
@@ -222,7 +223,7 @@ class RegistroProfesional extends Component {
 
   render() {
     return (
-      <div className="container-fluid" style={{padding: '20px 100px 100px 100px', height: 800}}>
+      <div className="container-fluid Registro">
         <h2 className="text-info text-center p-4">Registrarme como profesional</h2>
         <Stepper activeStep={this.state.activeStep}>
         {steps.map((label, index) => {

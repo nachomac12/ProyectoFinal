@@ -1,0 +1,11 @@
+.Registro {
+    padding: 20px 100px 100px 100px;
+    height: 800px;
+}
+
+@media screen and (max-width:640px) {
+    .Registro {
+        padding: 5px;
+        height: auto;
+    }
+}

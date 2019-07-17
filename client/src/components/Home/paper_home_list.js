@@ -23,7 +23,7 @@ const PaperHomeList = () => {
             se va a ir autocompletando. En el aparecerá tu foto de perfil, tus datos personales, tus habilidades,
             tu historial de trabajo y datos de contacto. Tu currículum será una herramienta de evaluación para que
             los empleadores puedan contratarte."
-            linkTo="/registro_profesional"
+            linkTo="/curriculum"
           />
         </div>
         <div className="col-md-3 mb-1">
@@ -34,7 +34,7 @@ const PaperHomeList = () => {
             la información necesaria en tu perfil. En base a las habilidades que selecciones podrás postularte 
             a los trabajos que hayan generado diferentes empleadores, ya sean empresas o personas que 
             tienen una necesidad específica que tu puedes solucionar."
-            linkTo="/registro_profesional"
+            linkTo="/buscar_empleos"
           />
         </div>
         <div className="col-md-3 mb-1">
@@ -44,7 +44,7 @@ const PaperHomeList = () => {
             texto="Si has sido contratado a un trabajo podrás tener un registro de los mismos, pudiendo añadir 
             trabajos que ya hayas realizado con anterioridad fuera de esta plataforma para que sean mostrados
             dentro de tu curriculum y de esta manera demostrar que tienes experiencia."
-            linkTo="/registro_profesional"
+            linkTo="/mis_empleos"
           />
         </div>
         <div className="col-md-3 mb-1">
@@ -54,7 +54,7 @@ const PaperHomeList = () => {
             texto="Los empleadores pueden buscar profesionales para realizar trabajos y podrían enviarte una
             solicitud de empleo. De suceder esto llegará una notificación a tu perfil, pudiendo aceptarla o 
             recharzarla. Al aceptarla serás un postulante al empleo y podrías ser seleccionado para ejercerlo."
-            linkTo="/registro_profesional"
+            linkTo="/perfil"
           />
         </div>
       </div>
@@ -71,7 +71,7 @@ const PaperHomeList = () => {
             puedan aplicar y solucionar tu demanda. Tendrás varios solicitantes al puesto y podrás evaluar
             cual es el profesional adecuado para solucionar tu problemática o llevar a cabo el negocio que
             quieres realizar."
-            linkTo="/registro_empleador"
+            linkTo="/crear_empleo"
           />
         </div>
         <div className="col-md-3 mb-1">
@@ -81,7 +81,7 @@ const PaperHomeList = () => {
             texto="Podrás buscar profesionales y enviarles una solicitud de postulación la cual puede ser. 
             aceptada o rechazada por el profesional. En la búsqueda vas a poder filtrar por las habilidades
             que pretendes que tengan los trabajadores y/o por ciudad."
-            linkTo="/registro_profesional"
+            linkTo="/buscar_profesionales"
           />
         </div>
         <div className="col-md-3 mb-1">
@@ -91,7 +91,7 @@ const PaperHomeList = () => {
             texto="Una vez que hayas creado y publicado un trabajo, podrás gestionar la cantidad de personas
             a postularse al mismo pudiendo evaluar su aptitudes personales y quedarte con el que
             consideres mas apto para el puesto."
-            linkTo="/registro_empleador"
+            linkTo="/gestionar_empleos"
           />
         </div>   
       </div>
