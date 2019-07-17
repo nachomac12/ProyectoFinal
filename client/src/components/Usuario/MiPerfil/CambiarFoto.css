@@ -79,3 +79,37 @@
   -webkit-transition-delay:.2s;
   transition-delay:.2s;
   }
+
+  @media screen and (max-width:640px) {
+    .hovereffect .overlay {
+      display: none;
+    }
+
+    .hovereffect img {
+      display: none;
+    }
+
+    .hovereffect h2 {
+      display: none;
+    }
+
+    .hovereffect a.info {
+      display: none;
+    }
+
+    .hovereffect:hover img {
+      display: none;
+    }
+
+    .hovereffect:hover .overlay {
+      display: none;
+    }
+
+    .hovereffect:hover h2,.hovereffect:hover a.info {
+      display: none;
+    }
+
+    .hovereffect:hover a.info {
+      display: none;
+    }
+  }
