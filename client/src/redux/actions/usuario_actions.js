@@ -22,7 +22,11 @@ import {
     CREAR_DOMICILIO,
     CAMBIAR_DOMICILIO,
     AGREGAR_DOMICILIO_USUARIO,
-    GET_DOMICILIO
+    GET_DOMICILIO,
+    AGREGAR_IDIOMAS_PROFESIONAL,
+    ELIMINAR_IDIOMA_PROFESIONAL,
+    AGREGAR_EDUCACION_PROFESIONAL,
+    ELIMINAR_EDUCACION_PROFESIONAL
 } from './types';
 
 ///// USUARIOS /////
@@ -301,6 +305,78 @@ export function getDomicilio() {
         .then(res => res.data)
     return {
         type: GET_DOMICILIO,
+        payload: request
+    }
+}
+
+export function agregarIdiomasProfesional(dataToSubmit, profesionalDatosExistente) {
+    const request = axios.put(`${USUARIO_SERVER}/profesional/idiomas`, dataToSubmit)
+        .then(res => {
+            let profesionalDatos = {
+                ...profesionalDatosExistente,
+                "idiomas": res.data
+            };
+            return {
+                profesionalDatos
+            }
+        })
+
+    return {
+        type: AGREGAR_IDIOMAS_PROFESIONAL,
+        payload: request
+    }
+} 
+
+export function eliminarIdiomaProfesional(id, profesionalDatosExistente) {
+    const request = axios.delete(`${USUARIO_SERVER}/profesional/idiomas?id=${id}`)
+        .then(res => {
+            let profesionalDatos = {
+                ...profesionalDatosExistente,
+                "idiomas": res.data
+            };
+            return {
+                profesionalDatos
+            }
+        })
+    
+    return {
+        type: ELIMINAR_IDIOMA_PROFESIONAL,
+        payload: request
+    }
+}
+
+export function agregarEducacionProfesional(dataToSubmit, profesionalDatosExistente) {
+    const request = axios.put(`${USUARIO_SERVER}/profesional/educacion`, dataToSubmit)
+        .then(res => {
+            let profesionalDatos = {
+                ...profesionalDatosExistente,
+                "educacion": res.data
+            };
+            return {
+                profesionalDatos
+            }
+        })
+
+    return {
+        type: AGREGAR_EDUCACION_PROFESIONAL,
+        payload: request
+    }
+} 
+
+export function eliminarEducacionProfesional(id, profesionalDatosExistente) {
+    const request = axios.delete(`${USUARIO_SERVER}/profesional/educacion?id=${id}`)
+        .then(res => {
+            let profesionalDatos = {
+                ...profesionalDatosExistente,
+                "educacion": res.data
+            };
+            return {
+                profesionalDatos
+            }
+        })
+    
+    return {
+        type: ELIMINAR_EDUCACION_PROFESIONAL,
         payload: request
     }
 }

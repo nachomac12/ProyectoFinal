@@ -11,6 +11,14 @@ const profesionalSchema = Schema({
         type: Array,
         default: []
     },
+    educacion: {
+        type: Array,
+        default: []
+    },
+    idiomas: {
+        type: Array,
+        default: []
+    },
     habilidades: {
         type: Array,
         default: []

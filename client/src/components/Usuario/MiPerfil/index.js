@@ -5,6 +5,8 @@ import UsuarioCard from './Usuario_Card';
 import EditarDatos from './editar_datos';
 import SeleccionarHabilidades from './seleccionar_habilidades';
 import DomicilioUsuario from './domicilio_usuario';
+import AgregarIdiomas from './agregar_idiomas';
+import AgregarEducacion from './agregar_educacion';
 
 class Perfil extends Component {
   componentDidMount() {
@@ -28,6 +30,14 @@ class Perfil extends Component {
         <div className="col-md-5">
           {usuario.esProfesional 
             ? <div className="mb-2"><SeleccionarHabilidades profesional={profesional}/></div>
+            : null
+          }
+          {usuario.esProfesional
+            ? <div className="mb-2"><AgregarIdiomas profesional={profesional}/></div>
+            : null
+          }
+          {usuario.esProfesional
+            ? <div className="mb-2"><AgregarEducacion profesional={profesional}/></div>
             : null
           }
           <EditarDatos usuario={usuario}/>

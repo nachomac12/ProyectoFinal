@@ -341,6 +341,55 @@ app.delete('/api/usuarios/eliminar_habilidad', auth, (req, res) => {
     )
 })
 
+app.put('/api/usuarios/profesional/idiomas', auth, (req, res) => {
+    Profesional.findOneAndUpdate(
+        {_id: req.usuario.profesional},
+        { $addToSet: { idiomas: req.body.idiomas } },
+        {new: true},
+        (err, doc) => {
+            if (err) return res.json({success: false, err});
+            res.status(200).json(doc.idiomas);
+        }
+    )
+})
+
+app.delete('/api/usuarios/profesional/idiomas', auth, (req, res) => {
+    Profesional.findOneAndUpdate(
+        {_id: req.usuario.profesional},
+        { $pull: { idiomas: { id: req.query.id } } },
+        {new: true},
+        (err, doc) => {
+            if (err) return res.json({success: false, err});
+            res.status(200).json(doc.idiomas);
+        }
+    )
+})
+
+app.put('/api/usuarios/profesional/educacion', auth, (req, res) => {
+    Profesional.findOneAndUpdate(
+        {_id: req.usuario.profesional},
+        { $addToSet: { educacion: req.body.educacion } },
+        { new: true },
+        (err, doc) => {
+            if (err) return res.json({success: false, err});
+            res.status(200).json(doc.educacion);
+        }
+    )
+})
+
+app.delete('/api/usuarios/profesional/educacion', auth, (req,res) => {
+    Profesional.findOneAndUpdate(
+        {_id: req.usuario.profesional},
+        { $pull: { educacion: { id: req.query.id } } },
+        {new: true},
+        (err, doc) => {
+            if (err) return res.json({success: false, err});
+            res.status(200).json(doc.educacion);
+        }
+    )
+})
+
+
 //==========================================\\
 //                 EMPLEADOR                \\
 //==========================================\\

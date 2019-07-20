@@ -18,7 +18,11 @@ import {
   CREAR_DOMICILIO,
   CAMBIAR_DOMICILIO,
   AGREGAR_DOMICILIO_USUARIO,
-  GET_DOMICILIO
+  GET_DOMICILIO,
+  AGREGAR_IDIOMAS_PROFESIONAL,
+  ELIMINAR_IDIOMA_PROFESIONAL,
+  AGREGAR_EDUCACION_PROFESIONAL,
+  ELIMINAR_EDUCACION_PROFESIONAL
 } from "../actions/types";
 
 export default function(state = {}, action) {
@@ -83,6 +87,26 @@ export default function(state = {}, action) {
         ...state,
         profesional: action.payload.profesionalDatos
       };
+    case AGREGAR_IDIOMAS_PROFESIONAL: 
+      return {
+        ...state,
+        profesional: action.payload.profesionalDatos
+      }
+    case ELIMINAR_IDIOMA_PROFESIONAL:
+      return {
+        ...state,
+        profesional: action.payload.profesionalDatos
+      }
+    case AGREGAR_EDUCACION_PROFESIONAL:
+      return {
+        ...state,
+        profesional: action.payload.profesionalDatos
+      }
+    case ELIMINAR_EDUCACION_PROFESIONAL:
+      return {
+        ...state,
+        profesional: action.payload.profesionalDatos
+      }
     case AGREGAR_DOMICILIO_USUARIO:
       return {
         ...state,

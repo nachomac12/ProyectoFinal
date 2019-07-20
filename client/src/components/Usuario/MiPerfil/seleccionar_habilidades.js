@@ -87,10 +87,7 @@ class SeleccionarHabilidades extends Component {
           return (
             <Chip
               key={i}
-              style={{
-                marginTop: 3,
-                marginLeft: 3
-              }}
+              style={{margin: 3}}
               label={habilidad}
               onDelete={() => this.handleDelete(habilidad)}
               variant="outlined"
@@ -101,10 +98,7 @@ class SeleccionarHabilidades extends Component {
           return (
             <Chip
               key={i}
-              style={{
-                marginTop: 3,
-                marginLeft: 3
-              }}
+              style={{margin: 3}}
               label={habilidad}
               variant="outlined"
               color="primary"
@@ -133,7 +127,7 @@ class SeleccionarHabilidades extends Component {
             styles={colourStyles}
           />
 
-          <div style={{marginTop: 10}}>
+          <div style={{marginTop: 10, textAlign: 'center'}}>
             {this.renderChips()}
           </div>
 
@@ -143,7 +137,7 @@ class SeleccionarHabilidades extends Component {
           </div>
         </div>
         :
-        <div style={{marginTop: 10}}>
+        <div style={{marginTop: 10, textAlign: "center"}}>
           {this.renderChips()}
           <Edit 
             style={{top: 10, right: 25, position:'absolute', cursor:"pointer"}} 

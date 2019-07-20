@@ -21,6 +21,10 @@ export const GET_DOMICILIO = 'get_domicilio';
 // PROFESIONAL
 export const AGREGAR_HABILIDADES_PROFESIONAL = 'agregar_habilidades_profesional';
 export const ELIMINAR_HABILIDAD_PROFESIONAL = 'eliminar_habilidad_profesional';
+export const AGREGAR_IDIOMAS_PROFESIONAL = 'agregar_idiomas_profesional';
+export const ELIMINAR_IDIOMA_PROFESIONAL = 'eliminar_idioma_profesional';
+export const AGREGAR_EDUCACION_PROFESIONAL = 'agregar_educacion_profesional';
+export const ELIMINAR_EDUCACION_PROFESIONAL = 'eliminar_educacion_profesional';
 
 // HABILIDADES
 export const GET_HABILIDADES = 'get_habilidades';
