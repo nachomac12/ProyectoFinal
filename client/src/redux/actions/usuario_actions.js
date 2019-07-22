@@ -26,10 +26,13 @@ import {
     AGREGAR_IDIOMAS_PROFESIONAL,
     ELIMINAR_IDIOMA_PROFESIONAL,
     AGREGAR_EDUCACION_PROFESIONAL,
-    ELIMINAR_EDUCACION_PROFESIONAL
+    ELIMINAR_EDUCACION_PROFESIONAL,
+    BUSCAR_PROFESIONALES
 } from './types';
 
-///// USUARIOS /////
+/////////////////////////////
+////       USUARIOS      ////
+/////////////////////////////
 
 export function ingresarUsuario(dataToSubmit) {
     const request = axios.post(`${USUARIO_SERVER}/ingresar`, dataToSubmit)
@@ -37,26 +40,6 @@ export function ingresarUsuario(dataToSubmit) {
 
     return {
         type: INGRESAR_USUARIO,
-        payload: request
-    }
-}
-
-export function nuevoProfesional(dataToSubmit) {
-    const request = axios.post(`${USUARIO_SERVER}/profesionales`, dataToSubmit)
-        .then(res => res.data);
-
-        return {
-            type: NUEVO_PROFESIONAL,
-            payload: request
-        }
-}
-
-export function nuevoEmpleador(dataToSubmit) {
-    const request = axios.post(`${USUARIO_SERVER}/empleadores`, dataToSubmit)
-        .then(res => res.data);
-
-    return {
-        type: NUEVO_EMPLEADOR,
         payload: request
     }
 }
@@ -77,26 +60,6 @@ export function auth() {
 
     return {
         type: AUTH,
-        payload: request
-    }
-}
-
-export function buscarProfesionalPorID() {
-    const request = axios.get(`${USUARIO_SERVER}/profesional_por_id`)
-        .then(res => res.data);
-
-    return {
-        type: BUSCAR_PROFESIONAL_POR_ID,
-        payload: request
-    }
-}
-
-export function buscarEmpleadorPorID() {
-    const request = axios.get(`${USUARIO_SERVER}/empleador_por_id`)
-        .then(res => res.data);
-
-    return {
-        type: BUSCAR_EMPLEADOR_POR_ID,
         payload: request
     }
 }
@@ -225,42 +188,6 @@ export function cambiarTelefono(dataToSubmit, usuarioDatosExistentes) {
     }
 }
 
-export function agregarHabilidadesProfesional(dataToSubmit, profesionalDatosExistente) {
-    const request = axios.put(`${USUARIO_SERVER}/agregar_habilidades`, dataToSubmit)
-        .then(res => {
-            let profesionalDatos = {
-                ...profesionalDatosExistente,
-                "habilidades": res.data
-            };
-            return {
-                profesionalDatos
-            }
-        })
-
-    return {
-        type: AGREGAR_HABILIDADES_PROFESIONAL,
-        payload: request
-    }
-} 
-
-export function eliminarHabilidadProfesional(nombre, profesionalDatosExistente) {
-    const request = axios.delete(`${USUARIO_SERVER}/eliminar_habilidad?nombre=${nombre}`)
-        .then(res => {
-            let profesionalDatos = {
-                ...profesionalDatosExistente,
-                "habilidades": res.data
-            };
-            return {
-                profesionalDatos
-            }
-        })
-    
-    return {
-        type: ELIMINAR_HABILIDAD_PROFESIONAL,
-        payload: request
-    }
-}
-
 export function crearDomicilio(dataToSubmit) {
     const request = axios.post(`${USUARIO_SERVER}/domicilio`, dataToSubmit)
         .then(res => res.data)
@@ -305,6 +232,66 @@ export function getDomicilio() {
         .then(res => res.data)
     return {
         type: GET_DOMICILIO,
+        payload: request
+    }
+}
+
+/////////////////////////////
+////    PROFESIONALES    ////
+/////////////////////////////
+
+export function nuevoProfesional(dataToSubmit) {
+    const request = axios.post(`${USUARIO_SERVER}/profesionales`, dataToSubmit)
+        .then(res => res.data);
+
+        return {
+            type: NUEVO_PROFESIONAL,
+            payload: request
+        }
+}
+
+export function buscarProfesionalPorID() {
+    const request = axios.get(`${USUARIO_SERVER}/profesional_por_id`)
+        .then(res => res.data);
+
+    return {
+        type: BUSCAR_PROFESIONAL_POR_ID,
+        payload: request
+    }
+}
+
+export function agregarHabilidadesProfesional(dataToSubmit, profesionalDatosExistente) {
+    const request = axios.put(`${USUARIO_SERVER}/agregar_habilidades`, dataToSubmit)
+        .then(res => {
+            let profesionalDatos = {
+                ...profesionalDatosExistente,
+                "habilidades": res.data
+            };
+            return {
+                profesionalDatos
+            }
+        })
+
+    return {
+        type: AGREGAR_HABILIDADES_PROFESIONAL,
+        payload: request
+    }
+} 
+
+export function eliminarHabilidadProfesional(nombre, profesionalDatosExistente) {
+    const request = axios.delete(`${USUARIO_SERVER}/eliminar_habilidad?nombre=${nombre}`)
+        .then(res => {
+            let profesionalDatos = {
+                ...profesionalDatosExistente,
+                "habilidades": res.data
+            };
+            return {
+                profesionalDatos
+            }
+        })
+    
+    return {
+        type: ELIMINAR_HABILIDAD_PROFESIONAL,
         payload: request
     }
 }
@@ -377,6 +364,40 @@ export function eliminarEducacionProfesional(id, profesionalDatosExistente) {
     
     return {
         type: ELIMINAR_EDUCACION_PROFESIONAL,
+        payload: request
+    }
+}
+
+/////////////////////////////
+////     EMPLEADORES     ////
+/////////////////////////////
+
+export function nuevoEmpleador(dataToSubmit) {
+    const request = axios.post(`${USUARIO_SERVER}/empleadores`, dataToSubmit)
+        .then(res => res.data);
+
+    return {
+        type: NUEVO_EMPLEADOR,
+        payload: request
+    }
+}
+
+export function buscarEmpleadorPorID() {
+    const request = axios.get(`${USUARIO_SERVER}/empleador_por_id`)
+        .then(res => res.data);
+
+    return {
+        type: BUSCAR_EMPLEADOR_POR_ID,
+        payload: request
+    }
+}
+
+export function buscarProfesionales() {
+    const request = axios.get(`${USUARIO_SERVER}/profesionales`)
+        .then(res => res.data);
+
+    return {
+        type: BUSCAR_PROFESIONALES,
         payload: request
     }
 }

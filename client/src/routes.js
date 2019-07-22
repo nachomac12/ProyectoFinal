@@ -9,7 +9,8 @@ import RegistroProfesional from './components/Registro_Ingresar/registro_profesi
 import RegistroEmpleador from './components/Registro_Ingresar/registro_empleador';
 import Perfil from './components/Usuario/MiPerfil';
 import Nosotros from './components/Nosotros/nosotros';
-import Curriculum from './components/Usuario/MiCurriculum';
+import MiCurriculum from './components/Usuario/MiCurriculum';
+import BuscarProfesionales from './components/Usuario/BuscarProfesionales';
 
 const Routes = () => {
   return (
@@ -24,8 +25,9 @@ const Routes = () => {
         {/*RUTAS PRIVADAS*/}
         <Route path="/perfil" exact component={Permisos(Perfil, true)} />
         {/*RUTAS PROFESIONALES*/}
-        <Route path="/curriculum" exact component={Permisos(Curriculum, true, true)} />
+        <Route path="/curriculum" exact component={Permisos(MiCurriculum, true, true)} />
         {/*RUTAS EMPLEADOR*/}
+        <Route path="/buscar_profesionales" exact component={Permisos(BuscarProfesionales, true, null, true)} />
         <Route component={Permisos(NotFound)} />
       </Switch>
     </Main>

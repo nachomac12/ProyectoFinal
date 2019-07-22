@@ -389,6 +389,15 @@ app.delete('/api/usuarios/profesional/educacion', auth, (req,res) => {
     )
 })
 
+app.get('/api/usuarios/profesionales', (req, res) => {
+    Usuario.find()
+        .populate("profesional")
+        .populate("domicilio")
+        .exec((err, doc) => {
+            res.send(doc.filter(item => item.profesional !== null && item.domicilio !== null && item.profesional && item.domicilio && !item.empleador));
+        })
+})
+
 
 //==========================================\\
 //                 EMPLEADOR                \\

@@ -22,7 +22,8 @@ import {
   AGREGAR_IDIOMAS_PROFESIONAL,
   ELIMINAR_IDIOMA_PROFESIONAL,
   AGREGAR_EDUCACION_PROFESIONAL,
-  ELIMINAR_EDUCACION_PROFESIONAL
+  ELIMINAR_EDUCACION_PROFESIONAL,
+  BUSCAR_PROFESIONALES
 } from "../actions/types";
 
 export default function(state = {}, action) {
@@ -119,6 +120,8 @@ export default function(state = {}, action) {
       return { ...state, domicilio: action.payload };
     case CAMBIAR_DOMICILIO:
       return { ...state, domicilio: action.payload };
+    case BUSCAR_PROFESIONALES:
+      return { ...state, busquedaProfesionales: action.payload };
     case LOGOUT:
       return { ...state };
     default:

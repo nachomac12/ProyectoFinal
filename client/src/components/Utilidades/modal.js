@@ -6,7 +6,7 @@ const Modal = (props) => {
       <div data-toggle="modal" data-target={`#${props.id}`}>
         {props.children}
       </div>
-      <div className="modal fade" id={props.id} tabindex="-1" role="dialog" aria-labelledby={`${props.id}Label`} aria-hidden="true">
+      <div className="modal fade" id={props.id} tabIndex="-1" role="dialog" aria-labelledby={`${props.id}Label`} aria-hidden="true">
           <div className="modal-dialog" role="document">
             <div className="modal-content" style={props.modalStyle}>
               <div className="modal-header">
