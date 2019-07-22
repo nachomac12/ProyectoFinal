@@ -3,8 +3,35 @@ import './card_profesional.css';
 import Divider from '@material-ui/core/Divider';
 import Modal from '../../Utilidades/modal';
 import Curriculum from '../MiCurriculum/curriculum';
+import { Card, CardHeader, CardMedia, CardContent } from '@material-ui/core';
+import Avatar from '@material-ui/core/Avatar';
+import StarRateIcon from '@material-ui/icons/StarRate';
+
 
 const CardProfesional = (props) => {
+  const obtenerAvatar = () => {
+    var iniciales = '';
+    if (props.usuario) {
+      iniciales = props.usuario.nombre.charAt(0).concat(props.usuario.apellido.charAt(0));
+    }
+    return iniciales;
+  }
+
+  const rateIcon = () => {
+    var rateIconList = [];
+    if (props.usuario) {
+      if (props.profesional) {
+        for (let i = 0; i < props.profesional.puntuacion; i++) {
+          rateIconList.push (
+            <StarRateIcon key={i} className="text-warning" />
+          )
+        }
+        return rateIconList.map(icon => {
+          return icon
+        });
+      }
+    }
+  }
   return (
     <Modal
       id={`modal${props.usuario._id}`}
@@ -20,19 +47,31 @@ const CardProfesional = (props) => {
       }
     >
       <div className="ProfesionalBox">
-        <img className="Image" src={props.usuario.fotoDePerfil} alt="img" />
-        <div className="Content">
-          <h3 className="text-info">{props.usuario.nombre + " " + props.usuario.apellido}</h3>
-          <h5 className="text-secondary">{props.profesional.profesion}</h5>
-          <i>{props.usuario.descripcion}</i>
+        <Card style={{maxWidth: 350}}>
+            <CardHeader 
+              avatar={
+                <Avatar>
+                  {obtenerAvatar()}
+                </Avatar>
+              }
+              title={
+                props.usuario.nombre + " " + props.usuario.apellido
+              }
+              subheader= {props.profesional.profesion}
+            />
+            <Divider/>  
+            <CardMedia 
+              image={props.usuario.fotoDePerfil}
+              style = {{ height: 350, paddingTop: '56.25%'}}
+            />
+            <CardContent >
+              <div className="Content">
+                <i>{props.usuario.descripcion}</i>
+              </div>
+              <Divider className="mt-2"/>
+            </CardContent>
+          </Card>
         </div>
-        <Divider />
-        <div className="Footer">
-          {props.profesional.habilidades.map((item, i) => (
-            <span key={i}><b>{item + "; "}</b></span>
-          ))}
-        </div>
-      </div>
     </Modal>
   )
 }
