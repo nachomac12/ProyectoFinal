@@ -89,7 +89,7 @@ const Curriculum = props => {
       </div>
       <Divider />
       <div className="row" style={{ margin: 20 }}>
-        <div className="col-md">
+        <div className="col-md mb-2">
           <h5 className="text-info">Experiencia</h5>
           <p>En construcción gente, no se puede todo jeje</p>
           <h5 className="text-info mt-4">Educación</h5>

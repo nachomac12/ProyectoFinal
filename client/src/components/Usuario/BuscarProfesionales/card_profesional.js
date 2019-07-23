@@ -38,10 +38,10 @@ const CardProfesional = (props) => {
       title={props.usuario.nombre + " " + props.usuario.apellido}
       body={<Curriculum usuario={props.usuario} profesional={props.profesional} domicilio={props.domicilio}/>}
       footer={
-        <div className="text-center m-2">
-          <button className="btn btn-outline-primary mr-3">Contratar</button>
-          <button className="btn btn-outline-info mr-3">Postular</button>
-          <button className="btn btn-outline-warning">Favorito</button>
+        <div className="row justify-content-center">
+          <div className="col-md"><button className="btn btn-outline-primary mb-2">Contratar</button></div>
+          <div className="col-md"><button className="btn btn-outline-info mb-2">Postular</button></div> 
+          <div className="col-md"><button className="btn btn-outline-warning mb-2">Favorito</button></div>
         </div>
       }
     >
