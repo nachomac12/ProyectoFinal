@@ -66,9 +66,9 @@ class AgregarEducacion extends Component {
     if (this.props.profesional && this.props.profesional.educacion && this.props.profesional.educacion.length > 0) {
       return this.props.profesional.educacion.map((item, i) => {
         return (
-          <div className="row">
+          <div className="row" key={i}>
             <div className="col-md">
-              <p key={i}>{i+1 + ". " + item.titulo + ", " + item.instituto + ". " + item.añoIngreso + "-" + item.añoEgreso}</p>
+              <p>{i+1 + ". " + item.titulo + ", " + item.instituto + ". " + item.añoIngreso + "-" + item.añoEgreso}</p>
             </div>
             <div className="col-md-1">
               <Close style={{color: 'red', cursor: 'pointer'}} onClick={() => this.onDelete(item.id)}/>

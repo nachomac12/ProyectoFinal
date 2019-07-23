@@ -132,21 +132,21 @@ class RegistroProfesional extends Component {
   )
 
   tercerPaso = () => {
-    this.props.dispatch(getHabilidades(this.state.profesion)).then(res => {
-      const listaHabilidades = res.payload;
-      listaHabilidades.map(item => {
-        item.label = item.nombre;
-        item.value = item.nombre;
-        delete item.nombre;
+    var habilidades = [];
+      this.props.dispatch(getHabilidades(this.state.profesion)).then(res => {
+        res.payload.map(item => {
+          item.label = item.nombre;
+          item.value = item.nombre;
+          delete item.nombre;
+          habilidades.push(item);
+        });
       });
-      this.setState({listaHabilidades});
-    });
     return (<div className="col-md-5 text-left mb-4">
         <h5 className="font-weight-bold text-secondary" htmlFor="habilidades">Habilidades</h5>
         <Select
         autoFocus
         isMulti
-        options={this.state.listaHabilidades}
+        options={habilidades}
         className="basic-multi-select"
         classNamePrefix="select"
         value={this.state.habilidades}

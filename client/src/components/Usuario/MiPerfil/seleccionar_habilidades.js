@@ -12,27 +12,25 @@ import Edit from '@material-ui/icons/Edit';
 
 class SeleccionarHabilidades extends Component {
   state = {
-    habilidades: null,
     valores: null,
     edit: false
   };
 
-  componentDidUpdate() {
-    // this.handleOptions()
+  listarHabilidades = () => {
     if (this.props.profesional) {
       var habilidades = [];
       this.props.dispatch(getHabilidades(this.props.profesional.profesion)).then(res => {
-        habilidades = res.payload;
-        habilidades.map(item => {
+        res.payload.map(item => {
           item.label = item.nombre;
           item.value = item.nombre;
           delete item.nombre;
+          if (!this.props.profesional.habilidades.includes(item.label)) {
+            habilidades.push(item);
+          }
         });
-        habilidades = habilidades
-          .filter(habilidad => !this.props.profesional.habilidades.includes(habilidad.value))
-          .sort(this.dynamicSort("label"));
-        this.setState({habilidades});
+        habilidades.sort(this.dynamicSort("label"));
       });
+      return habilidades;
     }
   }
 
@@ -118,7 +116,7 @@ class SeleccionarHabilidades extends Component {
         <div>
           <Select
             isMulti
-            options={this.state.habilidades}
+            options={this.listarHabilidades()}
             className="basic-multi-select mt-2"
             classNamePrefix="select"
             value={this.state.valores}
