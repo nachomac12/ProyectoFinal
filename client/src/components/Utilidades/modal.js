@@ -7,7 +7,7 @@ const Modal = (props) => {
         {props.children}
       </div>
       <div className="modal fade" id={props.id} tabIndex="-1" role="dialog" aria-labelledby={`${props.id}Label`} aria-hidden="true">
-          <div className="modal-dialog" role="document">
+          <div className="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div className="modal-content" style={props.modalStyle}>
               <div className="modal-header">
                 <h5 className="modal-title" id={`${props.id}Label`}>{props.title}</h5>

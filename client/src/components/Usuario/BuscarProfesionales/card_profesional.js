@@ -37,7 +37,6 @@ const CardProfesional = (props) => {
       id={`modal${props.usuario._id}`}
       title={props.usuario.nombre + " " + props.usuario.apellido}
       body={<Curriculum usuario={props.usuario} profesional={props.profesional} domicilio={props.domicilio}/>}
-      modalStyle={{width: '150%'}}
       footer={
         <div className="text-center m-2">
           <button className="btn btn-outline-primary mr-3">Contratar</button>
@@ -68,7 +67,10 @@ const CardProfesional = (props) => {
               <div className="Content">
                 <i>{props.usuario.descripcion}</i>
               </div>
-              <Divider className="mt-2"/>
+              <Divider className="m-2"/>
+              <div className="text-center">
+                {rateIcon()}
+              </div>
             </CardContent>
           </Card>
         </div>
