@@ -32,6 +32,15 @@ const CardProfesional = (props) => {
       }
     }
   }
+
+  const nivel = () => {
+    switch(props.profesional.puntuacion) {
+      case 1: return "Junior"
+      case 2: return "Semi Senior"
+      case 3: return "Senior"
+    }
+  }
+
   return (
     <Modal
       id={`modal${props.usuario._id}`}
@@ -48,6 +57,7 @@ const CardProfesional = (props) => {
       <div className="ProfesionalBox">
         <Card style={{maxWidth: 350}}>
             <CardHeader 
+              style={{height: 100}}
               avatar={
                 <Avatar>
                   {obtenerAvatar()}
@@ -65,11 +75,15 @@ const CardProfesional = (props) => {
             />
             <CardContent >
               <div className="Content">
-                <i>{props.usuario.descripcion}</i>
+                {props.profesional.habilidades.map((habilidad, i) => (
+                  props.profesional.habilidades.length-1 === i ?
+                    <span><b>{habilidad}.</b></span>
+                  : <span><b>{habilidad}, </b></span>
+                ))}
               </div>
               <Divider className="m-2"/>
               <div className="text-center">
-                {rateIcon()}
+                <span><span style={{fontSize: 12, color: 'gray'}}>{nivel()}</span><br/>{rateIcon()}</span>
               </div>
             </CardContent>
           </Card>

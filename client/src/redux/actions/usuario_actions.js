@@ -392,8 +392,9 @@ export function buscarEmpleadorPorID() {
     }
 }
 
-export function buscarProfesionales() {
-    const request = axios.get(`${USUARIO_SERVER}/profesionales`)
+export function buscarProfesionales(dataToSubmit) {
+    console.log(dataToSubmit)
+    const request = axios.post(`${USUARIO_SERVER}/buscarprofesionales`, dataToSubmit)
         .then(res => res.data);
 
     return {

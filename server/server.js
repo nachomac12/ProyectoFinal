@@ -389,12 +389,42 @@ app.delete('/api/usuarios/profesional/educacion', auth, (req,res) => {
     )
 })
 
-app.get('/api/usuarios/profesionales', (req, res) => {
+app.post('/api/usuarios/buscarprofesionales', (req, res) => {
+    let findProfesional = {};
+    let findDomicilio = {};
+    if (req.body.profesion) {
+        findProfesional["profesion"] = req.body.profesion;
+    }
+    if (req.body.habilidades) {
+        findProfesional["habilidades"] = {$in: req.body.habilidades}
+    }
+    if (req.body.idiomas) {
+        var array = [];
+        for (let item in req.body.idiomas) {
+            array.push({$elemMatch: {idioma: req.body.idiomas[item]}});
+        }
+        findProfesional["idiomas"] = {$all: array}
+    }
+    if (req.body.localidad) {
+        findDomicilio["localidad"] = req.body.localidad;
+    }
+
     Usuario.find()
-        .populate("profesional")
-        .populate("domicilio")
+        .populate({
+            path: "profesional",
+            match: findProfesional
+        })
+        .populate({
+            path: "domicilio",
+            match: findDomicilio
+        })
         .exec((err, doc) => {
-            res.send(doc.filter(item => item.profesional !== null && item.domicilio !== null && item.profesional && item.domicilio && !item.empleador));
+            if (err) return res.json({success: false, err});
+            const profesionales = doc.filter(item => item.profesional !== null && item.domicilio !== null && item.profesional && item.domicilio && !item.empleador);
+            res.send({
+                profesionales,
+                size: profesionales.length
+            });
         })
 })
 
