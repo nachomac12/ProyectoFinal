@@ -44,8 +44,8 @@ class BuscarProfesionales extends Component {
             </div>
           )
         })
-      } else return <h1 style={{paddingBottom: 200}} className="text-center font-weight-bold text-secondary">No hubo coincidencias.</h1>
-    } else return <h1 style={{paddingBottom: 200}} className="text-center font-weight-bold text-secondary">Realice una búsqueda y aquí aparecerán los resultados obtenidos.</h1>;
+      } else return <div style={{height: 700}}><h1 className="text-center font-weight-bold text-secondary">Lo sentimos, no hubo coincidencias.</h1></div>
+    } else return <div style={{height: 700}}/>;
   }
 
   render() {

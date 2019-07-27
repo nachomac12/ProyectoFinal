@@ -8,6 +8,7 @@
     cursor: pointer; 
     border: 2px solid lightblue;
     border-radius: 5px;
+    width: auto;
 }
 
 .ProfesionalBox .Content {
@@ -17,5 +18,5 @@
 
 .ProfesionalBox:hover .Content {
     height: auto;
-    color: #000000;
+    color: #aaaaaa;
 }

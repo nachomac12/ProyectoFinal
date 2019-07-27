@@ -55,7 +55,7 @@ const CardProfesional = (props) => {
       }
     >
       <div className="ProfesionalBox">
-        <Card style={{maxWidth: 350}}>
+        <Card>
             <CardHeader 
               style={{height: 100}}
               avatar={
@@ -71,7 +71,7 @@ const CardProfesional = (props) => {
             <Divider/>  
             <CardMedia 
               image={props.usuario.fotoDePerfil}
-              style = {{ height: 350, paddingTop: '56.25%'}}
+              style = {{ height: 350, paddingTop: '56.25%', maxHeight: 200}}
             />
             <CardContent >
               <div className="Content">
