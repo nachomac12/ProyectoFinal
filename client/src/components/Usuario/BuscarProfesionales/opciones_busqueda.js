@@ -68,20 +68,28 @@ class OpcionesBusqueda extends Component {
     var habilidades = [];
     var localidad = "";
     var profesion = "";
-    this.state.idiomas.map(idioma => {
-      idiomas.push(idioma.value);
-    })
-    this.state.habilidades.map(habilidad => {
-      habilidades.push(habilidad.value)
-    })
+    if (this.state.idiomas !== null) {
+      this.state.idiomas.map(idioma => {
+        idiomas.push(idioma.value);
+      });
+    } else {
+      idiomas = [];
+    }
+    if (this.state.habilidades !== null) {
+      this.state.habilidades.map(habilidad => {
+        habilidades.push(habilidad.value)
+      });
+    } else {
+      habilidades = [];
+    };
     if (this.state.localidad !== "") {
       localidad = this.state.localidad.toUpperCase()
-    }
+    };
     if (this.state.profesion !== "") {
       profesion = this.state.profesion.value
-    }
-    this.props.traerProfesionales(profesion, localidad, habilidades, idiomas)
-  }
+    };
+    this.props.traerProfesionales(profesion, localidad, habilidades, idiomas);
+  };
 
   limpiarInputs = () => {
     this.setState({

@@ -18,7 +18,7 @@ class PaperHome extends React.Component {
 
   render() {
     return (
-      <Paper style={styles.paper} onPointerOver={this.mostrarTodo} onPointerOut={this.noMostrarTodo}>
+      <Paper style={styles.paper} onMouseOver={this.mostrarTodo} onMouseOut={this.noMostrarTodo}>
         <div style={styles.containerTituloIcono}>
           <div style={styles.iconBox}>
             {this.props.icono}

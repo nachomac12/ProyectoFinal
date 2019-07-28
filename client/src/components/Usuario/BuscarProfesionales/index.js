@@ -3,10 +3,12 @@ import { connect } from 'react-redux';
 import { buscarProfesionales } from '../../../redux/actions/usuario_actions';
 import CardProfesional from './card_profesional';
 import OpcionesBusqueda from './opciones_busqueda';
+import axios from 'axios';
 
 class BuscarProfesionales extends Component {
   state = {
-    lista: null
+    lista: null,
+    perf: null
   }
 
   traerProfesionales = (profesion, localidad, habilidades, idiomas) => {
@@ -16,18 +18,20 @@ class BuscarProfesionales extends Component {
     };
     if (localidad !== "") {
       dataToSubmit["localidad"] = localidad;
-    }
+    };
     if (habilidades.length > 0) {
       dataToSubmit["habilidades"] = habilidades;
-    }
+    };
     if (idiomas.length > 0) {
       dataToSubmit["idiomas"] = idiomas;
-    }
-    this.props.dispatch(buscarProfesionales(dataToSubmit))
-      .then(res => {
-        this.setState({lista: res.payload.profesionales});
-        console.log(res.payload)
-      });
+    };
+    const ti = performance.now();
+    axios.post('/api/usuarios/buscarprofesionales', dataToSubmit).then(res => {
+      this.setState({lista: res.data.profesionales});
+      const tf = performance.now();
+      const perf = Math.round(tf-ti);
+      this.setState({perf: <p>{res.data.size + " resultados en " + perf + " milisegundos."}</p>})
+    })
   }
 
   renderCards = () => {
@@ -53,10 +57,10 @@ class BuscarProfesionales extends Component {
       <div className="container-fluid p-4">
         <div className="row justify-content-center">
           <div className="col-md-2 m-2">
-            <OpcionesBusqueda 
-              traerProfesionales={(profesion, localidad, habilidades, idiomas) => this.traerProfesionales(profesion, localidad, habilidades, idiomas)}/>
+            <OpcionesBusqueda traerProfesionales={(profesion, localidad, habilidades, idiomas) => this.traerProfesionales(profesion, localidad, habilidades, idiomas)}/>
           </div>
           <div className="col-md">
+            <div className="text-right m-2 text-secondary">{this.state.perf}</div>
             <div className="row justify-content-center">
               {this.renderCards()}
             </div>

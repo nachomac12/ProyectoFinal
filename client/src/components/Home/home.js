@@ -7,10 +7,10 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <div style={{marginTop: 3}}>
+        <div>
           <Carousel/>
         </div>
-        <div style={{paddingTop: 40, paddingBottom: 40, marginTop: 3, marginBottom: 3, backgroundColor: '#F0F0F0'}}>
+        <div style={{paddingTop: 40, paddingBottom: 40, marginBottom: 3, backgroundColor: '#F0F0F0'}}>
           <PaperHomeList />
         </div>
       </div>

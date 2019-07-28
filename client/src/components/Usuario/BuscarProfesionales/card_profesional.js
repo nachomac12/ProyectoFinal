@@ -77,8 +77,8 @@ const CardProfesional = (props) => {
               <div className="Content">
                 {props.profesional.habilidades.map((habilidad, i) => (
                   props.profesional.habilidades.length-1 === i ?
-                    <span><b>{habilidad}.</b></span>
-                  : <span><b>{habilidad}, </b></span>
+                    <span key={i}><b>{habilidad}.</b></span>
+                  : <span key={i}><b>{habilidad}, </b></span>
                 ))}
               </div>
               <Divider className="m-2"/>
