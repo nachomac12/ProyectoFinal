@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Paper from '@material-ui/core/Paper';
 import InputGroup from '../../Utilidades/input-group';
 import Edit from '@material-ui/icons/Edit';
+import Add from '@material-ui/icons/Add';
 import Divider from '@material-ui/core/Divider';
 import Close from '@material-ui/icons/Close';
 import { connect } from 'react-redux';
@@ -13,6 +14,7 @@ const añoActual = fecha.getFullYear();
 class AgregarEducacion extends Component {
   state = {
     edit: false,
+    add: false,
     instituto: '',
     añoIngreso: '',
     añoEgreso: '',
@@ -51,7 +53,7 @@ class AgregarEducacion extends Component {
     const dataToSubmit = {"educacion": {"id": this.generarID(), instituto, añoIngreso, añoEgreso, titulo, ciudad}};
     this.props.dispatch(agregarEducacionProfesional(dataToSubmit, this.props.profesional)).then(res => {
       this.setState({
-        edit: false,
+        add: false,
         instituto: '',
         añoIngreso: '',
         añoEgreso: '',
@@ -64,18 +66,28 @@ class AgregarEducacion extends Component {
 
   renderEducacion = () => {
     if (this.props.profesional && this.props.profesional.educacion && this.props.profesional.educacion.length > 0) {
-      return this.props.profesional.educacion.map((item, i) => {
-        return (
-          <div className="row" key={i}>
-            <div className="col-md">
+      if (this.state.edit) {
+        return this.props.profesional.educacion.map((item, i) => {
+          return (
+            <div className="row" key={i}>
+              <div className="col-md">
+                <p>{i+1 + ". " + item.titulo + ", " + item.instituto + ". " + item.añoIngreso + "-" + item.añoEgreso}</p>
+              </div>
+              <div className="col-md-1">
+                <Close style={{color: 'red', cursor: 'pointer'}} onClick={() => this.onDelete(item.id)}/>
+              </div>
+            </div>
+          )
+        })
+      } else {
+        return this.props.profesional.educacion.map((item, i) => {
+          return (
+            <div key={i}>
               <p>{i+1 + ". " + item.titulo + ", " + item.instituto + ". " + item.añoIngreso + "-" + item.añoEgreso}</p>
             </div>
-            <div className="col-md-1">
-              <Close style={{color: 'red', cursor: 'pointer'}} onClick={() => this.onDelete(item.id)}/>
-            </div>
-          </div>
-        )
-      })
+          )
+        })
+      }
     } else {
       return (<p>No ha ingresado una institución.</p>)
     }
@@ -85,86 +97,111 @@ class AgregarEducacion extends Component {
     this.props.dispatch(eliminarEducacionProfesional(id, this.props.profesional));
   }
 
+  renderAgregarEducacion = () => {
+    if (!this.state.edit && !this.state.add) {
+      return (
+        <div>
+          <Edit 
+            style={{top: 10, right: 25, position:'absolute', cursor:"pointer"}} 
+            color="primary"
+            onClick={() => this.setState({edit: true})}
+          />
+          <Add
+            style={{top: 10, right: 55, position: 'absolute', cursor:"pointer"}}
+            color="primary"
+            onClick={() => this.setState({add: true})}
+          />
+          <div style={{margin: 10}}>
+            {this.renderEducacion()}
+          </div>
+        </div>
+      )
+    } else if (!this.state.edit && this.state.add) {
+      return (
+        <div>
+          <InputGroup
+            caso="input"
+            type="text"
+            name="instituto"
+            label="Institución"
+            placeholder="Ej.: Universidad Nacional de La Plata"
+            value={this.state.instituto}
+            error={this.state.errors.instituto}
+            onChange={this.onChange}
+            autoFocus={true}
+          />
+          <InputGroup
+            caso="input"
+            type="text"
+            name="titulo"
+            label="Titulo obtenido"
+            placeholder="Ej.: Licenciatura en Bioquímica"
+            value={this.state.titulo}
+            error={this.state.errors.titulo}
+            onChange={this.onChange}              
+          />
+          <InputGroup
+            caso="input"
+            type="text"
+            name="ciudad"
+            label="Ciudad de estudio"
+            placeholder="Ej.: La Plata"
+            value={this.state.ciudad}
+            error={this.state.errors.ciudad}
+            onChange={this.onChange}
+          />
+          <div className="row">
+            <div className="col-md">
+              <InputGroup
+                caso="input"
+                type="number"
+                name="añoIngreso"
+                label="Año de ingreso"
+                placeholder="Ej.: 2014"
+                value={this.state.añoIngreso}
+                error={this.state.errors.añoIngreso}
+                onChange={this.onChange}
+              />
+            </div>
+            <div className="col-md">
+              <InputGroup
+                caso="input"
+                type="number"
+                name="añoEgreso"
+                label="Año de egreso"
+                placeholder="Ej.: 2020"
+                value={this.state.añoEgreso}
+                error={this.state.errors.añoEgreso}
+                onChange={this.onChange}
+              />
+            </div>
+          </div>
+          <div className="text-right">
+            <button className="btn btn-outline-info mr-2" onClick={event => this.guardarEducacion(event)}>OK</button>
+            <button className="btn btn-outline-secondary" onClick={() => this.setState({add: false})}>Cerrar</button>
+          </div>
+        </div>
+      )
+    } else {
+      return (
+        <div style={{margin: 10}}>
+          {this.renderEducacion()}
+          <div className="text-right">
+            <button className="btn btn-outline-secondary mt-3" onClick={() => this.setState({edit: false})}>
+              Atrás
+            </button>
+          </div>
+        </div>
+      )
+    }
+  }
+
   render() {
     return (
       <Paper className="col-md" style={{padding: 10}}>
-        {this.state.edit ?
-          <div>
-            <InputGroup
-              caso="input"
-              type="text"
-              name="instituto"
-              label="Institución"
-              placeholder="Ej.: Universidad Nacional de La Plata"
-              value={this.state.instituto}
-              error={this.state.errors.instituto}
-              onChange={this.onChange}
-              autoFocus={true}
-            />
-            <InputGroup
-              caso="input"
-              type="text"
-              name="titulo"
-              label="Titulo obtenido"
-              placeholder="Ej.: Licenciatura en Bioquímica"
-              value={this.state.titulo}
-              error={this.state.errors.titulo}
-              onChange={this.onChange}              
-            />
-            <InputGroup
-              caso="input"
-              type="text"
-              name="ciudad"
-              label="Ciudad de estudio"
-              placeholder="Ej.: La Plata"
-              value={this.state.ciudad}
-              error={this.state.errors.ciudad}
-              onChange={this.onChange}
-            />
-            <div className="row">
-              <div className="col-md">
-                <InputGroup
-                  caso="input"
-                  type="number"
-                  name="añoIngreso"
-                  label="Año de ingreso"
-                  placeholder="Ej.: 2014"
-                  value={this.state.añoIngreso}
-                  error={this.state.errors.añoIngreso}
-                  onChange={this.onChange}
-                />
-              </div>
-              <div className="col-md">
-                <InputGroup
-                  caso="input"
-                  type="number"
-                  name="añoEgreso"
-                  label="Año de egreso"
-                  placeholder="Ej.: 2020"
-                  value={this.state.añoEgreso}
-                  error={this.state.errors.añoEgreso}
-                  onChange={this.onChange}
-                />
-              </div>
-            </div>
-            <div className="text-right">
-              <button className="btn btn-outline-info mr-2" onClick={event => this.guardarEducacion(event)}>OK</button>
-              <button className="btn btn-outline-secondary" onClick={() => this.setState({edit: false})}>Cerrar</button>
-            </div>
-          </div>
-        : <div>
-            <Edit 
-              style={{top: 10, right: 25, position:'absolute', cursor:"pointer"}} 
-              color="primary"
-              onClick={() => this.setState({edit: true})}
-            />
-            <h4 className="text-center" style={{color: '#3f51b5'}}>Educación</h4>
-            <Divider />
-            <div style={{margin: 10}}>
-              {this.renderEducacion()}
-            </div>
-          </div>
-        }
+        <h4 className="text-center" style={{color: '#3f51b5'}}>Educación</h4>
+        <Divider />
+        {this.renderAgregarEducacion()}
       </Paper>
     )
   }
