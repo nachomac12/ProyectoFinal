@@ -21,13 +21,15 @@ const SALT_I = 10;
 // Middlewares
 const { auth } = require('./middleware/auth');
 
-
 // Models
 const { Usuario } = require('./models/usuario');
 const { Profesional } = require('./models/profesional');
 const { Empleador } = require('./models/empleador');
 const { Habilidad } = require('./models/habilidad');
 const { Domicilio } = require('./models/domicilio');
+
+// Utilidades
+const { enviarEmail } = require('./utilidades/mailer/index');
 
 //==========================================\\
 //                   FILES                  \\
@@ -100,7 +102,8 @@ app.post('/api/usuarios/registro', (req, res) => {
 
     usuario.save((err, doc) => {
         if (err) return res.json({success: false, err});
-        res.status(200).json({
+        enviarEmail(doc.email, doc.nombre, null, "bienvenida");
+        return res.status(200).json({
             success: true,
             usuariodata: doc
         })

@@ -89,7 +89,7 @@ class AgregarEducacion extends Component {
         })
       }
     } else {
-      return (<p>No ha ingresado una institución.</p>)
+      return (<p className="text-center">No ha ingresado una institución.</p>)
     }
   }
 
