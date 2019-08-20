@@ -18,6 +18,7 @@ class PaperHome extends React.Component {
 
   render() {
     return (
+      <Link style={{textDecoration: 'none'}} to={this.props.linkTo}>
       <Paper style={styles.paper} onMouseOver={this.mostrarTodo} onMouseOut={this.noMostrarTodo}>
         <div style={styles.containerTituloIcono}>
           <div style={styles.iconBox}>
@@ -28,7 +29,6 @@ class PaperHome extends React.Component {
         {this.state.mostrarTodo ?
           <div>
             <p style={styles.textBox}>{this.props.texto}</p>
-            <div style={{marginTop: 10}}><Link to={this.props.linkTo}>Click aquí</Link></div>
           </div>
         : null
         }
@@ -37,6 +37,7 @@ class PaperHome extends React.Component {
           : null
         }
       </Paper>
+      </Link>
     )
   }
 }
