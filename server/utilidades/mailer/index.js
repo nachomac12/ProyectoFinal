@@ -7,7 +7,7 @@ const getEmailData = (to, nombre, token, tipo) => {
     switch (tipo) {
         case "bienvenida":
             data = {
-                from: "Redemplear <samaproject.enterprise@gmail.com>",
+                from: "Redemplear <redemplear@hotmail.com>",
                 to,
                 subject: `¡Bievenido a Redemplear, ${nombre}!`,
                 html: bienvenido()
@@ -24,10 +24,10 @@ const getEmailData = (to, nombre, token, tipo) => {
 const enviarEmail = (to, nombre, token, tipo) => {
 
     const smtpTransport = mailer.createTransport({
-        service: 'Gmail',
+        service: 'Hotmail',
         auth: {
-            user: "samaproject.enterprise@gmail.com",
-            pass: process.env.EMAIL_PASS
+            user: "redemplear@hotmail.com",
+            pass: "maiden9513"
         }
     });
 
