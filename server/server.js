@@ -110,6 +110,17 @@ app.post('/api/usuarios/registro', (req, res) => {
     })
 })
 
+app.get('/api/usuarios/emailrepetido', (req, res) => {
+    Usuario.find({'email': req.query.email}, (err, doc) => {
+        if (err) return res.json(err);
+        if (doc.length !== 0) {
+            return res.status(200).send({emailExiste: true})
+        } else {
+            return res.status(200).send({emailExiste: false})
+        }
+    })
+})
+
 app.post('/api/usuarios/ingresar', (req, res) => {
     Usuario.findOne({'email': req.body.email}, (err, usuario) => {
         if (!usuario) return res.json({

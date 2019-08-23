@@ -10,6 +10,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import InputGroup from '../Utilidades/input-group'
 import Select from 'react-select';
+import axios from 'axios';
 import { profesiones } from '../Utilidades/profesiones';
 import { connect } from 'react-redux';
 import { getHabilidades } from '../../redux/actions/habilidad_actions';
@@ -159,12 +160,15 @@ class RegistroProfesional extends Component {
   }
 
   handleNext = () => {
-    const { profesion, nombre, apellido, email, contraseña, repetirContraseña, habilidades } = this.state;
+    const { profesion, nombre, apellido, email, contraseña, repetirContraseña } = this.state;
 
     if (this.state.activeStep === 0) {
       if (profesion === "") return this.setState({errors: {profesion: "Debe seleccionar una profesion"}});
     }
     if (this.state.activeStep === 1) {
+      axios.get(`/api/usuarios/emailrepetido?email=${email}`).then(res => {
+        if (email !== "" && res.data.emailExiste === true) return this.setState({errors: {email: "El email ya existe"}});
+      })
       if (nombre === "") return this.setState({errors: {nombre: "Debe ingresar su nombre"}});
       if (apellido === "") return this.setState({errors: {apellido: "Debe ingresar su apellido"}});
       if (email === "") return this.setState({errors: {email: "Debe ingresar su email"}});

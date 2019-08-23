@@ -8,6 +8,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogActions from '@material-ui/core/DialogActions';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import InputGroup from '../Utilidades/input-group'
+import axios from 'axios';
 import { connect } from 'react-redux';
 import { nuevoEmpleador, registrarUsario, ingresarUsuario } from '../../redux/actions/usuario_actions';
 
@@ -46,20 +47,10 @@ class RegistroEmpleador extends Component {
   }
 
   handleNext = () => {
-    const { tipo, nombre, apellido, email, contraseña, repetirContraseña } = this.state;
+    const { tipo } = this.state;
 
     if (this.state.activeStep === 0) {
       if (tipo === "") return this.setState({errors: {tipo: "Debe seleccionar una profesion"}});
-    }
-    if (this.state.activeStep === 1) {
-      if (nombre === "") return this.setState({errors: {nombre: "Debe ingresar su nombre"}});
-      if (apellido === "") return this.setState({errors: {apellido: "Debe ingresar su apellido"}});
-      if (email === "") return this.setState({errors: {email: "Debe ingresar su email"}});
-      if (!/\S+@\S+\.\S+/.test(email)) return this.setState({errors: {email: "El email es incorrecto"}});
-      if (contraseña === "") return this.setState({errors: {contraseña: "Debe ingresar una contraseña"}});
-      if (contraseña.length < 6) return this.setState({errors: {contraseña: "La contraseña debe contener al menos seis caracteres"}});
-      if (repetirContraseña === "") return this.setState({errors: {repetirContraseña: "Debe ingresar una contraseña"}});
-      if (contraseña !== repetirContraseña) return this.setState({errors: {repetirContraseña: "Las contraseñas no coinciden"}});
     }
 
     setTimeout(() => {
@@ -157,9 +148,21 @@ class RegistroEmpleador extends Component {
   )
 
   onSubmit = (event) => {
-    const { tipo, nombre, apellido, email, contraseña } = this.state;
+    const { tipo, nombre, apellido, email, contraseña, repetirContraseña } = this.state;
 
     event.preventDefault();
+
+    axios.get(`/api/usuarios/emailrepetido?email=${email}`).then(res => {
+      if (email !== "" && res.data.emailExiste === true) return this.setState({errors: {email: "El email ya existe"}});
+    })
+    if (nombre === "") return this.setState({errors: {nombre: "Debe ingresar su nombre"}});
+    if (apellido === "") return this.setState({errors: {apellido: "Debe ingresar su apellido"}});
+    if (email === "") return this.setState({errors: {email: "Debe ingresar su email"}});
+    if (!/\S+@\S+\.\S+/.test(email)) return this.setState({errors: {email: "El email es incorrecto"}});
+    if (contraseña === "") return this.setState({errors: {contraseña: "Debe ingresar una contraseña"}});
+    if (contraseña.length < 6) return this.setState({errors: {contraseña: "La contraseña debe contener al menos seis caracteres"}});
+    if (repetirContraseña === "") return this.setState({errors: {repetirContraseña: "Debe ingresar una contraseña"}});
+    if (contraseña !== repetirContraseña) return this.setState({errors: {repetirContraseña: "Las contraseñas no coinciden"}});
 
     const empleador = {"tipo": tipo};
 
