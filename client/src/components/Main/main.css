@@ -19,30 +19,6 @@
   font-weight: bolder;
 }
 
-.FotoUno {
-  top: 10%;
-  right: 10%;
-  position: absolute;
-  color: #ffffff;
-  text-align: left;
-  text-justify: distribute;
-}
-
-.TextoHome {
-  font-family: "Oswald", sans-serif;
-  font-weight: bold;
-  font-size: 50px;
-}
-
-.FotoDos {
-  top: 10%;
-  left: 7%;
-  position: absolute;
-  color: #ffffff;
-  text-align: left;
-  text-justify: distribute;
-}
-
 .Degrade {
   background: #ffeeee; /* fallback for old browsers */
   background: -webkit-linear-gradient(
@@ -70,35 +46,4 @@
 .Active {
   color: #17a2b8;
   font-weight: bold;
-}
-
-@media screen and (max-width:640px) {
-  .TextoHome {
-    font-family: "Oswald", sans-serif;
-    font-weight: bold;
-    font-size: 12px;
-  }
-
-  .FotoUno {
-    font-size: 10px;
-    height: auto;
-    width: auto;
-  }
-
-  .FotoDos {
-    font-size: 10px;
-    height: auto;
-    width: auto;
-  }
-
-  .btnCarouselUno {
-    font-size: 10px;
-  }
-
-  .btnCarouselDos {
-    font-size: 10px;
-    position: absolute;
-    right: 25px;
-    bottom: -15px;
-  }
 }

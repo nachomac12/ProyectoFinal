@@ -1,0 +1,109 @@
+.carousel-item:before {
+  content:"";
+  position:absolute;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+  background-color:rgba(0,0,0,0.3);
+}
+
+.FotoUno {
+    position: absolute;
+    top: 10%;
+    right: 10%;
+    color: #ffffff;
+    text-align: left;
+    text-justify: distribute;
+  }
+  
+.FotoDos {
+    top: 10%;
+    left: 7%;
+    position: absolute;
+    color: #ffffff;
+    text-align: left;
+    text-justify: distribute;
+  }
+
+.TextoHome {
+    font-family: "Oswald", sans-serif;
+    font-weight: bold;
+    font-size: 50px;
+}
+
+.LeftArrow {
+    position: absolute;
+    top: 40%;
+    left: 2px;
+}
+
+#LeftArrowIcon {
+    font-size: 50px;
+    color: rgb(227, 233, 233);
+}
+
+#LeftArrowIcon:hover {
+  font-size: 70px;
+  color: white;
+  -webkit-transition: all 0.1s ease-in;
+  transition: all 0.1s ease-in;
+}
+
+.RightArrow {
+    position: absolute;
+    top: 40%;
+    right: 2px;
+    font-size: 20px;
+}
+
+#RightArrowIcon {
+    font-size: 50px;
+    color: rgb(227, 233, 233);
+}
+
+#RightArrowIcon:hover {
+  font-size: 70px;
+  color: white;
+  -webkit-transition: all 0.1s ease-in;
+  transition: all 0.1s ease-in;
+}
+
+@media screen and (max-width:640px) {
+    .TextoHome {
+      font-family: "Oswald", sans-serif;
+      font-weight: bold;
+      font-size: 12px;
+    }
+  
+    .FotoUno {
+      font-size: 10px;
+      height: auto;
+      width: auto;
+    }
+  
+    .FotoDos {
+      font-size: 10px;
+      height: auto;
+      width: auto;
+    }
+  
+    .btnCarouselUno {
+      font-size: 10px;
+    }
+  
+    .btnCarouselDos {
+      font-size: 10px;
+      position: absolute;
+      right: 25px;
+      bottom: -15px;
+    }
+
+    .LeftArrow {
+      display: none;
+    }
+
+    .RightArrow {
+      display: none;
+    }
+}
