@@ -29,8 +29,8 @@ class BuscarProfesionales extends Component {
     axios.post('/api/usuarios/buscarprofesionales', dataToSubmit).then(res => {
       this.setState({lista: res.data.profesionales});
       const tf = performance.now();
-      const perf = Math.round(tf-ti);
-      this.setState({perf: <p>{res.data.size + " resultados en " + perf + " milisegundos."}</p>})
+      const perf = Math.round(tf-ti)/1000;
+      this.setState({perf: <p>{res.data.size + " resultados en " + perf + " segundos."}</p>})
     })
   }
 

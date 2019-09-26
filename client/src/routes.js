@@ -11,6 +11,9 @@ import Perfil from './components/Usuario/MiPerfil';
 import Nosotros from './components/Nosotros/nosotros';
 import MiCurriculum from './components/Usuario/MiCurriculum';
 import BuscarProfesionales from './components/Usuario/BuscarProfesionales';
+import CrearEmpleo from './components/Usuario/CrearEmpleo';
+import PostularProfesional from './components/Usuario/BuscarProfesionales/postular_profesional';
+import GestionEmpleos from './components/Usuario/GestionEmpleos';
 
 const Routes = () => {
   return (
@@ -28,6 +31,10 @@ const Routes = () => {
         <Route path="/curriculum" exact component={Permisos(MiCurriculum, true, true)} />
         {/*RUTAS EMPLEADOR*/}
         <Route path="/buscar_profesionales" exact component={Permisos(BuscarProfesionales, true, null, true)} />
+        <Route path="/crear_empleo" exact component={Permisos(CrearEmpleo, true, null, true)} />
+        <Route path="/postular/:id" exact component={Permisos(PostularProfesional, true, null, true)} />
+        <Route path="/gestionar_empleos" exact component={Permisos(GestionEmpleos, true, null, true)} />
+
         <Route component={Permisos(NotFound)} />
       </Switch>
     </Main>

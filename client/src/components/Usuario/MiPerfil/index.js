@@ -20,29 +20,24 @@ class Perfil extends Component {
     const domicilio = this.props.usuario.domicilio;
     return (
       <div className="row justify-content-center" style={{margin: 10}}>
-        <div className="col-md-4">
+        <div className="col-md">
           <UsuarioCard 
             datosUsuario={usuario}
             profesional={profesional}
             empleador={empleador}
           />
         </div>
-        <div className="col-md-5">
-          {usuario.esProfesional 
-            ? <div className="mb-2"><SeleccionarHabilidades profesional={profesional}/></div>
-            : null
-          }
-          {usuario.esProfesional
-            ? <div className="mb-2"><AgregarIdiomas profesional={profesional}/></div>
-            : null
-          }
-          {usuario.esProfesional
-            ? <div className="mb-2"><AgregarEducacion profesional={profesional}/></div>
-            : null
-          }
+        <div className="col-md">
           <EditarDatos usuario={usuario}/>
           <div className="mb-2"><DomicilioUsuario usuarioDatos={usuario} domicilio={domicilio}/></div>
         </div>
+        {usuario.esProfesional ?
+          <div className="col-md">
+            <div className="mb-2"><SeleccionarHabilidades profesional={profesional}/></div>
+            <div className="mb-2"><AgregarIdiomas profesional={profesional}/></div>
+            <div className="mb-2"><AgregarEducacion profesional={profesional}/></div>
+          </div>
+        : null}
       </div>
     )
   }

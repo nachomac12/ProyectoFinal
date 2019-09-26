@@ -51,6 +51,22 @@ const InputGroup = (props) => {
           </div>
         );
       break;
+      case ("textarea"):
+        group = (
+          <div className="p-1">
+            <h5 className="font-weight-bold text-secondary" htmlFor={props.name}>{props.label}</h5>
+            <textarea 
+              name={props.name}
+              type={props.type}
+              className={classnames('form-control form-control-lg', {'is-invalid': props.error})}
+              placeholder={props.placeholder}
+              value={props.value}
+              onChange={props.onChange}
+            />
+            {props.error && <div className="invalid-feedback">{props.error}</div>}
+          </div>
+        )
+      break;
       default:
         group = null;
     }

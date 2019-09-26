@@ -33,9 +33,9 @@ class MenuUsuario extends Component {
     ],
     empleadores: [
       {
-        nombre: 'Mi perfil',
-        linkTo: '/perfil',
-        icon: <PersonIcon />
+        nombre: 'Buscar profesionales',
+        linkTo: '/buscar_profesionales',
+        icon: <SearchIcon />
       },
       {
         nombre: 'Crear empleo',
@@ -48,9 +48,9 @@ class MenuUsuario extends Component {
         icon: <AssignmentIcon />
       },
       {
-        nombre: 'Buscar profesionales',
-        linkTo: '/buscar_profesionales',
-        icon: <SearchIcon />
+        nombre: 'Mi perfil',
+        linkTo: '/perfil',
+        icon: <PersonIcon />
       }
     ]
   }

@@ -1,5 +1,6 @@
 import React from 'react';
 import './card_profesional.css';
+import { withRouter } from 'react-router-dom';
 import Divider from '@material-ui/core/Divider';
 import Modal from '../../Utilidades/modal';
 import Curriculum from '../MiCurriculum/curriculum';
@@ -47,11 +48,10 @@ const CardProfesional = (props) => {
       title={props.usuario.nombre + " " + props.usuario.apellido}
       body={<Curriculum usuario={props.usuario} profesional={props.profesional} domicilio={props.domicilio}/>}
       footer={
-        <div className="row justify-content-center">
-          <div className="col-md"><button className="btn btn-outline-primary mb-2">Contratar</button></div>
-          <div className="col-md"><button className="btn btn-outline-info mb-2">Postular</button></div> 
-          <div className="col-md"><button className="btn btn-outline-warning mb-2">Favorito</button></div>
-        </div>
+        <button 
+          onClick={() => props.history.push(`/postular/${props.usuario._id}`)}
+          className="btn btn-lg btn-outline-info"
+          data-dismiss="modal" aria-label="Close">Postular</button>
       }
     >
       <div className="ProfesionalBox">
@@ -92,4 +92,4 @@ const CardProfesional = (props) => {
   )
 }
 
-export default CardProfesional;
+export default withRouter(CardProfesional);

@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const trabajoSchema = Schema({
-    nombre: {
+    titulo: {
         type: String,
         required: true,
         maxlength: 100
@@ -21,12 +21,17 @@ const trabajoSchema = Schema({
         type: Number,
         default: 10
     },
-    candidatos: {
-        type: Array,
-        default: []
-    },
+    candidatos: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Usuario'
+    }],
     terminado: {
-        type: Boolean
+        type: Boolean,
+        default: false
+    },
+    profesionRequerida: {
+        type: String,
+        maxlength: 100
     },
     habilidadesRequeridas: {
         type: Array,

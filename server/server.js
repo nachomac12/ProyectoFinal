@@ -27,9 +27,81 @@ const { Profesional } = require('./models/profesional');
 const { Empleador } = require('./models/empleador');
 const { Habilidad } = require('./models/habilidad');
 const { Domicilio } = require('./models/domicilio');
+const { Trabajo } = require('./models/trabajo');
 
 // Utilidades
 const { enviarEmail } = require('./utilidades/mailer/index');
+
+//==========================================\\
+//                 TRABAJOS                 \\
+//==========================================\\
+
+app.post('/api/trabajos/trabajo', auth, (req, res) => {
+    const trabajo = new Trabajo(req.body);
+
+    trabajo.save((err, doc) => {
+        if (err) return res.json({success: false, err});
+        return res.status(200).json({
+            trabajo: doc,
+            success: true
+        })
+    })
+})
+
+app.get('/api/trabajos/trabajos_por_empleador', auth, (req, res) => {
+    Trabajo.find({'creador': req.usuario.empleador}, (err, doc) => {
+        if (err) res.json(err);
+        res.status(200).json(doc);
+    }).populate("candidatos");
+})
+
+app.put('/api/trabajos/postular', auth, (req, res) => {
+    Trabajo.findOneAndUpdate(
+        {_id: req.body.id},
+        { $push: { candidatos: req.body.candidato } },
+        {new: true},
+        (err, doc) => {
+            if (err) return res.json(err);
+            res.status(200).json(doc)
+        }
+    ).populate("candidatos");
+})
+
+app.put('/api/trabajos/despostular', auth, (req, res) => {
+    Trabajo.findOneAndUpdate(
+        {_id: req.body.id},
+        { $pull: { candidatos: { $in: req.body.candidato } } },
+        {new: true},
+        (err, doc) => {
+            if (err) return res.json(err);
+            res.status(200).json(doc)
+        }
+    ).populate("candidatos");
+})
+
+app.get('/api/trabajos/esta_postulado', auth, (req, res) => {
+    Trabajo.find(
+        {_id: req.query.id, candidatos: req.query.candidato},
+        (err, doc) => {
+            if (err) return res.json(err);
+            if (doc.length > 0) {
+                res.status(200).json({postulado: true})
+            } else {
+                res.status(200).json({postulado: false})
+            }
+        }
+    )
+})
+
+app.get('/api/trabajos/postulados', auth, (req, res) => {
+    Trabajo.findOne(
+        {_id: req.query.id},
+        (err, doc) => {
+            if (err) return res.json(err);
+            res.status(200).json(doc.candidatos);
+        }
+    ).populate("candidatos");
+})
 
 //==========================================\\
 //                   FILES                  \\

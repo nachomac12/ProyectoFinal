@@ -32,3 +32,9 @@ export const BUSCAR_PROFESIONALES = 'buscar_profesionales';
 // HABILIDADES
 export const GET_HABILIDADES = 'get_habilidades';
 export const NUEVA_HABILIDAD = 'nueva_habilidad';
+
+//TRABAJOS
+export const AGREGAR_TRABAJO = 'agregar_trabajo';
+export const TRABAJOS_POR_EMPLEADOR = 'trabajos_por_empleador';
+export const AGREGAR_POSTULANTE = 'agregar_postulante';
+export const ELIMINAR_POSTULANTE = 'eliminar_postulante';
