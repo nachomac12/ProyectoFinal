@@ -40,4 +40,6 @@ ReactDOM.render(
             <Routes />
         </BrowserRouter>
     </Provider>,
+
+   // root id del index.html
 document.getElementById('root'));
