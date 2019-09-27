@@ -3,6 +3,7 @@ import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux'; 
 import { logout } from '../../redux/actions/usuario_actions';
 import MenuUsuario from '../Usuario/menu_usuario';
+import BadgeNotificaciones from '../Usuario/Notificaciones';
 
 class Header extends Component {
   state = {
@@ -30,6 +31,18 @@ class Header extends Component {
         linkTo: '/ingresar'
       }
     ]
+  }
+
+  renderNotif = () => {
+    if (this.props.usuario.usuarioDatos) {
+      if (this.props.usuario.usuarioDatos.isAuth && this.props.usuario.usuarioDatos.esProfesional) {
+        return (
+          <li>
+            <BadgeNotificaciones />
+          </li>
+        )
+      }
+    }
   }
 
   renderNavs = () => {
@@ -89,7 +102,10 @@ class Header extends Component {
           <Link to="/" className="navbar-brand">
               <div className="LogoHeader">redemplear</div>
           </Link>
-          <ul className="nav justify-content-end">{ this.renderNavs() }</ul>
+          <ul className="nav justify-content-end">
+            { this.renderNotif() }
+            { this.renderNavs() }
+          </ul>
         </nav>
         <hr className="my-auto flex-grow-1" style={{borderColor: "#CEECF5"}} />
       </div>

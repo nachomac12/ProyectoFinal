@@ -7,7 +7,8 @@ import InfoEmpleo from './info_empleo';
 class GestionEmpleos extends Component {
   state = {
     loading: true,
-    candidatos: []
+    candidatos: [],
+    titulo: ""
   }
   
   componentDidMount() {
@@ -22,7 +23,7 @@ class GestionEmpleos extends Component {
   renderCandidatos = (item) => {
     var candidatos = [];
     item.candidatos.map(c => candidatos.push(c));
-    this.setState({candidatos});
+    this.setState({candidatos, titulo: item.titulo});
   }
 
   renderEmpleoItem = () => {
@@ -47,7 +48,7 @@ class GestionEmpleos extends Component {
             {this.renderEmpleoItem()}
           </div>
           <div className="col-md">
-            <InfoEmpleo candidatos={this.state.candidatos} />
+            <InfoEmpleo candidatos={this.state.candidatos} titulo={this.state.titulo}/>
           </div>
         </div>
       </div>

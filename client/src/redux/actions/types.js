@@ -38,3 +38,7 @@ export const AGREGAR_TRABAJO = 'agregar_trabajo';
 export const TRABAJOS_POR_EMPLEADOR = 'trabajos_por_empleador';
 export const AGREGAR_POSTULANTE = 'agregar_postulante';
 export const ELIMINAR_POSTULANTE = 'eliminar_postulante';
+export const CREAR_NOTIFICACION = 'crear_notificacion';
+export const BORRAR_NOTIFICACION = 'borrar_notificacion';
+export const LISTAR_NOTIFICACIONES_USUARIO = 'listar_notificaciones_usuario';
+export const VER_NOTIFICACION = 'ver_notificacion';

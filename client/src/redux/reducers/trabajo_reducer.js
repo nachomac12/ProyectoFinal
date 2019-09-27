@@ -2,7 +2,11 @@ import {
     AGREGAR_TRABAJO,
     TRABAJOS_POR_EMPLEADOR,
     AGREGAR_POSTULANTE,
-    ELIMINAR_POSTULANTE
+    ELIMINAR_POSTULANTE,
+    LISTAR_NOTIFICACIONES_USUARIO,
+    CREAR_NOTIFICACION,
+    BORRAR_NOTIFICACION,
+    VER_NOTIFICACION
 } from '../actions/types';
 
 export default function(state = {}, action) {
@@ -26,6 +30,26 @@ export default function(state = {}, action) {
             return {
                 ...state,
                 trabajosEmpleador: action.payload
+            }
+        case LISTAR_NOTIFICACIONES_USUARIO:
+            return {
+                ...state,
+                notificaciones: action.payload
+            }
+        case CREAR_NOTIFICACION:
+            return {
+                ...state,
+                notificaciones: action.payload
+            }
+        case BORRAR_NOTIFICACION:
+            return {
+                ...state,
+                notificaciones: action.payload
+            }
+        case VER_NOTIFICACION:
+            return {
+                ...state,
+                notificaciones: action.payload
             }
         default:
             return state;

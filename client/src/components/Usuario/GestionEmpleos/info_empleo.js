@@ -4,7 +4,7 @@ import Postulante from './postulante';
 class InfoEmpleo extends Component {
   renderPostulantes = () => (
     this.props.candidatos.map(candidato => (
-      <div className="col-md-10 m-2">
+      <div className="col-md-10" style={{margin: '0 auto'}}>
         <Postulante 
           key={candidato._id}
           nombre={candidato.nombre}
@@ -20,9 +20,8 @@ class InfoEmpleo extends Component {
   render() {
     return (
       <div style={{padding: 8}}>
-        <div className="row">
-          {this.renderPostulantes()}
-        </div>
+        <h3 className="text-center text-info mb-4">{this.props.titulo}</h3>
+        {this.renderPostulantes()}
       </div>
     )
   }

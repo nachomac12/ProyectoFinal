@@ -27,7 +27,8 @@ const { Profesional } = require('./models/profesional');
 const { Empleador } = require('./models/empleador');
 const { Habilidad } = require('./models/habilidad');
 const { Domicilio } = require('./models/domicilio');
-const { Trabajo } = require('./models/trabajo');
+const { Trabajo } = require('./models/trabajo');   
+const { Notificacion } = require('./models/notificacion');
 
 // Utilidades
 const { enviarEmail } = require('./utilidades/mailer/index');
@@ -101,6 +102,50 @@ app.get('/api/trabajos/postulados', auth, (req, res) => {
             res.status(200).json(doc.candidatos);
         }
     ).populate("candidatos");
+})
+
+app.post('/api/trabajos/notificacion', auth, (req, res) => {
+    const notificacion = new Notificacion(req.body);
+
+    notificacion.save((err, doc) => {
+        if (err) return res.json(err);
+        return res.status(200).json(doc)
+    })
+})
+
+app.put('/api/trabajos/notificacion', auth, (req, res) => {
+    Notificacion.findOneAndRemove(
+        {creador: req.body.creadorID, destino: req.body.usuarioID, trabajoAsociado: req.body.trabajoID},
+        (err, doc) => {
+            if (err) return res.json(err);
+            res.status(200).json(doc);
+        }
+    )
+})
+
+app.get('/api/trabajos/notificaciones_usuario', auth, (req, res) => {
+    Notificacion
+        .find(
+            {destino: req.usuario._id},
+            (err, doc) => {
+                if (err) return res.json(err);
+                res.status(200).json(doc);
+            }
+        )
+        .sort({_id: -1})
+})
+
+app.put('/api/trabajos/notificacion_vista', auth, (req, res) => {
+    Notificacion
+        .findOneAndUpdate(
+            {_id: req.body.id},
+            {vista: true},
+            {new: true},
+            (err, doc) => {
+                if (err) return res.json(err);
+                res.status(200).json(doc);
+            }
+        )
 })
 
 //==========================================\\
@@ -226,6 +271,16 @@ app.get('/api/usuarios/logout', auth, (req, res) => {
             return res.status(200).send({
                 success: true
             })
+        }
+    )
+})
+
+app.get('/api/usuarios/get_usuario', (req, res) => {
+    Usuario.findOne(
+        {_id: req.query.idUsuario},
+        (err, doc) => {
+            if (err) res.json(err);
+            res.status(200).json(doc);
         }
     )
 })
