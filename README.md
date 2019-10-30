@@ -24,7 +24,7 @@ Una vez que se realice un contrato quedará asentada toda la información del mi
 <h4>Descargar Git y clonar el proyecto</h4>
 <ol> 
   <li>Abrir una terminal en Linux o "Windows Power Shell" en Windows</li>
-  <li>Ejecutar > sudo apt-get install git"</li>
+  <li>Ejecutar > sudo apt-get install git</li>
   <li>Luego correr > git clone https://github.com/nachomac12/ProyectoFinal.git</li>
 </ol>
 
