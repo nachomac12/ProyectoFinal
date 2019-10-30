@@ -18,3 +18,21 @@ Una vez que se realice un contrato quedará asentada toda la información del mi
   <li>Consolidar una plataforma en la cual los usuarios confíen y tengan como una opción relevante.</li>
   <li>Expandir la aplicación a otras profesiones.</li>
 </ul>
+
+<h3>Como correr el proyecto</h3>
+<h4>Descargar Git y clonar el proyecto</h4>
+<ol> 
+  <li>Abrir una terminal en Linux o "Windows Power Shell" en Windows</li>
+  <li>Ejecutar > sudo apt-get install git"</li>
+  <li>Luego correr > git clone git@github.com:nachomac12/ProyectoFinal.git</li>
+</ol>
+
+<h4>Descargar Node y correr el proyecto</h4>
+<ol>
+  <li>Descargar node en https://nodejs.org/es/</li>
+  <li>Abrir una terminal en Linux o "Windows Power Shell" en Windows</li>
+  <li>Ir a la carpeta raíz de ProyectoFinal y correr > npm install</li>
+  <li>Ir a la carpeta ProyectoFinal/client y ejecutar > npm install</li>
+  <li>Volver al directorio ProyectoFinal y ejecutar > npm run dev</li>
+</ol>
+
