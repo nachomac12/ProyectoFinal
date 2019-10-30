@@ -20,12 +20,21 @@ Una vez que se realice un contrato quedará asentada toda la información del mi
 </ul>
 
 <h3>Como correr el proyecto</h3>
+
 <h4>Descargar Git y clonar el proyecto</h4>
 <ol> 
   <li>Abrir una terminal en Linux o "Windows Power Shell" en Windows</li>
   <li>Ejecutar > sudo apt-get install git"</li>
-  <li>Luego correr > git clone git@github.com:nachomac12/ProyectoFinal.git</li>
+  <li>Luego correr > git clone https://github.com/nachomac12/ProyectoFinal.git</li>
 </ol>
+
+<h4>Configurar la base de datos</h4>
+  <ol>
+    <li>Descargar MongoDB: https://www.mongodb.com/download-center/enterprise </li>
+    <li>Si estas en Windows tenes que ir a la ruta donde se instaló Mongo, por lo general es C:/ => Program Files => MongoDB => Server => <Version de Mongo> => bin => ejecutar el archivo mongod.exe; si estas en Linux dejo este tutorial https://tecadmin.net/install-mongodb-on-ubuntu/. Este paso es para poder dejar corriendo la db en un puerto.</li>
+    <li>Una vez hecho esto descargar el siguiente archivo: https://mega.nz/#!lN9lhYCa y descomprimirlo.</li>
+    <li>Descomprimirlo en una carpeta y ejecutar en una Terminal (Linux) o Windows Power Shell (Windows) el siguiente comando: > mongorestore -d redprof <RUTA_ARCHIVO_DESCOMPRIMIDO>/redprof</li>. Si estas en Windows este último comando lo vas a tener que correr desde este directorio: C:/ => Program Files => MongoDB => Server => <Version de Mongo> => bin
+  </ol>
 
 <h4>Descargar Node y correr el proyecto</h4>
 <ol>
@@ -35,4 +44,5 @@ Una vez que se realice un contrato quedará asentada toda la información del mi
   <li>Ir a la carpeta ProyectoFinal/client y ejecutar > npm install</li>
   <li>Volver al directorio ProyectoFinal y ejecutar > npm run dev</li>
 </ol>
-
+  
+  <b>Cualquier consulta enviarme un email a maciasignacio0@gmail.com</b>
