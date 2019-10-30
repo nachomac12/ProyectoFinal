@@ -23,9 +23,9 @@ Una vez que se realice un contrato quedará asentada toda la información del mi
 
 <h4>Descargar Git y clonar el proyecto</h4>
 <ol> 
-  <li>Abrir una terminal en Linux o "Windows Power Shell" en Windows</li>
-  <li>Ejecutar > sudo apt-get install git</li>
-  <li>Luego correr > git clone https://github.com/nachomac12/ProyectoFinal.git</li>
+  <li>Abrir una terminal en Linux y Ejecutar > sudo apt-get install git</li>
+  <li>En Windows podés descargar Git https://git-scm.com/ e instalarlo. Usaremos Git Bash para utilizar los comandos de Git</li>
+  <li>En Linux ejecutar el siguiente comando en la Terminal y en Windows hacerlo utilizando Git Bash: > git clone https://github.com/nachomac12/ProyectoFinal.git</li>
 </ol>
 
 <h4>Configurar la base de datos</h4>
