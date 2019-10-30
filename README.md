@@ -42,6 +42,7 @@ Una vez que se realice un contrato quedará asentada toda la información del mi
   <li>Abrir una terminal en Linux o "Windows Power Shell" en Windows</li>
   <li>Ir a la carpeta raíz de ProyectoFinal y correr > npm install</li>
   <li>Ir a la carpeta ProyectoFinal/client y ejecutar > npm install</li>
+  <li>Descargar este archivo que contiene las variables de ambiente para que se pueda ejecutar el proyecto <a href="https://mega.nz/#!MF0GnCLQ!9kKzgV3Hfkp5jBL2SuPlt1g4-y1Z15La0pV0se4ModU">aquí</a> y ponerlo dentro del directorio raíz ProyectoFinal</li>
   <li>Volver al directorio ProyectoFinal y ejecutar > npm run dev</li>
 </ol>
   
