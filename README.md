@@ -32,7 +32,7 @@ Una vez que se realice un contrato quedará asentada toda la información del mi
   <ol>
     <li>Descargar MongoDB: https://www.mongodb.com/download-center/enterprise </li>
     <li>Si estas en Windows tenes que ir a la ruta donde se instaló Mongo, por lo general es C:/ => Program Files => MongoDB => Server => <Version de Mongo> => bin => ejecutar el archivo mongod.exe; si estas en Linux dejo este tutorial https://tecadmin.net/install-mongodb-on-ubuntu/. Este paso es para poder dejar corriendo la db en un puerto.</li>
-  <li>Una vez hecho esto descargar este <a target="_blank" href="https://mega.nz/#!hM9QHIKJ!6bOdRaWKWnHrPwF1k3Q5aldR6NNwZmqc_zxwXwPuugU">archivo</a> y descomprimirlo.</li>
+  <li>Una vez hecho esto descargar este <a href="https://mega.nz/#!hM9QHIKJ!6bOdRaWKWnHrPwF1k3Q5aldR6NNwZmqc_zxwXwPuugU" target="_blank">archivo</a> y descomprimirlo.</li>
     <li>Ejecutar en una Terminal (Linux) o Windows Power Shell (Windows) el siguiente comando: > mongorestore -d redprof <RUTA_ARCHIVO_DESCOMPRIMIDO>/redprof</li>. Si estas en Windows este último comando lo vas a tener que correr desde este directorio: C:/ => Program Files => MongoDB => Server => <Version de Mongo> => bin
   </ol>
 
