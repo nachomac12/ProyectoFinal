@@ -14,7 +14,7 @@ const trabajoSchema = Schema({
     },
     creador: {
         type: Schema.Types.ObjectId,
-        ref: "Empleador",
+        ref: "Usuario",
         required: true
     },
     cantidadCandidatosPermitidos: {
@@ -23,7 +23,7 @@ const trabajoSchema = Schema({
     },
     candidatos: [{
         type: Schema.Types.ObjectId,
-        ref: 'Usuario'
+        ref: "Usuario"
     }],
     terminado: {
         type: Boolean,

@@ -7,6 +7,7 @@ import Curriculum from '../MiCurriculum/curriculum';
 import { Card, CardHeader, CardMedia, CardContent } from '@material-ui/core';
 import Avatar from '@material-ui/core/Avatar';
 import StarRateIcon from '@material-ui/icons/StarRate';
+import { NONAME } from 'dns';
 
 
 const CardProfesional = (props) => {
@@ -39,6 +40,7 @@ const CardProfesional = (props) => {
       case 1: return "Junior"
       case 2: return "Semi Senior"
       case 3: return "Senior"
+      default: return "None";
     }
   }
 

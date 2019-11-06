@@ -14,6 +14,9 @@ import BuscarProfesionales from './components/Usuario/BuscarProfesionales';
 import CrearEmpleo from './components/Usuario/CrearEmpleo';
 import PostularProfesional from './components/Usuario/BuscarProfesionales/postular_profesional';
 import GestionEmpleos from './components/Usuario/GestionEmpleos';
+import NotificacionDetalle from './components/Usuario/Notificaciones/notificacion_detalle';
+import BuscarTrabajo from './components/Usuario/BuscarTrabajo';
+import MisEmpleos from './components/Usuario/MisEmpleos';
 
 const Routes = () => {
   return (
@@ -29,6 +32,9 @@ const Routes = () => {
         <Route path="/perfil" exact component={Permisos(Perfil, true)} />
         {/*RUTAS PROFESIONALES*/}
         <Route path="/curriculum" exact component={Permisos(MiCurriculum, true, true)} />
+        <Route path="/notificacion/:id" exact component={Permisos(NotificacionDetalle, true, true)} />
+        <Route path="/buscar_empleos" exact component={Permisos(BuscarTrabajo, true, true)} />
+        <Route path="/mis_empleos" exact component={Permisos(MisEmpleos, true, true)} />
         {/*RUTAS EMPLEADOR*/}
         <Route path="/buscar_profesionales" exact component={Permisos(BuscarProfesionales, true, null, true)} />
         <Route path="/crear_empleo" exact component={Permisos(CrearEmpleo, true, null, true)} />

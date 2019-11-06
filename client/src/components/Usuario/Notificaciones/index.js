@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import { IconButton, Badge, Divider } from '@material-ui/core';
 import { Notifications } from '@material-ui/icons';
 import { connect } from 'react-redux';
@@ -32,7 +33,11 @@ class BadgeNotificaciones extends Component {
           )
         } else {
           return (
-            <div style={{margin: 3, cursor: 'pointer'}} key={notif._id}>
+            <div 
+              style={{margin: 3, cursor: 'pointer'}} 
+              key={notif._id}
+              onClick={() => this.detalleNotif(notif._id)}
+            >
               <div style={{margin: 1}}>
                 {notif.titulo}
               </div>
@@ -43,6 +48,11 @@ class BadgeNotificaciones extends Component {
   verNotif = (notifID) => {
     var dataToSubmit = {"id": notifID};
     this.props.dispatch(verNotificacion(this.props.trabajo.notificaciones, dataToSubmit));
+    this.detalleNotif(notifID);
+  }
+
+  detalleNotif = (notifID) => {
+    this.props.history.push(`/notificacion/${notifID}`);
   }
 
   contarNotif = () => {
@@ -85,4 +95,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(BadgeNotificaciones);
+export default connect(mapStateToProps)(withRouter(BadgeNotificaciones));

@@ -49,6 +49,35 @@ app.post('/api/trabajos/trabajo', auth, (req, res) => {
     })
 })
 
+app.post('/api/trabajos/buscartrabajo', auth, (req, res) => {
+    let busqueda = {};
+    if (req.body.profesion) {
+        busqueda["profesionRequerida"] = req.body.profesion;
+    }
+    if (req.body.habilidades) {
+        busqueda["habilidadesRequeridas"] = {$in: req.body.habilidades}
+    }
+
+    Trabajo.find(
+        busqueda,
+        (err, doc) => {
+            if (err) return res.json(err);
+            const trabajos = doc.filter(trabajo => !trabajo.candidatos.includes(req.usuario._id))
+            res.status(200).json(trabajos);
+        }
+    ).populate("creador");
+})
+
+app.get('/api/trabajos/trabajos_por_profesional', auth, (req, res) => {
+    Trabajo.find(
+        {candidatos: {$in: req.usuario._id}},
+        (err, doc) => {
+            if (err) res.json(doc);
+            res.status(200).json(doc);
+        }
+    ).populate("creador");
+})
+
 app.get('/api/trabajos/trabajos_por_empleador', auth, (req, res) => {
     Trabajo.find({'creador': req.usuario.empleador}, (err, doc) => {
         if (err) res.json(err);
@@ -121,6 +150,16 @@ app.put('/api/trabajos/notificacion', auth, (req, res) => {
             res.status(200).json(doc);
         }
     )
+})
+
+app.get('/api/trabajos/notificacion', auth, (req, res) => {
+    Notificacion.findOne(
+        {_id: req.query.id},
+        (err, doc) => {
+            if (err) return res.json(err);
+            res.status(200).json(doc);
+        }
+    ).populate('creador').populate('destino').populate('trabajoAsociado');
 })
 
 app.get('/api/trabajos/notificaciones_usuario', auth, (req, res) => {
@@ -439,6 +478,16 @@ app.get('/api/usuarios/domicilio', auth, (req, res) => {
 //==========================================\\
 //                PROFESIONAL               \\
 //==========================================\\
+
+app.get('/api/usuarios/profesionales/profesion', auth, (req, res) => {
+    Profesional.findOne(
+        {_id: req.usuario.profesional},
+        (err, doc) => {
+            if (err) res.json(err);
+            res.status(200).json(doc.profesion);
+        }
+    )
+})
 
 app.post('/api/usuarios/profesionales', (req, res) => {
     const profesional = new Profesional(req.body);
