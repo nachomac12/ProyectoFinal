@@ -2,17 +2,9 @@ import React from 'react';
 import { Paper } from '@material-ui/core';
 import Modal from '../../Utilidades/modal';
 import TrabajoDetalle from './trabajo_detalle';
-import { agregarPostulante } from '../../../redux/actions/trabajo_actions';
 import { connect } from 'react-redux';
 
 const Trabajo = (props) => {
-  const postular = () => {
-    var dataToSubmit = {
-      "id": props.trabajo._id,
-      "candidato": props.candidato
-    }
-    props.dispatch(agregarPostulante(dataToSubmit, [])).then(res => console.log(res));
-  }
 
   return (
     <Paper className="col-md" style={{padding: 7, margin: 10, cursor: 'pointer'}}>
@@ -23,7 +15,8 @@ const Trabajo = (props) => {
         footer={
           <button 
             className="btn btn-lg btn-outline-info"
-            onClick={() => postular()}
+            onClick={() => props.postular(props.trabajo._id)}
+            data-dismiss="modal" aria-label="Close"
           >
             Postularme
           </button>

@@ -54,10 +54,20 @@ class BuscarTrabajo extends Component {
         <Trabajo 
           key={trabajo._id}
           trabajo={trabajo}
-          candidato={this.props.usuario.usuarioDatos.id}
+          postular={id => this.postular(id)}
         />
     ))
   )
+
+  postular = (id) => {
+    var dataToSubmit = {
+      "id": id,
+      "candidato": this.props.usuario.usuarioDatos.id
+    }
+    axios.put('/api/trabajos/postular', dataToSubmit).then(res => {
+      this.setState({trabajos: this.state.trabajos.filter(trabajo => trabajo._id !== res.data._id)});
+    })
+  }
 
   render() {
     return (
