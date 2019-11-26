@@ -4,7 +4,7 @@ import { Delete } from '@material-ui/icons';
 
 const Empleo = (props) => {
     return (
-      <Paper className="col-md-8">
+      <Paper className="col-md-8 mt-4">
       <div className="row align-items-center"> 
         <div className="col-md-4">
           <img className="img-fluid" src={props.foto} alt="img"/>

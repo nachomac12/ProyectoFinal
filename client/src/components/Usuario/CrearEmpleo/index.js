@@ -51,7 +51,7 @@ class CrearEmpleo extends Component {
       "titulo": this.state.titulo,
       "descripcion": this.state.descripcion,
       "cantidadCandidatosPermitidos": this.state.cantidadPostulantes,
-      "creador": this.props.usuario.usuarioDatos.empleador,
+      "creador": this.props.usuario.usuarioDatos.id,
       "profesionRequerida": this.state.profesionRequerida,
       "habilidadesRequeridas": listaHabilidades
     }

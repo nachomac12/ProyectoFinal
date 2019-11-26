@@ -79,7 +79,7 @@ app.get('/api/trabajos/trabajos_por_profesional', auth, (req, res) => {
 })
 
 app.get('/api/trabajos/trabajos_por_empleador', auth, (req, res) => {
-    Trabajo.find({'creador': req.usuario.empleador}, (err, doc) => {
+    Trabajo.find({'creador': req.usuario._id}, (err, doc) => {
         if (err) res.json(err);
         res.status(200).json(doc);
     }).populate("candidatos");

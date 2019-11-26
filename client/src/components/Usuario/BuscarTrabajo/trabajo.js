@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 const Trabajo = (props) => {
 
   return (
-    <Paper className="col-md" style={{padding: 7, margin: 10, cursor: 'pointer'}}>
+    <Paper style={{padding: 7, margin: 10, cursor: 'pointer'}}>
       <Modal
         id={`modal${props.trabajo._id}`}
         title={props.trabajo.titulo}
@@ -22,9 +22,11 @@ const Trabajo = (props) => {
           </button>
         }
       >
-        <div className="row">
+        <div className="row align-items-center">
           <div className="col-md-4">
-            <img className="img-fluid" src={props.trabajo.creador.fotoDePerfil} alt="img"/>
+            <div style={{height: 150, width: 150}}>
+              <img className="img-fluid" src={props.trabajo.creador.fotoDePerfil} alt="img"/>
+            </div>
           </div>
           <div className="col-md-8">
             <h3>{props.trabajo.titulo}</h3>

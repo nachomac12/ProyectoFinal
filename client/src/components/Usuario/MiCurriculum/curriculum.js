@@ -91,7 +91,7 @@ const Curriculum = props => {
       <div className="row" style={{ margin: 20 }}>
         <div className="col-md mb-2">
           <h5 className="text-info">Experiencia</h5>
-          <p>En construcción gente, no se puede todo jeje</p>
+          <p>Desarrollador Fullstack en Samaproject (2013-2019)</p>
           <h5 className="text-info mt-4">Educación</h5>
           {listar(
             props.profesional ? props.profesional.educacion : null,

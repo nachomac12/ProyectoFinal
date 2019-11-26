@@ -51,11 +51,13 @@ class BuscarTrabajo extends Component {
 
   renderTrabajos = () => (
     this.state.trabajos.map(trabajo => (
-        <Trabajo 
-          key={trabajo._id}
-          trabajo={trabajo}
-          postular={id => this.postular(id)}
-        />
+        <div className="col-md-6">
+          <Trabajo 
+            key={trabajo._id}
+            trabajo={trabajo}
+            postular={id => this.postular(id)}
+          />
+        </div>
     ))
   )
 
@@ -88,11 +90,9 @@ class BuscarTrabajo extends Component {
             ><Search fontSize="small"/></button>
           </div>
         </div>
-        <div className="col-md-10" style={{margin: '0 auto'}} >
-          <div className="row">
+          <div className="row justify-content-center">
             {this.renderTrabajos()}
           </div>
-        </div>
       </div>
     )
   }
